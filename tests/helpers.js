@@ -1,3 +1,7 @@
+var sinon = require('sinon'),
+    sandbox = sinon.sandbox.create();
+
+
 function getClassProto(_class) {
   /**
    * Get the prototype of a React class.
@@ -35,13 +39,12 @@ function getMethodLocation(_class, method) {
 }
 
 
-module.exports.spyOnMethod = function(sandbox, _class, method) {
+module.exports.spyOnMethod = function(_class, method) {
   /**
    * Spy a method on a React class.
    *
    * Warning: The spy will not call through!
    *
-   * @param {Sinon sandbox} sandbox
    * @param {React} _class
    * @param {String} method The name of the method you want to spy on.
    *
@@ -54,11 +57,10 @@ module.exports.spyOnMethod = function(sandbox, _class, method) {
 };
 
 
-module.exports.stubMethod = function(sandbox, _class, method, resp) {
+module.exports.stubMethod = function(_class, method, resp) {
   /**
    * Stub a method on a React class.
    *
-   * @param {Sinon sandbox} sandbox
    * @param {React} _class
    * @param {String} method The name of the method you want to stub.
    * @param {*} resp The response the stub should return.
@@ -70,4 +72,13 @@ module.exports.stubMethod = function(sandbox, _class, method, resp) {
 
   return sandbox.stub(methodLoc, method).returns(resp);
 };
+
+
+afterEach(function() {
+  /**
+   * Cleanup everything.
+   */
+
+  sandbox.restore();
+});
 

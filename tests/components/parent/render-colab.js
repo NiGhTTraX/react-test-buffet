@@ -11,7 +11,7 @@ describe('Parent', function() {
 
 
   beforeEach(function() {
-    doStuffSpy = TestHelpers.spyOnMethod(this.sandbox, Parent, 'doStuff');
+    doStuffSpy = TestHelpers.spyOnMethod(Parent, 'doStuff');
 
     component = React.render(Parent(), this.container);
   });

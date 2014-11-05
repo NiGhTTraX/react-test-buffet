@@ -9,7 +9,7 @@ describe('Parent', function() {
 
 
   beforeEach(function() {
-    TestHelpers.stubMethod(this.sandbox, Parent, 'render', null);
+    TestHelpers.stubMethod(Parent, 'render', null);
 
     component = React.render(Parent(), this.container);
   });
