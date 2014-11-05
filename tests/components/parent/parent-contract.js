@@ -1,6 +1,7 @@
 var React = require('react'),
     Parent = React.createFactory(require('../../../src/components/parent.jsx')),
-    TestUtils = require('react/addons').addons.TestUtils;
+    TestUtils = require('react/addons').addons.TestUtils,
+    TestHelpers = require('../../helpers.js');
 
 
 describe('Parent', function() {
@@ -8,6 +9,8 @@ describe('Parent', function() {
 
 
   beforeEach(function() {
+    TestHelpers.stubMethod(this.sandbox, Parent, 'render', null);
+
     component = React.render(Parent(), this.container);
   });
 
