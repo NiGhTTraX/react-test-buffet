@@ -22,6 +22,7 @@
     "reactify": "^0.15.2",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.6.0",
+    "vinyl-source-stream": "^1.0.0",
     "yargs": "^1.3.2"
   }
 }
