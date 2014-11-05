@@ -1,22 +1,24 @@
 var React = require('react'),
     Parent = React.createFactory(require('../../../src/components/parent.jsx')),
     TestUtils = require('react/addons').addons.TestUtils,
+    TestHelpers = require('../../helpers.js'),
     $ = require('jquery');
 
 
 describe('Parent', function() {
   var component;
+  var doStuffSpy;
 
 
   beforeEach(function() {
+    doStuffSpy = TestHelpers.spyOnMethod(this.sandbox, Parent, 'doStuff');
+
     component = React.render(Parent(), this.container);
   });
 
   it('should call to do stuff', function() {
-    // TODO: figure out how to mock methods on components
-    /*component.doStuff = sinon.spy();
     TestUtils.Simulate.click(component.refs.btn.getDOMNode());
-    expect(component.doStuff).to.have.been.called();*/
+    expect(doStuffSpy).to.have.been.called;
   });
 
   it('should render stuff', function() {
