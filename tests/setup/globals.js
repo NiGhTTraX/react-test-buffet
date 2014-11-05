@@ -13,18 +13,29 @@ chai.use(sinonChai);
 
 beforeEach(function() {
   /**
-   * Prepare a container to mount the component before each test.
+   * Prepare stuff that you might need in tests.
+   *
+   * Create a simple div container in which you can mount your component. If you
+   * mount it in that container, it will automatically be unmounted when the
+   * test finishes.
+   *
+   * Also, create a sinon sandbox to use to create spies and stubs that are
+   * cleaned up after the test finishes.
    */
 
+  this.sandbox = sinon.sandbox.create();
   this.container = document.createElement('div');
 });
 
 
 afterEach(function() {
   /**
-   * Unmount the component after each test.
+   * Do some cleaning up.
+   *
+   * Unmount the component found in the container and clear the sinon sandbox.
    */
 
   React.unmountComponentAtNode(this.container);
+  this.sandbox.restore();
 });
 
