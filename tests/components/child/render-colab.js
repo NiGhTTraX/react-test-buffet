@@ -6,12 +6,9 @@ var React = require('react'),
 
 describe('Child', function() {
   var component;
-  var changeFooCallback;
 
 
   beforeEach(function() {
-    changeFooCallback = sinon.spy();
-
     component = React.render(Child(), this.container);
   });
 
