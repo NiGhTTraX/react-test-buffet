@@ -13,6 +13,23 @@ var buildPath = './build/',
 
 
 function buildBundle(instrument) {
+  /**
+   * Build the testing bundle.
+   *
+   * We add the setup files and testing files as entry points so they get
+   * executed when the bundle is loaded. Everything else that is required
+   * through those files will be handled by Browserify.
+   *
+   * We first pipe the files through reactify so .jsx files are compiled to
+   * plain JS. Then we instrument them with Istanbul so we can generate coverage
+   * reports. Depending on the instrument param, we either create an
+   * instrumented bundle or a non instrumented bundle.
+   *
+   * @param {Boolean} instrument Whether to instrument the files with Istanbul.
+   *
+   * @returns {Stream}
+   */
+
   var files = glob.sync(setupFiles);
   files = files.concat(glob.sync(testFiles));
 
