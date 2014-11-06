@@ -19,6 +19,7 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-sinon-chai": "^0.2.0",
     "mocha": "^2.0.1",
+    "proxyquireify": "^1.1.0",
     "reactify": "^0.15.2",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.6.0",

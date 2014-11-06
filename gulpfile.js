@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     argv = require('yargs').argv,
     source = require('vinyl-source-stream'),
-    browserify = require('browserify');
+    browserify = require('browserify'),
+    proxyquireify = require('proxyquireify');
 
 
 var buildPath = './build/',
@@ -34,11 +35,12 @@ function buildBundle(instrument) {
   files = files.concat(glob.sync(testFiles));
 
   var bundleStream = browserify({debug: true});
-  var bundlePath;
+  bundleStream.plugin(proxyquireify.plugin);
 
   bundleStream.add(files);
   bundleStream.transform('reactify');
 
+  var bundlePath;
   if (instrument === false) {
     gutil.log('Building the non instrumented bundle.');
     bundlePath = 'tests-no-instrument.js';
