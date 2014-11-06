@@ -1,6 +1,7 @@
 var React = require('react'),
     Child = React.createFactory(require('../../../src/components/child.jsx')),
-    TestUtils = require('react/addons').addons.TestUtils;
+    TestUtils = require('react/addons').addons.TestUtils,
+    TestHelpers = require('../../helpers.js');
 
 
 describe('Child', function() {
