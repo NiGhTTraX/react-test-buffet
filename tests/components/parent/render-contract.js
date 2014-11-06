@@ -1,7 +1,7 @@
 var React = require('react'),
-    Parent = React.createFactory(
-        require('../../../src/components/parent.jsx')),
-    TestUtils = require('react/addons').addons.TestUtils;
+    TestUtils = require('react/addons').addons.TestUtils,
+    TestHelpers = require('../../helpers.js'),
+    proxyquire = require('proxyquireify')(require);
 
 
 describe('Parent', function() {
@@ -9,11 +9,19 @@ describe('Parent', function() {
 
 
   beforeEach(function() {
+    var stubs = TestHelpers.genComponentStub('./child.jsx'),
+        Parent = React.createFactory(
+                     proxyquire('../../../src/components/parent.jsx', stubs));
+
     component = React.render(Parent(), this.container);
   });
 
-  it('should send props', function() {
-    // TODO: figure out how to test that a component received the right props
+  it('should send foo', function() {
+    expect(component.refs.child.props.foo).to.equal('bar');
+  });
+
+  it('should send a callback to change foo', function() {
+    expect(component.refs.child.props.callback).to.equal(component.changeFoo);
   });
 });
 

@@ -13,7 +13,7 @@ module.exports = React.createClass({
   render: function() {
     return <div>
       <div ref="stuff">{this.state.stuff}</div>
-      <Child foo={this.state.foo} callback={this.changeFoo}/>
+      <Child ref="child" foo={this.state.foo} callback={this.changeFoo}/>
       <button ref="btn" onClick={this.doStuff}>Do stuff</button>
     </div>;
 
