@@ -74,6 +74,29 @@ module.exports.stubMethod = function(_class, method, resp) {
 };
 
 
+module.exports.genComponentStub = function(path) {
+  /**
+   * Create a component stub to be used with proxyquire.
+   *
+   * @param {String} path The module path of the component exactly as it's
+   *     required in the parent component.
+   *
+   * @returns {Object.<String,React>}
+   */
+
+  var React = require('react');
+
+  var dummy = React.createClass({
+    render: function() { return null; }
+  });
+
+  var stubs = {};
+  stubs[path] = dummy;
+
+  return stubs;
+};
+
+
 afterEach(function() {
   /**
    * Cleanup everything.
