@@ -5,6 +5,7 @@ module.exports = function(config) {
     frameworks: ['mocha', 'chai', 'sinon-chai'],
 
     files: [
+      './bind-polyfill.js',  // needed for PhantomJS
       'build/tests.js'
     ],
 
