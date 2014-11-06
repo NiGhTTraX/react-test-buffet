@@ -80,7 +80,13 @@ gulp.task('test', ['build-instrumented'], function(done) {
 });
 
 
-gulp.task('watch', function() {
-  gulp.watch([setupFiles, testFiles, srcFiles], ['test']);
+gulp.task('watch-test', function() {
+  gulp.watch([setupFiles, testFiles, srcFiles, 'gulpfile.js'], ['test']);
+});
+
+
+gulp.task('watch-build', function() {
+  gulp.watch([setupFiles, testFiles, srcFiles, 'gulpfile.js'],
+             ['build-non-instrumented']);
 });
 
