@@ -9,6 +9,10 @@ module.exports = function(config) {
       'build/tests.js'
     ],
 
+    preprocessors: {
+      'build/tests.js': ['sourcemap']
+    },
+
     reporters: [
       'progress',
       'coverage'
