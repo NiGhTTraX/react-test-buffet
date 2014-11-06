@@ -58,7 +58,7 @@ function buildBundle(instrument) {
 
 
 gulp.task('build-non-instrumented', function() {
-  return buildBundle;
+  return buildBundle(false);
 });
 
 
