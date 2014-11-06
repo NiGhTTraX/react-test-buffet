@@ -8,6 +8,9 @@ describe('Child', function() {
 
 
   beforeEach(function() {
+    // Since this is a contract test, we mock out the render method.
+    TestHelpers.stubMethod(Child, 'render', null);
+
     component = React.render(Child(), this.container);
   });
 
