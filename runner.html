@@ -16,6 +16,22 @@
   <body>
     <div id="test-area"></div>
     <div id="mocha"></div>
+    <script src="./node_modules/source-map-support/browser-source-map-support.js"></script>
+    <script>
+      (function() {
+        /**
+         * Enable source maps if we're running on a server.
+         *
+         * If we're being served through the file protocol we're gonna
+         * throw CORS errors so don't enable them then.
+         */
+
+        var protocol = document.location.protocol;
+        if (protocol !== 'file:') {
+          sourceMapSupport.install();
+        }
+      })();
+    </script>
     <script src="./node_modules/mocha/mocha.js"></script>
     <script>
       mocha.setup('bdd');
