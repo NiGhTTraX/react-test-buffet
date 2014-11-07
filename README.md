@@ -25,3 +25,22 @@ PhantomJS. You can find coverage reports in the `coverage/` folder.
 If you want to run the tests in your own browsers, run `gulp build` to build the
 non instrumented testing bundle and then open `runner.html`.
 
+
+## Stack traces
+
+Stack traces pointing to original line numbers are achieved using:
+- [karma-sourcemap-loader](https://github.com/demerzel3/karma-sourcemap-loader)
+  for Karma
+- [source-map-support](https://github.com/evanw/node-source-map-support) for the
+  manual test runner
+
+Unfortunately, due to the fact that Istanbul doesn't preserve line numbers in
+the instrumented code, all stack traces in Karma will point to line 9 since
+that's where it puts all the original code.
+
+Also, stack traces in the manual test runner only work if the runner is **served
+by a server** and not through the `file:` protocol.
+
+Enabling source maps in the strack traces adds some overhead since they need to
+be loaded and parsed.
+
