@@ -18,9 +18,13 @@ coverage with Istanbul.
 
 ## Running the tests
 
-Running `gulp test` will build the Istanbul instrumented testing bundle and
+Running `gulp test` will build the non instrumented testing bundle and
 start karma. Karma is configured to run the tests in Firefox, Chrome and
-PhantomJS. You can find coverage reports in the `coverage/` folder.
+PhantomJS.
+
+To generate code coverage reports, run `gulp test-coverage`. This will
+instrument the source files with Istanbul and build an instrumented bundle.
+You can find coverage reports in the `coverage/` folder.
 
 If you want to run the tests in your own browsers, run `gulp build` to build the
 non instrumented testing bundle and then open `runner.html`.
@@ -35,8 +39,8 @@ Stack traces pointing to original line numbers are achieved using:
   manual test runner
 
 Unfortunately, due to the fact that Istanbul doesn't preserve line numbers in
-the instrumented code, all stack traces in Karma will point to line 9 since
-that's where it puts all the original code.
+the instrumented code, when generating coverage, all stack traces in Karma will
+point to line 9 since that's where it puts all the original code.
 
 Also, stack traces in the manual test runner only work if the runner is **served
 by a server** and not through the `file:` protocol.
