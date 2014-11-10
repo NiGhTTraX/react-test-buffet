@@ -62,15 +62,18 @@ gulp.task('build-instrumented', function() {
   return buildBundle(true, filePatterns.bundleInstrumentedName);
 });
 
-gulp.task('build', function() {
-  return buildBundle(argv.instrument || false);
+
+gulp.task('test', ['build'], function(done) {
+  karmaServer.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true,
+  }, done);
 });
 
 
-gulp.task('test', ['build-instrumented'], function(done) {
-  var karma = require('karma').server;
-  karma.start({
-    configFile: __dirname + '/karma.conf.js',
+gulp.task('test-coverage', ['build-instrumented'], function(done) {
+  karmaServer.start({
+    configFile: __dirname + '/karma.conf.coverage.js',
     singleRun: true
   }, done);
 });
