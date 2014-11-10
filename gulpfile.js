@@ -4,16 +4,12 @@ var gulp = require('gulp'),
     argv = require('yargs').argv,
     source = require('vinyl-source-stream'),
     browserify = require('browserify'),
-    proxyquireify = require('proxyquireify');
+    proxyquireify = require('proxyquireify'),
+    karmaServer = require('karma').server,
+    filePatterns = require('./file-patterns');
 
 
-var buildPath = './build/',
-    setupFiles = './tests/setup/**/*.js',
-    testFiles = './tests/components/**/*.js',
-    srcFiles = './src/**/*.jsx';
-
-
-function buildBundle(instrument) {
+function buildBundle(instrument, bundlePath) {
   /**
    * Build the testing bundle.
    *
@@ -27,12 +23,13 @@ function buildBundle(instrument) {
    * instrumented bundle or a non instrumented bundle.
    *
    * @param {Boolean} instrument Whether to instrument the files with Istanbul.
+   * @param {String} bundlePath The path where the bundle will be saved.
    *
    * @returns {Stream}
    */
 
-  var files = glob.sync(setupFiles);
-  files = files.concat(glob.sync(testFiles));
+  var files = glob.sync(filePatterns.setupFiles);
+  files = files.concat(glob.sync(filePatterns.testFiles));
 
   var bundleStream = browserify({debug: true});
   bundleStream.plugin(proxyquireify.plugin);
@@ -40,30 +37,29 @@ function buildBundle(instrument) {
   bundleStream.add(files);
   bundleStream.transform('reactify');
 
-  var bundlePath;
   if (instrument === false) {
     gutil.log('Building the non instrumented bundle.');
-    bundlePath = 'tests-no-instrument.js';
   } else {
     gutil.log('Building the instrumented bundle');
-    bundlePath = 'tests.js';
-    bundleStream.transform('browserify-istanbul', { ignore: setupFiles });
+    bundleStream.transform('browserify-istanbul', {
+      ignore: filePatterns.setupFiles
+    });
   }
 
   return bundleStream
       .bundle()
       .pipe(source(bundlePath))
-      .pipe(gulp.dest(buildPath));
+      .pipe(gulp.dest(filePatterns.buildPath));
 }
 
 
-gulp.task('build-non-instrumented', function() {
-  return buildBundle(false);
+gulp.task('build', function() {
+  return buildBundle(false, filePatterns.bundleName);
 });
 
 
 gulp.task('build-instrumented', function() {
-  return buildBundle(true);
+  return buildBundle(true, filePatterns.bundleInstrumentedName);
 });
 
 gulp.task('build', function() {
@@ -81,12 +77,13 @@ gulp.task('test', ['build-instrumented'], function(done) {
 
 
 gulp.task('watch-test', function() {
-  gulp.watch([setupFiles, testFiles, srcFiles, 'gulpfile.js'], ['test']);
+  gulp.watch([filePatterns.setupFiles, filePatterns.testFiles,
+              filePatterns.srcFiles, 'gulpfile.js'], ['test']);
 });
 
 
 gulp.task('watch-build', function() {
-  gulp.watch([setupFiles, testFiles, srcFiles, 'gulpfile.js'],
-             ['build-non-instrumented']);
+  gulp.watch([filePatterns.setupFiles, filePatterns.testFiles,
+              filePatterns.srcFiles, 'gulpfile.js'], ['build']);
 });
 
