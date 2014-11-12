@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     glob = require('glob'),
     gutil = require('gulp-util'),
-    argv = require('yargs').argv,
     source = require('vinyl-source-stream'),
     browserify = require('browserify'),
     proxyquireify = require('proxyquireify'),
