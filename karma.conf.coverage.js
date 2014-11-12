@@ -9,8 +9,9 @@ module.exports = function(config) {
 
   var preprocessors = {};
   preprocessors[bundlePath] = ['sourcemap'];
-
   opts.preprocessors = preprocessors;
+
+  opts.reporters.push('coverage');
 
   config.set(opts);
 };
