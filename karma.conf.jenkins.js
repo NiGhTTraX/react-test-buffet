@@ -5,6 +5,8 @@ module.exports = function(config) {
   var opts = require('./karma.conf.base.js')(config),
       bundlePath = filePatterns.buildPath + filePatterns.bundleInstrumentedName;
 
+  opts.files.push('./bind-polyfill.js');  // needed for PhantomJS
+
   opts.files.push(bundlePath);
 
   var preprocessors = {};
