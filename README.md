@@ -9,8 +9,8 @@ coverage with Istanbul.
 ## Testing tools
 
 - [Mocha](http://mochajs.org/) - testing framework
-- [Chai](chaijs.com) - assertion library
-- [Sinon](sinonjs.org) - mocking library
+- [Chai](http://chaijs.com) - assertion library
+- [Sinon](http://sinonjs.org) - mocking library
 - [Karma](http://karma-runner.github.io/0.12/index.html) - test runner
 - [PhantomJS](http://phantomjs.org/) - headless WebKit
 - [Istanbul](http://gotwarlost.github.io/istanbul/) - code coverage
