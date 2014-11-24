@@ -5,60 +5,80 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     proxyquireify = require('proxyquireify'),
     karmaServer = require('karma').server,
-    filePatterns = require('./file-patterns');
+    filePatterns = require('./file-patterns'),
+    _ = require('lodash');
 
 
-function buildBundle(instrument, bundlePath) {
+function buildBundle(files, options) {
   /**
    * Build the testing bundle.
-   *
-   * We add the setup files and testing files as entry points so they get
-   * executed when the bundle is loaded. Everything else that is required
-   * through those files will be handled by Browserify.
    *
    * We first pipe the files through reactify so .jsx files are compiled to
    * plain JS. Then we instrument them with Istanbul so we can generate coverage
    * reports. Depending on the instrument param, we either create an
    * instrumented bundle or a non instrumented bundle.
    *
-   * @param {Boolean} instrument Whether to instrument the files with Istanbul.
-   * @param {String} bundlePath The path where the bundle will be saved.
+   * @param {Files[]|String[]} files The bundle entry points.
+   * @param {Object} options
+   * @param {Boolean} [options.instrument=false] Whether to instrument the
+   *     files with Istanbul.
+   * @param {String[]} [options.ignore=[]] If options.instrument is true, these
+   *     files will not be instrumented for coverage.
    *
    * @returns {Stream}
+   */
+
+  var defaults = {
+    instrument: false,
+    ignore: []
+  }, opts = _.extend(defaults, options);
+
+  var bundleStream = browserify(files, {debug: true});
+
+  bundleStream.plugin(proxyquireify.plugin);
+  bundleStream.transform('reactify');
+
+  if (opts.instrument === true) {
+    gutil.log('Building the instrumented bundle');
+    bundleStream.transform('browserify-istanbul', {
+      ignore: opts.ignore
+    });
+  } else {
+    gutil.log('Building the non instrumented bundle');
+  }
+
+  return bundleStream.bundle();
+}
+
+
+function gatherFiles() {
+  /**
+   * We first glob for the test setup files. They need to run before all the
+   * tests so make sure we put them first. Then we add the test files
+   * themselves. Any dependencies will be handled by Browserify.
+   *
+   * @returns {Files[]}
    */
 
   var files = glob.sync(filePatterns.setupFiles);
   files = files.concat(glob.sync(filePatterns.testFiles));
 
-  var bundleStream = browserify({debug: true});
-  bundleStream.plugin(proxyquireify.plugin);
-
-  bundleStream.add(files);
-  bundleStream.transform('reactify');
-
-  if (instrument === false) {
-    gutil.log('Building the non instrumented bundle');
-  } else {
-    gutil.log('Building the instrumented bundle');
-    bundleStream.transform('browserify-istanbul', {
-      ignore: filePatterns.setupFiles
-    });
-  }
-
-  return bundleStream
-      .bundle()
-      .pipe(source(bundlePath))
-      .pipe(gulp.dest(filePatterns.buildPath));
+  return files;
 }
 
 
 gulp.task('build', function() {
-  return buildBundle(false, filePatterns.bundleName);
+  return buildBundle(gatherFiles())
+      .pipe(source(filePatterns.bundleName))
+      .pipe(gulp.dest(filePatterns.buildPath));
 });
 
 
 gulp.task('build-instrumented', function() {
-  return buildBundle(true, filePatterns.bundleInstrumentedName);
+  return buildBundle(gatherFiles(),
+                     {instrument: true, ignore: filePatterns.setupFiles})
+      .pipe(source(filePatterns.bundleInstrumentedName))
+      .pipe(gulp.dest(filePatterns.buildPath));
 });
 
 
