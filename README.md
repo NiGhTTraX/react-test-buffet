@@ -54,3 +54,16 @@ by a server** and not through the `file:` protocol.
 Enabling source maps in the strack traces adds some overhead since they need to
 be loaded and parsed.
 
+
+## Debugging the tests
+
+The bundle is built using source maps so you can step through your original
+code. Moreover, there's a special div with the id `test-area`, which is
+positioned offscreen, which you can use to render components in tests. It's
+bound to `this.container` inside the tests. When debugging, you can remove its
+absolute positioning to make it visible and see how your rendered components
+look like.
+
+Any console calls will output to the terminal when run through Karma and to the
+actual console when running through the manual test runner.
+
