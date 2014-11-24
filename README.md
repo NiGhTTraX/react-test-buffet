@@ -30,6 +30,11 @@ You can find coverage reports in the `coverage/` folder.
 If you want to run the tests in your own browsers, run `gulp build` to build the
 non instrumented testing bundle and then open `runner.html`.
 
+If you want to run the tests inside a CI environment you can use the
+karma.conf.ci.js that will run the tests in PhantomJS and generate cobertura
+coverage reports. You need to build the instrumented bundle first by running
+`gulp build-instrumented`.
+
 
 ## Stack traces
 
