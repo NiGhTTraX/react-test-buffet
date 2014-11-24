@@ -14,6 +14,8 @@ coverage with Istanbul.
 - [Karma](http://karma-runner.github.io/0.12/index.html) - test runner
 - [PhantomJS](http://phantomjs.org/) - headless WebKit
 - [Istanbul](http://gotwarlost.github.io/istanbul/) - code coverage
+- [Proxyquireify](https://github.com/thlorenz/proxyquireify) - mocking Node
+  modules plugin for Browserify
 
 
 ## Running the tests
