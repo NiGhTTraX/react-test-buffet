@@ -37,7 +37,7 @@ function buildBundle(instrument, bundlePath) {
   bundleStream.transform('reactify');
 
   if (instrument === false) {
-    gutil.log('Building the non instrumented bundle.');
+    gutil.log('Building the non instrumented bundle');
   } else {
     gutil.log('Building the instrumented bundle');
     bundleStream.transform('browserify-istanbul', {
