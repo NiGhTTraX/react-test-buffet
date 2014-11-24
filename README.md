@@ -21,8 +21,7 @@ coverage with Istanbul.
 ## Running the tests
 
 Running `gulp test` will build the non instrumented testing bundle and
-start karma. Karma is configured to run the tests in Firefox, Chrome and
-PhantomJS.
+start karma. Karma is configured to run the tests in Firefox and Chrome.
 
 To generate code coverage reports, run `gulp test-coverage`. This will
 instrument the source files with Istanbul and build an instrumented bundle.
