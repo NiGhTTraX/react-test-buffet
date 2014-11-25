@@ -36,5 +36,8 @@
     "sinon-chai": "^2.6.0",
     "source-map-support": "^0.2.8",
     "vinyl-source-stream": "^1.0.0"
+  },
+  "dependencies": {
+    "react": "^0.12.1"
   }
 }
