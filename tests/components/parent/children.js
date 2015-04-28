@@ -24,4 +24,3 @@ describe('Parent', function() {
     expect(component.refs.child.props.callback).to.equal(component.changeFoo);
   });
 });
-

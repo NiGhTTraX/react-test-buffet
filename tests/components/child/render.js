@@ -16,4 +16,3 @@ describe('Child', function() {
     expect($(component.refs.foo.getDOMNode()).text()).to.equal('bar');
   });
 });
-

@@ -15,14 +15,6 @@ describe('Parent', function() {
     component = React.render(Parent(), this.container);
   });
 
-  it('should set initial foo', function() {
-    expect(component.state.foo).to.equal('bar');
-  });
-
-  it('should set initial stuff', function() {
-    expect(component.state.stuff).to.equal('tomato');
-  });
-
   it('should change foo when asked to', function() {
     component.changeFoo('baz');
     expect(component.state.foo).to.equal('baz');
@@ -33,4 +25,3 @@ describe('Parent', function() {
     expect(component.state.stuff).to.equal('potato');
   });
 });
-
