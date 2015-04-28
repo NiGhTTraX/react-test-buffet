@@ -14,13 +14,14 @@ coverage with Istanbul.
 - [Karma](http://karma-runner.github.io/0.12/index.html) - test runner
 - [PhantomJS](http://phantomjs.org/) - headless WebKit
 - [Istanbul](http://gotwarlost.github.io/istanbul/) - code coverage
+- [Proxyquireify](https://github.com/thlorenz/proxyquireify) - mocking Node
+  modules plugin for Browserify
 
 
 ## Running the tests
 
 Running `gulp test` will build the non instrumented testing bundle and
-start karma. Karma is configured to run the tests in Firefox, Chrome and
-PhantomJS.
+start karma. Karma is configured to run the tests in Firefox and Chrome.
 
 To generate code coverage reports, run `gulp test-coverage`. This will
 instrument the source files with Istanbul and build an instrumented bundle.
@@ -28,6 +29,11 @@ You can find coverage reports in the `coverage/` folder.
 
 If you want to run the tests in your own browsers, run `gulp build` to build the
 non instrumented testing bundle and then open `runner.html`.
+
+If you want to run the tests inside a CI environment you can use the
+karma.conf.ci.js that will run the tests in PhantomJS and generate cobertura
+coverage reports. You need to build the instrumented bundle first by running
+`gulp build-instrumented`.
 
 
 ## Stack traces
@@ -47,4 +53,17 @@ by a server** and not through the `file:` protocol.
 
 Enabling source maps in the strack traces adds some overhead since they need to
 be loaded and parsed.
+
+
+## Debugging the tests
+
+The bundle is built using source maps so you can step through your original
+code. Moreover, there's a special div with the id `test-area`, which is
+positioned offscreen, which you can use to render components in tests. It's
+bound to `this.container` inside the tests. When debugging, you can remove its
+absolute positioning to make it visible and see how your rendered components
+look like.
+
+Any console calls will output to the terminal when run through Karma and to the
+actual console when running through the manual test runner.
 
