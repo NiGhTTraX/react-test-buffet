@@ -127,3 +127,19 @@ module.exports.simulateTyping = function(ref, value) {
   node.value = value;
   TestUtils.Simulate.change(node);
 };
+
+
+module.exports.render = function(Component, fixture, container) {
+  /**
+   * Render a component into the DOM.
+   *
+   * @param {React class} Component
+   * @param {Object} fixture
+   * @param {DOM} container You should set this to this.container inside your
+   *     tests.
+   *
+   * @returns {React instance}
+   */
+
+  return React.render(React.createFactory(Component)(fixture), container);
+};
