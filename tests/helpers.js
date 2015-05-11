@@ -110,3 +110,20 @@ module.exports.genComponentStub = function(path) {
 
   return stubs;
 };
+
+
+module.exports.simulateTyping = function(ref, value) {
+  /**
+   * Simulate typing into an input.
+   *
+   * Works by updating the value of the given node and then triggering a change
+   * event with TestUtils.Simulate. Only a single event will be triggered.
+   *
+   * @param {ref} node React reference.
+   * @param {String} value
+   */
+
+  var node = ref.getDOMNode();
+  node.value = value;
+  TestUtils.Simulate.change(node);
+};
