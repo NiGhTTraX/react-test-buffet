@@ -110,13 +110,3 @@ module.exports.genComponentStub = function(path) {
 
   return stubs;
 };
-
-
-afterEach(function() {
-  /**
-   * Cleanup everything.
-   */
-
-  sandbox.restore();
-});
-
