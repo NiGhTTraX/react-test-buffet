@@ -1,8 +1,8 @@
-var sinon = require('sinon'),
-    sandbox = sinon.sandbox.create();
+var TestUtils = require('react/addons').addons.TestUtils,
+    React = require('react');
 
 
-function getClassProto(_class) {
+function getClassPrototype(_class) {
   /**
    * Get the prototype of a React class.
    *
@@ -11,7 +11,11 @@ function getClassProto(_class) {
    * @return {prototype}
    */
 
-  return _class.type.prototype;
+  try {
+    return _class.type.prototype;
+  } catch(e) {
+    throw new Error('Couldn\'t get the component\'s prototype');
+  }
 }
 
 
@@ -20,8 +24,9 @@ function getMethodLocation(_class, method) {
    * Get the object of which a method is part of.
    *
    * React automagically binds event handlers and stores a cache of them. If we
-   * find the method there then we return the cache. Otherwise, we return the
-   * class prototype.
+   * find the method there then we return the cache. If not, we check to see if
+   * the method is a static method, in which case we could find it on the
+   * constructor. If still not there, we look for it on the class prototype.
    *
    * @param {React} _class
    * @param {String} method
@@ -29,13 +34,22 @@ function getMethodLocation(_class, method) {
    * @returns {Object}
    */
 
-  var proto = getClassProto(_class);
+  var proto = getClassPrototype(_class);
 
   if (proto.__reactAutoBindMap[method]) {
     return proto.__reactAutoBindMap;
   }
 
-  return proto;
+  if (proto.constructor[method]) {
+    return proto.constructor;
+  }
+
+  if (proto[method]) {
+    return proto;
+  }
+
+  throw new Error('Could not find method `' + method + '` on the class ' +
+                  'prototype');
 }
 
 
