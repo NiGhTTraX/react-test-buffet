@@ -57,7 +57,7 @@ module.exports.spyOnMethod = function(_class, method) {
   /**
    * Spy a method on a React class.
    *
-   * Warning: The spy will not call through!
+   * Warning: The spy will call through!
    *
    * @param {React} _class
    * @param {String} method The name of the method you want to spy on.
@@ -77,7 +77,8 @@ module.exports.stubMethod = function(_class, method, resp) {
    *
    * @param {React} _class
    * @param {String} method The name of the method you want to stub.
-   * @param {*} resp The response the stub should return.
+   * @param {*} [resp] The response the stub should return. If not provided, the
+   *    stub will return `undefined`.
    *
    * @returns {Stub}
    */
