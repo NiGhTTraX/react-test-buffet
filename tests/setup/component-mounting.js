@@ -6,7 +6,7 @@ beforeEach(function() {
    * Prepare a container to mount the component before each test.
    *
    * If there's a container on the page named #test-area, use that, otherwise
-   * create a detached div and use that. The former case if useful when running
+   * create a detached div and use that. The former case is useful when running
    * the tests in your own browser so you can debug how the component is
    * rendered.
    */
@@ -23,9 +23,13 @@ beforeEach(function() {
 
 afterEach(function() {
   /**
-   * Unmount the component after each test.
+   * Unmount the component after each test and clean up the sinon sandbox.
    */
 
   React.unmountComponentAtNode(this.container);
+
+  // Clean up the sandbox after the component is unmounted so
+  // componentWillUnmount is not restored if it's stubbed.
+  sandbox.restore();
 });
 
