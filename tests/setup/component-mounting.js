@@ -28,4 +28,3 @@ afterEach(function() {
 
   React.unmountComponentAtNode(this.container);
 });
-
