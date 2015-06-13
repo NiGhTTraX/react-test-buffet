@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "babel": "^5.5.8",
+    "babelify": "^6.1.2",
     "browserify": "^6.2.0",
     "browserify-istanbul": "^0.1.2",
     "chai": "^1.9.2",
@@ -33,7 +34,6 @@
     "karma-sourcemap-loader": "^0.3.0",
     "lodash": "^2.4.1",
     "proxyquireify": "^1.1.0",
-    "reactify": "^0.15.2",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.6.0",
     "source-map-support": "^0.2.8",
