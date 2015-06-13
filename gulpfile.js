@@ -60,7 +60,7 @@ function gatherFiles() {
    * @returns {Files[]}
    */
 
-  var files = glob.sync(filePatterns.setupFiles);
+  var files = glob.sync(filePatterns.setupEntrypoint);
   files = files.concat(glob.sync(filePatterns.testFiles));
 
   return files;
