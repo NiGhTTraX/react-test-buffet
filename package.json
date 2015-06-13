@@ -12,6 +12,7 @@
     "url": "https://github.com/NiGhTTraX/react-test-buffet/issues"
   },
   "devDependencies": {
+    "babel": "^5.5.8",
     "browserify": "^6.2.0",
     "browserify-istanbul": "^0.1.2",
     "chai": "^1.9.2",
@@ -40,5 +41,9 @@
   },
   "dependencies": {
     "react": "^0.12.1"
+  },
+  "scripts": {
+    "test": "mocha --compilers js:babel/register --recursive tests/setup.js tests/components/",
+    "test-browser": "gulp test"
   }
 }
