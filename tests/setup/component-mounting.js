@@ -23,13 +23,9 @@ beforeEach(function() {
 
 afterEach(function() {
   /**
-   * Unmount the component after each test and clean up the sinon sandbox.
+   * Unmount the component after each test.
    */
 
   React.unmountComponentAtNode(this.container);
-
-  // Clean up the sandbox after the component is unmounted so
-  // componentWillUnmount is not restored if it's stubbed.
-  sandbox.restore();
 });
 
