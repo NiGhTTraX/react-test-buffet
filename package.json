@@ -19,6 +19,7 @@
     "gulp": "^3.8.9",
     "gulp-util": "^3.0.1",
     "jquery": "^2.1.1",
+    "jsdom": "^3.1.2",
     "karma": "^0.12.24",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.5",
