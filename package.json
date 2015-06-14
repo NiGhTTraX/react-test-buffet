@@ -43,7 +43,7 @@
     "react": "^0.12.1"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel/register --recursive tests/setup.js tests/components/",
+    "test": "mocha --compilers js:babel/register --recursive tests/setup-node.js tests/components/",
     "test-browser": "gulp test"
   }
 }
