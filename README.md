@@ -13,14 +13,32 @@ coverage with Istanbul.
 - [Mocha](http://mochajs.org/) - testing framework
 - [Chai](http://chaijs.com) - assertion library
 - [Sinon](http://sinonjs.org) - mocking library
+- [jsdom](https://github.com/tmpvar/jsdom) - server side DOM
+- [Babel](https://babeljs.io/) - transpile ES6 (including JSX) to ES5
+- [Browserify](http://browserify.org/) - CommonJS in the browser
 - [Karma](http://karma-runner.github.io/0.12/index.html) - test runner
 - [PhantomJS](http://phantomjs.org/) - headless WebKit
 - [Istanbul](http://gotwarlost.github.io/istanbul/) - code coverage
 - [Proxyquireify](https://github.com/thlorenz/proxyquireify) - mocking Node
   modules plugin for Browserify
+- [babelify](https://github.com/babel/babelify) - Babel transform for Browserify
 
 
-## Running the tests
+## Running the tests in Node
+
+`npm test` will run the tests in Node using `Mocha`. This is useful for a rapid
+feedback loop.
+
+`jsdom` is used for providing a DOM implementation in Node. `jsdom` is pretty
+cool, but if falls short when you need additional browser behavior like local
+storage or style cascading.
+
+
+## Running the tests in real browsers
+
+`npm run test-browser` will run the tests in real browsers using `Karma` and
+`Browserify`. This is useful for debugging (Chrome dev tools rock!) and when
+`jsdom` is not enough.
 
 Running `gulp test` will build the non instrumented testing bundle and
 start karma. Karma is configured to run the tests in Firefox and Chrome.

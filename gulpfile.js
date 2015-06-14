@@ -13,10 +13,10 @@ function buildBundle(files, options) {
   /**
    * Build the testing bundle.
    *
-   * We first pipe the files through reactify so .jsx files are compiled to
-   * plain JS. Then we instrument them with Istanbul so we can generate coverage
-   * reports. Depending on the instrument param, we either create an
-   * instrumented bundle or a non instrumented bundle.
+   * We first transpile the JSX to plain JS. Then we instrument them with
+   * Istanbul so we can generate coverage reports. Depending on the instrument
+   * param, we either create an instrumented bundle or a non instrumented
+   * bundle.
    *
    * @param {Files[]|String[]} files The bundle entry points.
    * @param {Object} options
@@ -36,7 +36,7 @@ function buildBundle(files, options) {
   var bundleStream = browserify(files, {debug: true});
 
   bundleStream.plugin(proxyquireify.plugin);
-  bundleStream.transform('reactify');
+  bundleStream.transform('babelify');
 
   if (opts.instrument === true) {
     gutil.log('Building the instrumented bundle');

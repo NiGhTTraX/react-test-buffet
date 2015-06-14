@@ -12,6 +12,8 @@
     "url": "https://github.com/NiGhTTraX/react-test-buffet/issues"
   },
   "devDependencies": {
+    "babel": "^5.5.8",
+    "babelify": "^6.1.2",
     "browserify": "^6.2.0",
     "browserify-istanbul": "^0.1.2",
     "chai": "^1.9.2",
@@ -19,6 +21,7 @@
     "gulp": "^3.8.9",
     "gulp-util": "^3.0.1",
     "jquery": "^2.1.1",
+    "jsdom": "^3.1.2",
     "karma": "^0.12.24",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.5",
@@ -31,7 +34,6 @@
     "karma-sourcemap-loader": "^0.3.0",
     "lodash": "^2.4.1",
     "proxyquireify": "^1.1.0",
-    "reactify": "^0.15.2",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.6.0",
     "source-map-support": "^0.2.8",
@@ -39,5 +41,9 @@
   },
   "dependencies": {
     "react": "^0.12.1"
+  },
+  "scripts": {
+    "test": "mocha --compilers js:babel/register --recursive tests/setup-node.js tests/components/",
+    "test-browser": "gulp test"
   }
 }
