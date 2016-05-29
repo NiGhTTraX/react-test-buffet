@@ -1,0 +1,18 @@
+# vim: syntax=sh:
+#!/bin/sh
+
+CHANGED_JS_FILES=`git diff --cached --name-only --diff-filter=ACM \
+                  | grep -E 'jsx?$'`
+
+if [ $? != 0 ]; then
+  exit 0
+fi
+
+
+npm run --silent lint-files -- $CHANGED_JS_FILES
+
+
+if [ $? != 0 ]; then
+  echo Fix lint errors before committing
+  exit 1
+fi
