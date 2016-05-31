@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import { Simulate } from 'react-addons-test-utils';
 import { render } from '../../../helpers/rendering.js';
 import $ from 'jquery';
-import appFactory from '../../../../src/components/app.jsx';
-
-const App = appFactory();
+import App from './setup.js';
 
 
 describe('App', function() {
