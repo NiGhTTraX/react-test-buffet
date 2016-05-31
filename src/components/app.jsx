@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const ENTER = 13;
+
 
 export default function appFactory() {
   return class App extends Component {
@@ -7,7 +9,8 @@ export default function appFactory() {
       super(props);
 
       this.state = {
-        todoInput: ''
+        todoInput: '',
+        todos: []
       };
     }
 
@@ -19,14 +22,36 @@ export default function appFactory() {
             value={this.state.todoInput}
             placeholder="What needs to be done?"
             onChange={this.onTodoInputChange.bind(this)}
+            onKeyDown={e => {
+              if (e.keyCode === ENTER) {
+                this.onNewTodo(e.target.value);
+              }
+            }}
           />
         </header>
+        <section className="main">
+          <ul className="todo-list">
+            {this.state.todos.map((todo, index) =>
+              <li className="todo" key={index}>
+                <div className="view">
+                  <label>{todo.title}</label>
+                </div>
+              </li>
+            )}
+          </ul>
+        </section>
       </div>;
     }
 
     onTodoInputChange(e) {
       this.setState({
         todoInput: e.target.value
+      });
+    }
+
+    onNewTodo(title) {
+      this.setState({
+        todos: this.state.todos.concat({ title })
       });
     }
   };

@@ -5,6 +5,8 @@ import { render } from '../../../helpers/rendering.js';
 import $ from 'jquery';
 import App from './setup.js';
 
+const ENTER = 13;
+
 
 describe('App', function() {
   describe('adding new todos', function() {
@@ -23,6 +25,17 @@ describe('App', function() {
 
       expect($(node).val()).to.equal('buy milk');
     });
+
+    it('should render a todo when pressing the enter key', function() {
+      const node = $component.find('.new-todo')[0];
+
+      Simulate.change(node, { target: { value: 'buy milk' } });
+      Simulate.keyDown(node, {
+        target: { value: 'buy milk' },
+        keyCode: ENTER
+      });
+
+      expect($component.find('.todo').text()).to.equal('buy milk');
+    });
   });
 });
-
