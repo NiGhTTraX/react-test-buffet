@@ -29,18 +29,22 @@ export default function appFactory() {
             }}
           />
         </header>
-        <section className="main">
-          <ul className="todo-list">
-            {this.state.todos.map((todo, index) =>
-              <li className="todo" key={index}>
-                <div className="view">
-                  <label>{todo.title}</label>
-                </div>
-              </li>
-            )}
-          </ul>
-        </section>
+        {this.state.todos.length ? this._renderTodos() : null}
       </div>;
+    }
+
+    _renderTodos() {
+      return <section className="main">
+        <ul className="todo-list">
+          {this.state.todos.map((todo, index) =>
+            <li className="todo" key={index}>
+              <div className="view">
+                <label>{todo.title}</label>
+              </div>
+            </li>
+          )}
+        </ul>
+      </section>;
     }
 
     onTodoInputChange(e) {
