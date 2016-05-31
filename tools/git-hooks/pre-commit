@@ -1,6 +1,7 @@
 # vim: syntax=sh:
 #!/bin/sh
 
+# TODO: exclude .eslintrc.js as it gives a warning when including it
 CHANGED_JS_FILES=`git diff --cached --name-only --diff-filter=ACM \
                   | grep -E 'jsx?$'`
 
