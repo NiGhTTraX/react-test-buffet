@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 const ENTER = 13;
 
 
-export default function appFactory() {
+export default function appFactory(TodoList) {
   return class App extends Component {
     constructor(props) {
       super(props);
@@ -35,15 +35,7 @@ export default function appFactory() {
 
     _renderTodos() {
       return <section className="main">
-        <ul className="todo-list">
-          {this.state.todos.map((todo, index) =>
-            <li className="todo" key={index}>
-              <div className="view">
-                <label>{todo.title}</label>
-              </div>
-            </li>
-          )}
-        </ul>
+        <TodoList todos={this.state.todos} />
       </section>;
     }
 

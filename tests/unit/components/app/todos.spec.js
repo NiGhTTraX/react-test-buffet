@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Simulate } from 'react-addons-test-utils';
 import { render } from '../../../helpers/rendering.js';
 import $ from 'jquery';
-import App from './setup.js';
+import App, { TodoList } from './setup.js';
 
 const ENTER = 13;
 
@@ -35,7 +35,9 @@ describe('App', function() {
         keyCode: ENTER
       });
 
-      expect($component.find('.todo').text()).to.equal('buy milk');
+      expect(TodoList).to.have.been.renderedWith({
+        todos: [{ title: 'buy milk' }]
+      });
     });
   });
 });
