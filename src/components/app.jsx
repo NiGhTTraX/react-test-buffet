@@ -11,10 +11,6 @@ export default function appFactory() {
             placeholder="What needs to be done?"
           />
         </header>
-        <div className="main">
-        </div>
-        <footer className="footer">
-        </footer>
       </div>;
     }
   };
