@@ -17,6 +17,7 @@ module.exports = {
 
     'react/wrap-multilines': 0,
     'react/prefer-stateless-function': 0,
-    'react/jsx-first-prop-new-line': 0
+    'react/jsx-first-prop-new-line': 0,
+    'react/jsx-no-bind': 0
   }
 }
