@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import appFactory from '../../src/components/app.jsx';
-
-
-const App = appFactory();
+import App from './app.setup.js';
 
 
 describe('App', function() {
