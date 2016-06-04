@@ -24,7 +24,7 @@ export default function addTodoFactory() {
         onChange={this.onTodoInputChange.bind(this)}
         onKeyDown={e => {
           if (e.keyCode === ENTER) {
-            this.props.addTodo(e.target.value);
+            this.onAddTodo(e.target.value);
           }
         }}
       />;
@@ -33,6 +33,14 @@ export default function addTodoFactory() {
     onTodoInputChange(e) {
       this.setState({
         todoInput: e.target.value
+      });
+    }
+
+    onAddTodo(todo) {
+      this.props.addTodo(todo);
+
+      this.setState({
+        todoInput: ''
       });
     }
   };

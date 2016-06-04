@@ -40,4 +40,15 @@ describe('AddTodo', function() {
 
     expect(addTodoSpy).to.have.been.calledWith('buy eggs');
   });
+
+  it('should clear the input after adding a todo', function() {
+    const node = $component[0];
+
+    Simulate.change(node, { target: { value: 'buy eggs' } });
+    Simulate.keyDown(node, {
+      keyCode: ENTER
+    });
+
+    expect($component.val()).to.be.empty;
+  });
 });
