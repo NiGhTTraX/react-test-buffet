@@ -29,6 +29,10 @@ export default function appFactory(AddTodo, TodoList) {
 
     onNewTodo(title) {
       // TODO: figure out if this detail needs to go in AddTodo
+      if (!title.length) {
+        return;
+      }
+
       this.setState({
         todos: this.state.todos.concat({ title: title.trim() })
       });

@@ -28,5 +28,13 @@ describe('App', function() {
         todos: [{ title: 'wash car' }]
       });
     });
+
+    it('should not add an empty todo', function() {
+      AddTodo.props.addTodo('');
+
+      expect(TodoList).to.not.have.been.renderedWith({
+        todos: [{ title: '' }]
+      });
+    });
   });
 });
