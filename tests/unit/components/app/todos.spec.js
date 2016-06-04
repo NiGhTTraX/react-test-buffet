@@ -1,33 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Simulate } from 'react-addons-test-utils';
 import { render } from '../../../helpers/rendering.js';
-import $ from 'jquery';
-import App, { TodoList } from './setup.js';
-
-const ENTER = 13;
+import App, { AddTodo, TodoList } from './setup.js';
 
 
 describe('App', function() {
   describe('adding new todos', function() {
-    let $component;
-
     beforeEach(function() {
-      const component = render(<App />);
-
-      $component = $(ReactDOM.findDOMNode(component));
+      render(<App />);
     });
 
-    it('should update the new todo input field when typing', function() {
-      const node = $component.find('.new-todo')[0];
-
-      Simulate.change(node, { target: { value: 'buy milk' } });
-
-      expect($(node).val()).to.equal('buy milk');
+    it('should render the add new todo field', function() {
+      expect(AddTodo).to.have.been.rendered;
     });
 
-    it('should render a todo when pressing the enter key', function() {
-      addTodo($component, 'buy milk');
+    it('should render the new todo', function() {
+      AddTodo.props.addTodo('buy milk');
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [{ title: 'buy milk' }]
@@ -35,7 +22,7 @@ describe('App', function() {
     });
 
     it('should trim whitespace from new todos', function() {
-      addTodo($component, '   wash car   ');
+      AddTodo.props.addTodo('   wash car   ');
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [{ title: 'wash car' }]
@@ -43,12 +30,3 @@ describe('App', function() {
     });
   });
 });
-
-function addTodo($component, todo) {
-  const node = $component.find('.new-todo')[0];
-
-  Simulate.change(node, { target: { value: todo } });
-  Simulate.keyDown(node, {
-    keyCode: ENTER
-  });
-}

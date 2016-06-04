@@ -1,0 +1,39 @@
+import React, { Component, PropTypes } from 'react';
+
+const ENTER = 13;
+
+
+export default function addTodoFactory() {
+  return class AddTodo extends Component {
+    static propTypes = {
+      addTodo: PropTypes.func.isRequired
+    };
+
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        todoInput: ''
+      };
+    }
+
+    render() {
+      return <input type="text" className="new-todo" autoFocus
+        value={this.state.todoInput}
+        placeholder="What needs to be done?"
+        onChange={this.onTodoInputChange.bind(this)}
+        onKeyDown={e => {
+          if (e.keyCode === ENTER) {
+            this.props.addTodo(e.target.value);
+          }
+        }}
+      />;
+    }
+
+    onTodoInputChange(e) {
+      this.setState({
+        todoInput: e.target.value
+      });
+    }
+  };
+}
