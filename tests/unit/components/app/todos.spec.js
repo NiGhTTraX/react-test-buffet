@@ -35,10 +35,10 @@ describe('App', function() {
     });
 
     it('should trim whitespace from new todos', function() {
-      addTodo($component, '   buy milk   ');
+      addTodo($component, '   wash car   ');
 
       expect(TodoList).to.have.been.renderedWith({
-        todos: [{ title: 'buy milk' }]
+        todos: [{ title: 'wash car' }]
       });
     });
   });
