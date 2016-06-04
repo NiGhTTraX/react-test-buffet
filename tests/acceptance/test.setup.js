@@ -12,3 +12,7 @@ export default function setup() {
 
   return $component;
 }
+
+afterEach(function() {
+  ReactDOM.unmountComponentAtNode(document.getElementById('test-area'));
+});
