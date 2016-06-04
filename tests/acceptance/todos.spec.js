@@ -36,6 +36,12 @@ describe('App', function() {
       expect($component.find('.todo')).to.have.length(1);
       expect($component.find('.todo').text()).to.equal('buy milk');
     });
+
+    it('should clear the add todo input after adding a todo', function() {
+      addTodo($component, 'buy eggs');
+
+      expect($component.find('.new-todo').val()).to.be.empty;
+    });
   });
 });
 
