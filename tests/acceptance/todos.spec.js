@@ -42,6 +42,12 @@ describe('App', function() {
 
       expect($component.find('.new-todo').val()).to.be.empty;
     });
+
+    it('should not add an empty todo', function() {
+      addTodo($component, '');
+
+      expect($component.find('.todo')).to.have.length(0);
+    });
   });
 });
 
