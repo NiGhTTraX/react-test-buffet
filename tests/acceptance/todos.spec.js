@@ -1,24 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import setup from './test.setup.js';
 import { Simulate } from 'react-addons-test-utils';
-import $ from 'jquery';
-import App from './app.setup.js';
 
 
 const ENTER = 13;
 
 
 describe('App', function() {
+  let $component;
+
+  beforeEach(function() {
+    $component = setup();
+  });
+
   describe('adding new todos', function() {
-    let $component;
-
-    beforeEach(function() {
-      const component = ReactDOM.render(<App />,
-                                        document.getElementById('test-area'));
-
-      $component = $(ReactDOM.findDOMNode(component));
-    });
-
     it('should focus on the new todo input when the page loads', function() {
       expect(document.activeElement).to.equal(
         $component.find('.new-todo')[0]);
