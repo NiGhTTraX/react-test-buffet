@@ -27,13 +27,7 @@ describe('App', function() {
     });
 
     it('should render a todo when pressing the enter key', function() {
-      const node = $component.find('.new-todo')[0];
-
-      Simulate.change(node, { target: { value: 'buy milk' } });
-      Simulate.keyDown(node, {
-        target: { value: 'buy milk' },
-        keyCode: ENTER
-      });
+      addTodo($component, 'buy milk');
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [{ title: 'buy milk' }]
@@ -41,13 +35,7 @@ describe('App', function() {
     });
 
     it('should trim whitespace from new todos', function() {
-      const node = $component.find('.new-todo')[0];
-
-      Simulate.change(node, { target: { value: '   buy milk   ' } });
-      Simulate.keyDown(node, {
-        target: { value: '   buy milk   ' },
-        keyCode: ENTER
-      });
+      addTodo($component, '   buy milk   ');
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [{ title: 'buy milk' }]
@@ -55,3 +43,12 @@ describe('App', function() {
     });
   });
 });
+
+function addTodo($component, todo) {
+  const node = $component.find('.new-todo')[0];
+
+  Simulate.change(node, { target: { value: todo } });
+  Simulate.keyDown(node, {
+    keyCode: ENTER
+  });
+}
