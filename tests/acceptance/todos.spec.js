@@ -29,5 +29,17 @@ describe('App', function() {
       expect($component.find('.todo')).to.have.length(1);
       expect($component.find('.todo').text()).to.equal('buy milk');
     });
+
+    it('should trim whitespace from new todos', function() {
+      const node = $component.find('.new-todo')[0];
+
+      // TODO: this exposes too much of the internals; figure out a way to write
+      // tests without knowing all of this
+      Simulate.change(node, { target: { value: '    buy milk     ' } });
+      Simulate.keyDown(node, { keyCode: ENTER });
+
+      expect($component.find('.todo')).to.have.length(1);
+      expect($component.find('.todo').text()).to.equal('buy milk');
+    });
   });
 });
