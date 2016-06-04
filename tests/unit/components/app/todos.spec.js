@@ -39,5 +39,19 @@ describe('App', function() {
         todos: [{ title: 'buy milk' }]
       });
     });
+
+    it('should trim whitespace from new todos', function() {
+      const node = $component.find('.new-todo')[0];
+
+      Simulate.change(node, { target: { value: '   buy milk   ' } });
+      Simulate.keyDown(node, {
+        target: { value: '   buy milk   ' },
+        keyCode: ENTER
+      });
+
+      expect(TodoList).to.have.been.renderedWith({
+        todos: [{ title: 'buy milk' }]
+      });
+    });
   });
 });
