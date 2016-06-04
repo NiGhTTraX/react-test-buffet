@@ -6,3 +6,7 @@ export const TodoList = fakeComponentFactory({ name: 'TodoList' });
 const App = appFactory(TodoList);
 
 export default App;
+
+beforeEach(function() {
+  TodoList.reset();
+});
