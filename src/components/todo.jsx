@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 
+// TODO: fix completed strikethrough styles
+
 export default function todoFactory() {
   return class Todo extends Component {
     static propTypes = {
