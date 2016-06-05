@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
 
 
-export default function todoListFactory() {
+export default function todoListFactory(Todo) {
   return class TodoList extends Component {
     static propTypes = {
       todos: PropTypes.arrayOf(PropTypes.shape({
@@ -14,23 +13,17 @@ export default function todoListFactory() {
 
     render() {
       return <ul className="todo-list">
-        {this.props.todos.map(({ title, completed }, index) =>
-          <li className={classnames('todo', { completed })}
-            key={index}
-          >
-            <div className="view">
-              <input className="toggle" type="checkbox"
-                checked={!!completed}
-                onChange={this.toggleTodo.bind(this, index)}
-              />
-              <label>{title}</label>
-            </div>
+        {this.props.todos.map((todo, index) =>
+          <li key={index}>
+            <Todo {...todo}
+              toggleTodo={this.onToggleTodo.bind(this, index)}
+            />
           </li>
         )}
       </ul>;
     }
 
-    toggleTodo(index) {
+    onToggleTodo(index) {
       this.props.toggleTodo({ index });
     }
   };

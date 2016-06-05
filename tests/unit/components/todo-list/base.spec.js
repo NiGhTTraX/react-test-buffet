@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { render } from '../../../helpers/rendering.js';
-import { Simulate } from 'react-addons-test-utils';
 import { spy } from 'sinon';
-import $ from 'jquery';
 import todoListFactoy from '../../../../src/components/todo-list.jsx';
+import { fakeComponentFactory } from '../../../helpers/chai-react.js';
 
-const TodoList = todoListFactoy();
+const Todo = fakeComponentFactory({ name: 'Todo' });
+const TodoList = todoListFactoy(Todo);
 
 
 describe('TodoList', function() {
@@ -16,53 +15,42 @@ describe('TodoList', function() {
   }, {
     title: 'buy eggs',
     completed: true
+  }, {
+    title: 'buy cheddar',
+    completed: false
   }];
 
-  let $component, toggleTodoSpy;
+  let toggleTodoSpy;
 
   beforeEach(function() {
+    Todo.reset();
+
     toggleTodoSpy = spy();
 
-    const component = render(
-      <TodoList todos={todos} toggleTodo={toggleTodoSpy} />
-    );
-
-    $component = $(ReactDOM.findDOMNode(component));
+    render(<TodoList todos={todos} toggleTodo={toggleTodoSpy} />);
   });
 
   it('should render every todo', function() {
-    const $todos = $component.find('.todo');
-
-    expect($todos).to.have.length(2);
-
-    $todos.each((index, todo) => {
-      expect($(todo).text()).to.equal(todos[index].title);
+    todos.forEach(todo => {
+      expect(Todo).to.have.been.renderedWith(todo);
     });
   });
 
-  it('should not mark active todos', function() {
-    const $buyMilkTodo = $component.find('.todo').eq(0);
-
-    expect($buyMilkTodo.hasClass('completed'),
-          'Todo should not be marked as completed').to.be.false;
-    expect($buyMilkTodo.find('.toggle').is(':checked'),
-          'Todo should not be checked').to.be.false;
-  });
-
-  it('should mark completed todos', function() {
-    const $buyEggsTodo = $component.find('.todo').eq(1);
-
-    expect($buyEggsTodo.hasClass('completed'),
-          'Todo should be marked as completed').to.be.true;
-    expect($buyEggsTodo.find('.toggle').is(':checked'),
-          'Todo should be checked').to.be.true;
-  });
-
-  it('should complete a todo when toggling it', function() {
-    const $buyMilkTodo = $component.find('.todo').eq(0);
-
-    Simulate.change($buyMilkTodo.find('.toggle')[0]);
+  it('should toggle the first todo when called from it', function() {
+    Todo.renderSpy.firstCall.args[0].toggleTodo();
 
     expect(toggleTodoSpy).to.have.been.calledWith({ index: 0 });
+  });
+
+  it('should toggle the last todo when called from it', function() {
+    Todo.renderSpy.lastCall.args[0].toggleTodo();
+
+    expect(toggleTodoSpy).to.have.been.calledWith({ index: 2 });
+  });
+
+  it('should toggle a todo from the middle when called from it', function() {
+    Todo.renderSpy.secondCall.args[0].toggleTodo();
+
+    expect(toggleTodoSpy).to.have.been.calledWith({ index: 1 });
   });
 });
