@@ -38,7 +38,7 @@ describe('AddTodo', function() {
       keyCode: ENTER
     });
 
-    expect(addTodoSpy).to.have.been.calledWith('buy eggs');
+    expect(addTodoSpy).to.have.been.calledWith({ title: 'buy eggs' });
   });
 
   it('should clear the input after adding a todo', function() {

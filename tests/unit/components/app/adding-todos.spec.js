@@ -14,7 +14,7 @@ describe('App', function() {
     });
 
     it('should render the new todo', function() {
-      AddTodo.props.addTodo('buy milk');
+      AddTodo.props.addTodo({ title: 'buy milk' });
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [{ title: 'buy milk' }]
@@ -22,7 +22,7 @@ describe('App', function() {
     });
 
     it('should trim whitespace from new todos', function() {
-      AddTodo.props.addTodo('   wash car   ');
+      AddTodo.props.addTodo({ title: '   wash car   ' });
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [{ title: 'wash car' }]
@@ -30,7 +30,7 @@ describe('App', function() {
     });
 
     it('should not add an empty todo', function() {
-      AddTodo.props.addTodo('');
+      AddTodo.props.addTodo({ title: '' });
 
       expect(TodoList).to.not.have.been.renderedWith({
         todos: [{ title: '' }]

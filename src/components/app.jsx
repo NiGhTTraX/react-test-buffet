@@ -27,7 +27,7 @@ export default function appFactory(AddTodo, TodoList) {
       </section>;
     }
 
-    onNewTodo(title) {
+    onNewTodo({ title }) {
       // TODO: figure out if this detail needs to go in AddTodo
       if (!title.length) {
         return;

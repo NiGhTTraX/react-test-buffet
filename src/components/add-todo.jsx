@@ -37,7 +37,7 @@ export default function addTodoFactory() {
     }
 
     onAddTodo(todo) {
-      this.props.addTodo(todo);
+      this.props.addTodo({ title: todo });
 
       this.setState({
         todoInput: ''
