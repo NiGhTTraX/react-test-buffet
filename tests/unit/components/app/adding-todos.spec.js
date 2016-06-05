@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '../../../helpers/rendering.js';
 import App, { AddTodo, TodoList } from './setup.js';
+import { match } from 'sinon';
 
 
 describe('App', function() {
@@ -17,7 +18,15 @@ describe('App', function() {
       AddTodo.props.addTodo({ title: 'buy milk' });
 
       expect(TodoList).to.have.been.renderedWith({
-        todos: [{ title: 'buy milk', completed: false }]
+        todos: [checkTodoTitle('buy milk')]
+      });
+    });
+
+    it('should mark the new todo as active', function() {
+      AddTodo.props.addTodo({ title: 'buy more milk' });
+
+      expect(TodoList).to.have.been.renderedWith({
+        todos: [match({ completed: false })]
       });
     });
 
@@ -25,7 +34,7 @@ describe('App', function() {
       AddTodo.props.addTodo({ title: '   wash car   ' });
 
       expect(TodoList).to.have.been.renderedWith({
-        todos: [{ title: 'wash car', completed: false }]
+        todos: [checkTodoTitle('wash car')]
       });
     });
 
@@ -33,8 +42,12 @@ describe('App', function() {
       AddTodo.props.addTodo({ title: '' });
 
       expect(TodoList).to.not.have.been.renderedWith({
-        todos: [{ title: '', completed: false }]
+        todos: [checkTodoTitle('')]
       });
     });
   });
 });
+
+function checkTodoTitle(title) {
+  return match(todo => todo.title === title, title);
+}
