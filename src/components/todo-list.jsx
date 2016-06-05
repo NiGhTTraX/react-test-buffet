@@ -13,15 +13,15 @@ export default function todoListFactory() {
 
     render() {
       return <ul className="todo-list">
-        {this.props.todos.map((todo, index) =>
-          <li className={classnames('todo', { completed: todo.completed })}
+        {this.props.todos.map(({ title, completed }, index) =>
+          <li className={classnames('todo', { completed })}
             key={index}
           >
             <div className="view">
               <input className="toggle" type="checkbox"
-                checked={todo.completed} readOnly
+                checked={completed} readOnly
               />
-              <label>{todo.title}</label>
+              <label>{title}</label>
             </div>
           </li>
         )}
