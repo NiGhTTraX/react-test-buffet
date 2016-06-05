@@ -38,6 +38,18 @@ describe('App', function() {
       expect($buyChorizoTodo.find('.toggle').is(':checked'),
             'Todo toggle should be checked').to.be.true;
     });
+
+    it('should be marked as active when unchecking them', function() {
+      const $buyChorizoTodo = $component.find('.todo').eq(1);
+
+      $buyChorizoTodo.find('.toggle')[0].click();
+      $buyChorizoTodo.find('.toggle')[0].click();
+
+      expect($buyChorizoTodo.hasClass('completed'),
+            'Todo should not be marked as completed').to.be.false;
+      expect($buyChorizoTodo.find('.toggle').is(':checked'),
+            'Todo toggle should not be checked').to.be.false;
+    });
   });
 });
 

@@ -26,5 +26,19 @@ describe('App', function() {
         }]
       });
     });
+
+    it('should mark a todo as active when being called', function() {
+      TodoList.props.toggleTodo({ index: 0 });
+      TodoList.props.toggleTodo({ index: 0 });
+
+      expect(TodoList).to.have.been.renderedWith({
+        todos: [{
+          title: 'buy milk',
+          completed: false
+        }, {
+          title: 'buy eggs'
+        }]
+      });
+    });
   });
 });
