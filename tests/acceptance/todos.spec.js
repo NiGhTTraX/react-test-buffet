@@ -17,13 +17,14 @@ describe('App', function() {
   });
 
   describe('todos', function() {
-    it('should not be marked as completed', function() {
+    it('should not be marked as completed after being added', function() {
       const $toggles = $component.find('.todo .toggle');
 
       expect($toggles).to.have.length(3);
 
       $toggles.each(toggle => {
-        expect($(toggle).is(':checked')).to.be.false;
+        expect($(toggle).is(':checked'),
+               'Todo toggle should be unchecked').to.be.false;
       });
     });
 
@@ -32,8 +33,10 @@ describe('App', function() {
 
       $buyChorizoTodo.find('.toggle')[0].click();
 
-      expect($buyChorizoTodo.find('.toggle').is(':checked')).to.be.true;
-      expect($buyChorizoTodo.hasClass('completed')).to.be.true;
+      expect($buyChorizoTodo.hasClass('completed'),
+            'Todo should be marked as completed').to.be.true;
+      expect($buyChorizoTodo.find('.toggle').is(':checked'),
+            'Todo toggle should be checked').to.be.true;
     });
   });
 });
