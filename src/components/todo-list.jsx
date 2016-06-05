@@ -8,7 +8,8 @@ export default function todoListFactory() {
       todos: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string.isRequired,
         complete: PropTypes.bool
-      })).isRequired
+      })).isRequired,
+      toggleTodo: PropTypes.func.isRequired
     };
 
     render() {
@@ -19,13 +20,18 @@ export default function todoListFactory() {
           >
             <div className="view">
               <input className="toggle" type="checkbox"
-                checked={completed} readOnly
+                checked={!!completed}
+                onChange={this.toggleTodo.bind(this, index)}
               />
               <label>{title}</label>
             </div>
           </li>
         )}
       </ul>;
+    }
+
+    toggleTodo(index) {
+      this.props.toggleTodo({ index });
     }
   };
 }

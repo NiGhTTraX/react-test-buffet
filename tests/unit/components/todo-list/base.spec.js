@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from '../../../helpers/rendering.js';
+import { Simulate } from 'react-addons-test-utils';
+import { spy } from 'sinon';
 import $ from 'jquery';
 import todoListFactoy from '../../../../src/components/todo-list.jsx';
 
@@ -15,10 +17,14 @@ describe('TodoList', function() {
     completed: true
   }];
 
-  let $component;
+  let $component, toggleTodoSpy;
 
   beforeEach(function() {
-    const component = render(<TodoList todos={todos} />);
+    toggleTodoSpy = spy();
+
+    const component = render(
+      <TodoList todos={todos} toggleTodo={toggleTodoSpy} />
+    );
 
     $component = $(ReactDOM.findDOMNode(component));
   });
@@ -49,5 +55,13 @@ describe('TodoList', function() {
           'Todo should be marked as completed').to.be.true;
     expect($buyEggsTodo.find('.toggle').is(':checked'),
           'Todo should be checked').to.be.true;
+  });
+
+  it('should complete a todo when toggling it', function() {
+    const $buyMilkTodo = $component.find('.todo').eq(0);
+
+    Simulate.change($buyMilkTodo.find('.toggle')[0]);
+
+    expect(toggleTodoSpy).to.have.been.calledWith({ index: 0 });
   });
 });

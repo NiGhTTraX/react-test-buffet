@@ -23,7 +23,9 @@ export default function appFactory(AddTodo, TodoList) {
 
     _renderTodos() {
       return <section className="main">
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos}
+          toggleTodo={this.onToggleTodo.bind(this)}
+        />
       </section>;
     }
 
@@ -35,6 +37,18 @@ export default function appFactory(AddTodo, TodoList) {
 
       this.setState({
         todos: this.state.todos.concat({ title: title.trim() })
+      });
+    }
+
+    onToggleTodo({ index }) {
+      const newTodos = this.state.todos.slice();
+
+      newTodos[index] = Object.assign({}, newTodos[index], {
+        completed: !newTodos[index].completed
+      });
+
+      this.setState({
+        todos: newTodos
       });
     }
   };
