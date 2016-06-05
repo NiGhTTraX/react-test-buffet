@@ -22,7 +22,8 @@ describe('App', function() {
           title: 'buy milk',
           completed: true
         }, {
-          title: 'buy eggs'
+          title: 'buy eggs',
+          completed: false
         }]
       });
     });
@@ -36,7 +37,8 @@ describe('App', function() {
           title: 'buy milk',
           completed: false
         }, {
-          title: 'buy eggs'
+          title: 'buy eggs',
+          completed: false
         }]
       });
     });

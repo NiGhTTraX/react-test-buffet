@@ -11,7 +11,8 @@ const TodoList = todoListFactoy();
 
 describe('TodoList', function() {
   const todos = [{
-    title: 'buy milk'
+    title: 'buy milk',
+    completed: false
   }, {
     title: 'buy eggs',
     completed: true

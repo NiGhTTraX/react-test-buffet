@@ -36,7 +36,10 @@ export default function appFactory(AddTodo, TodoList) {
       }
 
       this.setState({
-        todos: this.state.todos.concat({ title: title.trim() })
+        todos: this.state.todos.concat({
+          title: title.trim(),
+          completed: false
+        })
       });
     }
 

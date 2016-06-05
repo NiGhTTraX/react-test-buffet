@@ -17,7 +17,7 @@ describe('App', function() {
       AddTodo.props.addTodo({ title: 'buy milk' });
 
       expect(TodoList).to.have.been.renderedWith({
-        todos: [{ title: 'buy milk' }]
+        todos: [{ title: 'buy milk', completed: false }]
       });
     });
 
@@ -25,7 +25,7 @@ describe('App', function() {
       AddTodo.props.addTodo({ title: '   wash car   ' });
 
       expect(TodoList).to.have.been.renderedWith({
-        todos: [{ title: 'wash car' }]
+        todos: [{ title: 'wash car', completed: false }]
       });
     });
 
@@ -33,7 +33,7 @@ describe('App', function() {
       AddTodo.props.addTodo({ title: '' });
 
       expect(TodoList).to.not.have.been.renderedWith({
-        todos: [{ title: '' }]
+        todos: [{ title: '', completed: false }]
       });
     });
   });

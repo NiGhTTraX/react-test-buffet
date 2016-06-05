@@ -7,7 +7,7 @@ export default function todoListFactory() {
     static propTypes = {
       todos: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string.isRequired,
-        complete: PropTypes.bool
+        completed: PropTypes.bool.isRequired
       })).isRequired,
       toggleTodo: PropTypes.func.isRequired
     };
