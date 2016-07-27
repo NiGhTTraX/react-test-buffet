@@ -146,5 +146,25 @@ module.exports.simulateTyping = function(ref, value) {
  * @returns {React instance}
  */
 module.exports.render = function(Component, fixture, container) {
-  return React.render(React.createFactory(Component)(fixture), container);
+  var props = _.omit(fixture, 'state', 'children'),
+      component;
+
+  try {
+    component = React.render(React.createElement(
+        Component, props, fixture.children),
+        container);
+  } catch (e) {
+    throw new Error('The component threw an exception while rendering:\n' +
+                     e.message);
+  }
+
+  if (fixture.state) {
+    // Injecting state will trigger a new render cycle and we only care about
+    // the calls caused by the last render
+    sandbox.reset();
+
+    ComponentTree.injectState(component, fixture.state);
+  }
+
+  return component;
 };
