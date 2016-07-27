@@ -2,7 +2,9 @@ module.exports = function(config) {
   return {
     basePath: '',
 
-    frameworks: ['mocha', 'chai', 'sinon-chai'],
+    // We only need mocha here. chai and sinon/sinon-chai are required in the
+    // test files.
+    frameworks: ['mocha'],
 
     files: [],
 
