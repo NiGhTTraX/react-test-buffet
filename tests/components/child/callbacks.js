@@ -1,5 +1,5 @@
 var React = require('react'),
-    Child = React.createFactory(require('../../../src/components/child.jsx')),
+    Child = require('../../../src/components/child.jsx'),
     TestUtils = require('react/addons').addons.TestUtils,
     sinon = require('sinon');
 
@@ -12,7 +12,7 @@ describe('Child', function() {
   beforeEach(function() {
     changeFooCallback = sinon.spy();
 
-    component = React.render(Child({callback: changeFooCallback}),
+    component = React.render(<Child callback={changeFooCallback} />,
                              this.container);
   });
 
