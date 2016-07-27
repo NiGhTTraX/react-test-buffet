@@ -1,9 +1,10 @@
-var filePatterns = require('./file-patterns.js');
+var filePatterns = require('./file-patterns.js'),
+    path = require('path');
 
 
 module.exports = function(config) {
   var opts = require('./karma.conf.base.js')(config),
-      bundlePath = filePatterns.buildPath + filePatterns.bundleName;
+      bundlePath = path.join(filePatterns.buildPath, filePatterns.bundleName);
 
   opts.files.push(bundlePath);
 

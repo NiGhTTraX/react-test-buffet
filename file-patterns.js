@@ -1,10 +1,13 @@
+var path = require('path');
+
+
 module.exports = {
-  setupEntrypoint: './tests/setup.js',
-  testFiles: './tests/components/**/*.js',
-  srcFiles: './src/**/*.jsx',
-  bindPolyfill: './bind-polyfill.js',
-  buildPath: './build/',
+  setupEntrypoint: path.join(__dirname, 'tests', 'setup.js'),
+  testFiles:  path.join(__dirname, 'tests', 'components', '**', '*.js'),
+  srcFiles: path.join(__dirname, 'src', '**', '*.jsx'),
+  bindPolyfill: path.join(__dirname, 'bind-polyfill.js'),
+  buildPath: path.join(__dirname, 'build'),
   bundleName: 'tests.js',
-  bundleInstrumentedName: 'tests-instrumented.js'
+  bundleInstrumentedName: 'tests-coverage.js'
 };
 
