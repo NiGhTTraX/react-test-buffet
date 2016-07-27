@@ -2,5 +2,5 @@ var jsdom = require('jsdom').jsdom;
 
 
 global.document = jsdom();
-global.window = document.parentWindow;
+global.window = document.defaultView;
 global.navigator = window.navigator;
