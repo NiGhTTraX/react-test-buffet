@@ -1,5 +1,7 @@
 var TestUtils = require('react/addons').addons.TestUtils,
-    React = require('react');
+    React = require('react'),
+    _ = require('lodash'),
+    ComponentTree = require('react-component-tree');
 
 
 function getClassPrototype(_class) {
@@ -13,7 +15,7 @@ function getClassPrototype(_class) {
 
   try {
     return _class.type.prototype;
-  } catch(e) {
+  } catch (e) {
     throw new Error('Couldn\'t get the component\'s prototype');
   }
 }
@@ -89,26 +91,32 @@ module.exports.stubMethod = function(_class, method, resp) {
 };
 
 
-module.exports.genComponentStub = function(path) {
+module.exports.getChildProps = function(component, name, args) {
   /**
-   * Create a component stub to be used with proxyquire.
+   * Get the props that will be sent to a child.
    *
-   * @param {String} path The module path of the component exactly as it's
-   *     required in the parent component.
+   * @param {React} component Component instance.
+   * @param {String} name Name of the method that's in the `children` key.
+   * @param {Object[]} [args=[]] Arguments that will be passed to the method.
    *
-   * @returns {Object.<String,React>}
+   * @returns {Object} The props.
    */
 
-  var React = require('react');
+  args = args || [];
 
-  var dummy = React.createClass({
-    render: function() { return null; }
-  });
+  var children = component.children;
 
-  var stubs = {};
-  stubs[path] = dummy;
+  if (children === undefined) {
+    throw new Error('Component doesn\'t have children');
+  }
 
-  return stubs;
+  var method = children[name];
+
+  if (method === undefined) {
+    throw new Error('Component doesn\'t have child `' + name + '`');
+  }
+
+  return method.apply(component, args);
 };
 
 

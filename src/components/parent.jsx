@@ -1,8 +1,21 @@
 var React = require('react'),
-    Child = require('./child.jsx');
+    Child = require('./child.jsx'),
+    ComponentTree = require('react-component-tree');
 
 
 module.exports = React.createClass({
+  mixins: [ComponentTree.Mixin],
+
+  children: {
+    child: function() {
+      return {
+        component: Child,
+        foo: this.state.foo,
+        callback: this.changeFoo
+      };
+    }
+  },
+
   getInitialState: function() {
     return {
       foo: 'bar',
@@ -13,7 +26,7 @@ module.exports = React.createClass({
   render: function() {
     return <div>
       <div ref="stuff">{this.state.stuff}</div>
-      <Child ref="child" foo={this.state.foo} callback={this.changeFoo}/>
+      {this.loadChild('child')}
       <button ref="btn" onClick={this.doStuff}>Do stuff</button>
     </div>;
 
