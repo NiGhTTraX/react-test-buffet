@@ -7,6 +7,9 @@ Complete example of testing React components with Mocha, Chai and Sinon, running
 the tests in real browsers using Karma and Webpack and generating code
 coverage with Istanbul.
 
+> NOTE: The project started with Browserify but has switched to Webpack.
+> Checkout the `browserify` branch for the old version.
+
 
 ## Testing tools
 
