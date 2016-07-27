@@ -19,8 +19,6 @@ coverage with Istanbul.
 - [Karma](http://karma-runner.github.io/0.12/index.html) - test runner
 - [PhantomJS](http://phantomjs.org/) - headless WebKit
 - [Istanbul](http://gotwarlost.github.io/istanbul/) - code coverage
-- [Proxyquireify](https://github.com/thlorenz/proxyquireify) - mocking Node
-  modules plugin for Browserify
 - [babelify](https://github.com/babel/babelify) - Babel transform for Browserify
 
 
@@ -86,4 +84,3 @@ look like.
 
 Any console calls will output to the terminal when run through Karma and to the
 actual console when running through the manual test runner.
-
