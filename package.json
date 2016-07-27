@@ -41,7 +41,7 @@
     "vinyl-source-stream": "^1.0.0"
   },
   "dependencies": {
-    "react": "^0.12.1"
+    "react": "^0.13.3"
   },
   "scripts": {
     "test": "mocha --compilers js:babel/register --recursive tests/setup-node.js tests/components/",
