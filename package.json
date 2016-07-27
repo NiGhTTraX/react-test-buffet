@@ -33,6 +33,7 @@
     "karma-sinon-chai": "^0.2.0",
     "karma-sourcemap-loader": "^0.3.0",
     "lodash": "^2.4.1",
+    "mocha": "^1.21.5",
     "proxyquireify": "^1.1.0",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.6.0",
