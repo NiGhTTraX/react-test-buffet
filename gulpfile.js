@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     source = require('vinyl-source-stream'),
     browserify = require('browserify'),
-    proxyquireify = require('proxyquireify'),
     karmaServer = require('karma').server,
     filePatterns = require('./file-patterns'),
     _ = require('lodash');
@@ -35,7 +34,6 @@ function buildBundle(files, options) {
 
   var bundleStream = browserify(files, {debug: true});
 
-  bundleStream.plugin(proxyquireify.plugin);
   bundleStream.transform('babelify');
 
   if (opts.instrument === true) {
