@@ -38,7 +38,7 @@ function getMethodLocation(_class, method) {
 
   var proto = getClassPrototype(_class);
 
-  if (proto.__reactAutoBindMap[method]) {
+  if (proto.__reactAutoBindMap && proto.__reactAutoBindMap[method]) {
     return proto.__reactAutoBindMap;
   }
 
