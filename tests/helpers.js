@@ -4,15 +4,14 @@ var TestUtils = require('react/addons').addons.TestUtils,
     ComponentTree = require('react-component-tree');
 
 
+/**
+ * Get the prototype of a React class.
+ *
+ * @param {React} _class
+ *
+ * @return {prototype}
+ */
 function getClassPrototype(_class) {
-  /**
-   * Get the prototype of a React class.
-   *
-   * @param {React} _class
-   *
-   * @return {prototype}
-   */
-
   try {
     return _class.type.prototype;
   } catch (e) {
@@ -21,31 +20,29 @@ function getClassPrototype(_class) {
 }
 
 
+/**
+ * Get the object of which a method is part of.
+ *
+ * @param {React} _class
+ * @param {String} method
+ *
+ * @returns {Object}
+ */
 function getMethodLocation(_class, method) {
-  /**
-   * Get the object of which a method is part of.
-   *
-   * React automagically binds event handlers and stores a cache of them. If we
-   * find the method there then we return the cache. If not, we check to see if
-   * the method is a static method, in which case we could find it on the
-   * constructor. If still not there, we look for it on the class prototype.
-   *
-   * @param {React} _class
-   * @param {String} method
-   *
-   * @returns {Object}
-   */
-
   var proto = getClassPrototype(_class);
 
+  // React.createClass automagically binds event handlers and stores a cache of
+  // them..ES6 classes don't autobind methods so this cache doesn't even exist.
   if (proto.__reactAutoBindMap && proto.__reactAutoBindMap[method]) {
     return proto.__reactAutoBindMap;
   }
 
+  // Static methods sit here.
   if (proto.constructor[method]) {
     return proto.constructor;
   }
 
+  // All the other methods sit here.
   if (proto[method]) {
     return proto;
   }
@@ -55,53 +52,55 @@ function getMethodLocation(_class, method) {
 }
 
 
+/**
+ * Spy a method on a React class.
+ *
+ * Warning: The spy will call through!
+ *
+ * @param {React} _class
+ * @param {String} method The name of the method you want to spy on.
+ *
+ * @returns {Spy}
+ */
 module.exports.spyOnMethod = function(_class, method) {
-  /**
-   * Spy a method on a React class.
-   *
-   * Warning: The spy will call through!
-   *
-   * @param {React} _class
-   * @param {String} method The name of the method you want to spy on.
-   *
-   * @returns {Spy}
-   */
-
   var methodLoc = getMethodLocation(_class, method);
 
   return sandbox.spy(methodLoc, method);
 };
 
 
+/**
+ * Stub a method on a React class.
+ *
+ * @param {React} _class
+ * @param {String} method The name of the method you want to stub.
+ * @param {*} [resp] The response the stub should return. If not provided, the
+ *    stub will return `undefined`.
+ *
+ * @returns {Stub}
+ */
 module.exports.stubMethod = function(_class, method, resp) {
-  /**
-   * Stub a method on a React class.
-   *
-   * @param {React} _class
-   * @param {String} method The name of the method you want to stub.
-   * @param {*} [resp] The response the stub should return. If not provided, the
-   *    stub will return `undefined`.
-   *
-   * @returns {Stub}
-   */
 
   var methodLoc = getMethodLocation(_class, method);
+
+  if (_.isFunction(resp)) {
+    return sandbox.stub(methodLoc, method, resp);
+  }
 
   return sandbox.stub(methodLoc, method).returns(resp);
 };
 
 
+/**
+ * Get the props that will be sent to a child.
+ *
+ * @param {React} component Component instance.
+ * @param {String} name Name of the method that's in the `children` key.
+ * @param {Object[]} [args=[]] Arguments that will be passed to the method.
+ *
+ * @returns {Object} The props.
+ */
 module.exports.getChildProps = function(component, name, args) {
-  /**
-   * Get the props that will be sent to a child.
-   *
-   * @param {React} component Component instance.
-   * @param {String} name Name of the method that's in the `children` key.
-   * @param {Object[]} [args=[]] Arguments that will be passed to the method.
-   *
-   * @returns {Object} The props.
-   */
-
   args = args || [];
 
   var children = component.children;
@@ -120,34 +119,32 @@ module.exports.getChildProps = function(component, name, args) {
 };
 
 
+/**
+ * Simulate typing into an input.
+ *
+ * Works by updating the value of the given node and then triggering a change
+ * event with TestUtils.Simulate. Only a single event will be triggered.
+ *
+ * @param {ref} node React reference.
+ * @param {String} value
+ */
 module.exports.simulateTyping = function(ref, value) {
-  /**
-   * Simulate typing into an input.
-   *
-   * Works by updating the value of the given node and then triggering a change
-   * event with TestUtils.Simulate. Only a single event will be triggered.
-   *
-   * @param {ref} node React reference.
-   * @param {String} value
-   */
-
   var node = ref.getDOMNode();
   node.value = value;
   TestUtils.Simulate.change(node);
 };
 
 
+/**
+ * Render a component into the DOM.
+ *
+ * @param {React class} Component
+ * @param {Object} fixture
+ * @param {DOM} container You should set this to this.container inside your
+ *     tests.
+ *
+ * @returns {React instance}
+ */
 module.exports.render = function(Component, fixture, container) {
-  /**
-   * Render a component into the DOM.
-   *
-   * @param {React class} Component
-   * @param {Object} fixture
-   * @param {DOM} container You should set this to this.container inside your
-   *     tests.
-   *
-   * @returns {React instance}
-   */
-
   return React.render(React.createFactory(Component)(fixture), container);
 };
