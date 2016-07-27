@@ -1,4 +1,4 @@
-var filePatterns = require('./file-patterns.js'),
+var filePatterns = require('../../../file-patterns.js'),
     path = require('path');
 
 
@@ -7,7 +7,7 @@ module.exports = function(config) {
       bundlePath = path.join(filePatterns.buildPath,
                              filePatterns.bundleInstrumentedName);
 
-  opts.files.push('./bind-polyfill.js');  // needed for PhantomJS
+  opts.files.push(filePatterns.bindPolyfill);  // needed for PhantomJS
 
   opts.files.push(bundlePath);
 
@@ -28,5 +28,3 @@ module.exports = function(config) {
 
   config.set(opts);
 };
-
-

@@ -1,4 +1,4 @@
-var filePatterns = require('./file-patterns.js'),
+var filePatterns = require('../../../file-patterns.js'),
     path = require('path');
 
 
@@ -15,4 +15,3 @@ module.exports = function(config) {
 
   config.set(opts);
 };
-

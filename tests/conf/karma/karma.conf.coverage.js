@@ -1,4 +1,4 @@
-var filePatterns = require('./file-patterns.js'),
+var filePatterns = require('../../../file-patterns.js'),
     path = require('path');
 
 
@@ -15,6 +15,10 @@ module.exports = function(config) {
 
   opts.reporters.push('coverage');
 
+  opts.coverageReporter = {
+    type: 'html',
+    dir: path.join(__dirname, '..', '..', 'coverage')
+  };
+
   config.set(opts);
 };
-
