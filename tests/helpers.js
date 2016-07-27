@@ -13,7 +13,7 @@ var TestUtils = require('react/addons').addons.TestUtils,
  */
 function getClassPrototype(_class) {
   try {
-    return _class.type.prototype;
+    return _class.prototype;
   } catch (e) {
     throw new Error('Couldn\'t get the component\'s prototype');
   }

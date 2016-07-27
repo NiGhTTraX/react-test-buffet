@@ -1,5 +1,5 @@
 var React = require('react'),
-    Parent = React.createFactory(require('../../../src/components/parent.jsx')),
+    Parent = require('../../../src/components/parent.jsx'),
     TestUtils = require('react/addons').addons.TestUtils,
     TestHelpers = require('../../helpers.js'),
     $ = require('jquery');
@@ -14,7 +14,7 @@ describe('Parent', function() {
     loadChildStub = TestHelpers.stubMethod(Parent, 'loadChild', null);
     doStuffStub = TestHelpers.stubMethod(Parent, 'doStuff');
 
-    component = React.render(Parent(), this.container);
+    component = React.render(<Parent />, this.container);
   });
 
   it('should call to do stuff', function() {

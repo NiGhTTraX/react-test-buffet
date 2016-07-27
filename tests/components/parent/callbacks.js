@@ -1,5 +1,5 @@
 var React = require('react'),
-    Parent = React.createFactory(require('../../../src/components/parent.jsx')),
+    Parent = require('../../../src/components/parent.jsx'),
     TestUtils = require('react/addons').addons.TestUtils,
     TestHelpers = require('../../helpers.js');
 
@@ -12,7 +12,7 @@ describe('Parent', function() {
     // Since this is a contract test, we mock out the render method.
     TestHelpers.stubMethod(Parent, 'render', null);
 
-    component = React.render(Parent(), this.container);
+    component = React.render(<Parent />, this.container);
   });
 
   it('should change foo when asked to', function() {

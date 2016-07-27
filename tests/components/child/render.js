@@ -1,5 +1,5 @@
 var React = require('react'),
-    Child = React.createFactory(require('../../../src/components/child.jsx')),
+    Child = require('../../../src/components/child.jsx'),
     TestUtils = require('react/addons').addons.TestUtils,
     $ = require('jquery');
 
@@ -9,7 +9,7 @@ describe('Child', function() {
 
 
   beforeEach(function() {
-    component = React.render(Child(), this.container);
+    component = React.render(<Child />, this.container);
   });
 
   it('should render foo', function() {
