@@ -4,7 +4,7 @@ react-test-buffet
 [![Join the chat at https://gitter.im/NiGhTTraX/react-test-buffet](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NiGhTTraX/react-test-buffet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Complete example of testing React components with Mocha, Chai and Sinon, running
-the tests in real browsers using Karma and Browserify and generating code
+the tests in real browsers using Karma and Webpack and generating code
 coverage with Istanbul.
 
 
@@ -15,11 +15,10 @@ coverage with Istanbul.
 - [Sinon](http://sinonjs.org) - mocking library
 - [jsdom](https://github.com/tmpvar/jsdom) - server side DOM
 - [Babel](https://babeljs.io/) - transpile ES6 (including JSX) to ES5
-- [Browserify](http://browserify.org/) - CommonJS in the browser
+- [Webpack](https://webpack.github.io/) - module bundler
 - [Karma](http://karma-runner.github.io/0.12/index.html) - test runner
 - [PhantomJS](http://phantomjs.org/) - headless WebKit
 - [Istanbul](http://gotwarlost.github.io/istanbul/) - code coverage
-- [babelify](https://github.com/babel/babelify) - Babel transform for Browserify
 
 
 ## Running the tests in Node
@@ -28,43 +27,46 @@ coverage with Istanbul.
 feedback loop.
 
 `jsdom` is used for providing a DOM implementation in Node. `jsdom` is pretty
-cool, but if falls short when you need additional browser behavior like local
+cool, but it falls short when you need additional browser behavior like local
 storage or style cascading.
 
 
 ## Running the tests in real browsers
 
-`npm run test-browser` will run the tests in real browsers using `Karma` and
-`Browserify`. This is useful for debugging (Chrome dev tools rock!) and when
+`npm run test:browser` will run the tests in real browsers using `Karma` and
+`Webpack`. This is useful for debugging (Chrome dev tools rock!) and when
 `jsdom` is not enough.
 
-Running `gulp test` will build the non instrumented testing bundle and
-start karma. Karma is configured to run the tests in Firefox and Chrome.
+Running `npm test:browser:build` will build the non instrumented testing bundle
+and start Karma. Karma is configured to run the tests in Firefox and Chrome.
 
-To generate code coverage reports, run `gulp test-coverage`. This will
-instrument the source files with Istanbul and build an instrumented bundle.
-You can find coverage reports in the `coverage/` folder.
+To generate code coverage reports, run `npm test:coverage`. This will
+instrument the source files with Istanbul and generate coverage reports in the
+`coverage/` folder.
 
-If you want to run the tests in your own browsers, run `gulp build` to build the
-non instrumented testing bundle and then open `runner.html`.
+If you want to run the tests in your own browsers, run `npm run
+test:browser:build` to build the non instrumented testing bundle and then open
+`runner.html`.
 
 If you want to run the tests inside a CI environment you can use the
-karma.conf.ci.js that will run the tests in PhantomJS and generate cobertura
+`karma.conf.ci.js` that will run the tests in PhantomJS and generate Cobertura
 coverage reports. You need to build the instrumented bundle first by running
-`gulp build-instrumented`.
+`npm run test:coverage:build`.
 
 
 ## Stack traces
 
 Stack traces pointing to original line numbers are achieved using:
 - [karma-sourcemap-loader](https://github.com/demerzel3/karma-sourcemap-loader)
-  for Karma
+  for Karma and
 - [source-map-support](https://github.com/evanw/node-source-map-support) for the
-  manual test runner
+  manual test runner.
 
 Unfortunately, due to the fact that Istanbul doesn't preserve line numbers in
 the instrumented code, when generating coverage, all stack traces in Karma will
-point to line 9 since that's where it puts all the original code.
+point to line 9 since that's where it puts all the original code. There's an
+open issue for this in the [istanbul
+repo](https://github.com/gotwarlost/istanbul/issues/274).
 
 Also, stack traces in the manual test runner only work if the runner is **served
 by a server** and not through the `file:` protocol.
