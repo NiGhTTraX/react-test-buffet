@@ -1,16 +1,26 @@
 module.exports = function(config) {
-  return {
-    basePath: '',
+  config.set({
+    basePath: '../../../',
 
     // We only need mocha here. chai and sinon/sinon-chai are required in the
     // test files.
     frameworks: ['mocha'],
 
-    files: [],
+    files: [
+      'build/tests.js'
+    ],
+
+    preprocessors: {
+      'build/tests.js': 'sourcemap'
+    },
 
     reporters: [
-      'progress'
+      'mocha'
     ],
+
+    mochaReporter: {
+      output: 'minimal'
+    },
 
     browsers: [
       'Firefox',
@@ -19,9 +29,7 @@ module.exports = function(config) {
 
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
     autoWatch: false,
     singleRun: true
-  };
+  });
 };
-

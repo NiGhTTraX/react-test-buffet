@@ -1,5 +1,3 @@
 node_modules/
 build/
-coverage/
-test-results.xml
-
+tests/results

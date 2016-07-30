@@ -28,6 +28,7 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-junit-reporter": "^1.1.0",
     "karma-mocha": "^1.1.1",
+    "karma-mocha-reporter": "^2.0.5",
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-sourcemap-loader": "^0.3.7",
     "lodash": "^4.14.0",
@@ -44,9 +45,9 @@
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register --recursive tests/setup-node.js tests/components/",
-    "test:browser": "npm run test:browser:build && karma start tests/conf/karma/karma.conf.js",
+    "test:browser": "npm run test:browser:build && karma start tests/conf/karma/base.js",
     "test:browser:build": "webpack --config tests/conf/webpack/unit-tests.config.js --bail",
-    "test:coverage": "npm run test:coverage:build && karma start tests/conf/karma/karma.conf.coverage.js",
+    "test:coverage": "npm run test:coverage:build && karma start tests/conf/karma/coverage.js",
     "test:coverage:build": "webpack --config tests/conf/webpack/unit-tests-coverage.config.js --bail"
   }
 }
