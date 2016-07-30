@@ -1,6 +1,5 @@
 var React = require('react'),
     Child = require('../../../src/components/child.jsx'),
-    TestUtils = require('react/addons').addons.TestUtils,
     $ = require('jquery');
 
 

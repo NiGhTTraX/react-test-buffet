@@ -8,7 +8,8 @@ describe('Parent', function() {
   var component;
 
   beforeEach(function() {
-    TestHelpers.stubMethod(Parent, 'loadChild', null);
+    // We only care about the `children` methods here.
+    TestHelpers.stubMethod(Parent, 'render', null);
 
     component = React.render(<Parent />, this.container);
   });

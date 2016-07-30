@@ -17,10 +17,10 @@ describe('Parent', function() {
     component = React.render(<Parent />, this.container);
   });
 
-  it('should call to do stuff', function() {
+  it('should do stuff when clicking on the button', function() {
     TestUtils.Simulate.click(component.refs.btn.getDOMNode());
 
-    expect(doStuffStub).to.have.been.called;
+    expect(doStuffStub).to.have.been.calledOnce;
   });
 
   it('should render stuff', function() {
@@ -31,5 +31,3 @@ describe('Parent', function() {
     expect(loadChildStub).to.have.been.calledWith('child');
   });
 });
-
-
