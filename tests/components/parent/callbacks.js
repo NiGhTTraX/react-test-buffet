@@ -1,7 +1,6 @@
-var React = require('react'),
-    Parent = require('../../../src/components/parent.jsx'),
-    fixture = require('../../fixtures/parent/base.js'),
-    TestHelpers = require('../../helpers.js');
+import Parent from '../../../src/components/parent.jsx';
+import fixture from '../../fixtures/parent/base.js';
+import TestHelpers from '../../helpers.js';
 
 
 describe('Parent', function() {

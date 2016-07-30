@@ -1,48 +1,50 @@
-var React = require('react'),
-    Child = require('./child.jsx'),
-    ComponentTree = require('react-component-tree');
+import React from 'react';
+import Child from './child.jsx';
+import { Component } from 'react-component-tree';
 
 
-module.exports = React.createClass({
-  mixins: [ComponentTree.Mixin],
+export default class Parent extends Component {
+  constructor(props) {
+    super(props);
 
-  children: {
-    child: function() {
-      return {
-        component: Child,
-        foo: this.state.foo,
-        callback: this.changeFoo
-      };
-    }
-  },
-
-  getInitialState: function() {
-    return {
+    this.state = {
       foo: 'bar',
       stuff: 'tomato'
     };
-  },
+  }
 
-  render: function() {
+  render() {
     return <div>
       <div ref="stuff">{this.state.stuff}</div>
       {this.loadChild('child')}
       <button ref="btn" onClick={this.doStuff}>Do stuff</button>
     </div>;
 
-    var unreachableCode = 2;
-  },
+    const unreachableCode = 2;
+  }
 
-  changeFoo: function(newFoo) {
+  get children() {
+    return {
+      child: function() {
+        return {
+          component: Child,
+          foo: this.state.foo,
+          callback: this.changeFoo
+        };
+      }
+    }
+  }
+
+
+  changeFoo(newFoo) {
     this.setState({
       foo: newFoo
     });
-  },
+  }
 
-  doStuff: function() {
+  doStuff() {
     this.setState({
       stuff: 'potato'
     });
   }
-});
-
+};

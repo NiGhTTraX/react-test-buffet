@@ -1,9 +1,10 @@
-var React = require('react'),
-    Parent = require('../../../src/components/parent.jsx'),
-    fixture = require('../../fixtures/parent/base.js'),
-    TestUtils = require('react/addons').addons.TestUtils,
-    TestHelpers = require('../../helpers.js'),
-    $ = require('jquery');
+import Parent from '../../../src/components/parent.jsx';
+import fixture from '../../fixtures/parent/base.js';
+import TestHelpers from '../../helpers.js';
+import React from 'react/addons';
+import $ from 'jquery';
+
+const { TestUtils } = React.addons;
 
 
 describe('Parent', function() {
