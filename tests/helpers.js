@@ -53,23 +53,6 @@ function getMethodLocation(_class, method) {
 
 
 /**
- * Spy a method on a React class.
- *
- * Warning: The spy will call through!
- *
- * @param {React} _class
- * @param {String} method The name of the method you want to spy on.
- *
- * @returns {Spy}
- */
-module.exports.spyOnMethod = function(_class, method) {
-  var methodLoc = getMethodLocation(_class, method);
-
-  return sandbox.spy(methodLoc, method);
-};
-
-
-/**
  * Stub a method on a React class.
  *
  * @param {React} _class
