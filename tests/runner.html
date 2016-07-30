@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./node_modules/mocha/mocha.css" />
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
     <title>Test Runner</title>
     <style>
       /* The testing area is positioned offscreen. You can make it visible
@@ -18,7 +18,7 @@
   <body>
     <div id="test-area"></div>
     <div id="mocha"></div>
-    <script src="./node_modules/source-map-support/browser-source-map-support.js"></script>
+    <script src="../node_modules/source-map-support/browser-source-map-support.js"></script>
     <script>
       (function() {
         /**
@@ -34,11 +34,11 @@
         }
       })();
     </script>
-    <script src="./node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
     <script>
       mocha.setup('bdd');
     </script>
-    <script src="build/tests.js"></script>
+    <script src="../build/tests.js"></script>
     <script>
       if (window.mochaPhantomJS) {
         mochaPhantomJS.run();
@@ -48,4 +48,3 @@
     </script>
   </body>
 </html>
-
