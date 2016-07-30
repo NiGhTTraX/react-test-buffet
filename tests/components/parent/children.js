@@ -11,7 +11,7 @@ describe('Parent', function() {
     // We only care about the `children` methods here.
     TestHelpers.stubMethod(Parent, 'render', null);
 
-    component = React.render(<Parent />, this.container);
+    component = TestHelpers.render(Parent);
   });
 
   describe('Child', function() {

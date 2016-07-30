@@ -14,7 +14,7 @@ describe('Parent', function() {
     loadChildStub = TestHelpers.stubMethod(Parent, 'loadChild', null);
     doStuffStub = TestHelpers.stubMethod(Parent, 'doStuff');
 
-    component = React.render(<Parent />, this.container);
+    component = TestHelpers.render(Parent);
   });
 
   it('should do stuff when clicking on the button', function() {

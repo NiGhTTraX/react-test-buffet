@@ -16,8 +16,7 @@ describe('Child', function() {
     // testing its callbacks.
     TestHelpers.stubMethod(Child, 'render', null);
 
-    component = React.render(<Child callback={changeFooCallback} />,
-                             this.container);
+    component = TestHelpers.render(Child, { callback: changeFooCallback });
   });
 
   it('should call the parent to change foo', function() {

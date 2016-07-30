@@ -12,7 +12,7 @@ describe('Parent', function() {
     // testing its callbacks.
     TestHelpers.stubMethod(Parent, 'render', null);
 
-    component = React.render(<Parent />, this.container);
+    component = TestHelpers.render(Parent);
   });
 
   it('should change foo when asked to', function() {

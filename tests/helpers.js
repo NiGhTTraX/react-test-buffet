@@ -4,6 +4,70 @@ var TestUtils = require('react/addons').addons.TestUtils,
     ComponentTree = require('react-component-tree');
 
 
+var _container;
+
+// If there's a container on the page named #test-area, use that, otherwise
+// create a detached div and use that. The former case is useful when running
+// the tests in your own browser so you can debug how the component is
+// rendered.
+var testArea = document.querySelector('#test-area');
+
+if (testArea) {
+  _container = testArea;
+} else {
+  _container = document.createElement('div');
+}
+
+
+/**
+ * Render a component into the DOM.
+ *
+ * @param {React class} Component
+ * @param {Object} fixture
+ * @param {DOM} container You should set this to this.container inside your
+ *     tests.
+ *
+ * @returns {React instance}
+ */
+exports.render = function(Component, fixture = {}) {
+  var props = _.omit(fixture, 'state', 'children'),
+      component;
+
+  try {
+    component = React.render(React.createElement(
+        Component, props, fixture.children),
+        _container);
+  } catch (e) {
+    throw new Error('The component threw an exception while rendering:\n' +
+                     e.message);
+  }
+
+  if (fixture.state) {
+    // Injecting state will trigger a new render cycle and we only care about
+    // the calls caused by the last render
+    sandbox.reset();
+
+    ComponentTree.injectState(component, fixture.state);
+  }
+
+  return component;
+};
+
+
+/**
+ * Unmount the currently rendered component.
+ */
+exports.unmount = function() {
+  React.unmountComponentAtNode(_container);
+};
+
+
+// Unmount the component after each test. A hidden side effect, but worth it.
+afterEach(function() {
+  exports.unmount();
+});
+
+
 /**
  * Stub a method on a React class.
  *
@@ -15,7 +79,6 @@ var TestUtils = require('react/addons').addons.TestUtils,
  * @returns {Stub}
  */
 module.exports.stubMethod = function(_class, method, resp) {
-
   var methodLoc = _getMethodLocation(_class, method);
 
   if (_.isFunction(resp)) {
@@ -67,41 +130,6 @@ module.exports.simulateTyping = function(ref, value) {
   var node = ref.getDOMNode();
   node.value = value;
   TestUtils.Simulate.change(node);
-};
-
-
-/**
- * Render a component into the DOM.
- *
- * @param {React class} Component
- * @param {Object} fixture
- * @param {DOM} container You should set this to this.container inside your
- *     tests.
- *
- * @returns {React instance}
- */
-module.exports.render = function(Component, fixture, container) {
-  var props = _.omit(fixture, 'state', 'children'),
-      component;
-
-  try {
-    component = React.render(React.createElement(
-        Component, props, fixture.children),
-        container);
-  } catch (e) {
-    throw new Error('The component threw an exception while rendering:\n' +
-                     e.message);
-  }
-
-  if (fixture.state) {
-    // Injecting state will trigger a new render cycle and we only care about
-    // the calls caused by the last render
-    sandbox.reset();
-
-    ComponentTree.injectState(component, fixture.state);
-  }
-
-  return component;
 };
 
 
