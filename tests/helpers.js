@@ -5,54 +5,6 @@ var TestUtils = require('react/addons').addons.TestUtils,
 
 
 /**
- * Get the prototype of a React class.
- *
- * @param {React} _class
- *
- * @return {prototype}
- */
-function getClassPrototype(_class) {
-  try {
-    return _class.prototype;
-  } catch (e) {
-    throw new Error('Couldn\'t get the component\'s prototype');
-  }
-}
-
-
-/**
- * Get the object of which a method is part of.
- *
- * @param {React} _class
- * @param {String} method
- *
- * @returns {Object}
- */
-function getMethodLocation(_class, method) {
-  var proto = getClassPrototype(_class);
-
-  // React.createClass automagically binds event handlers and stores a cache of
-  // them..ES6 classes don't autobind methods so this cache doesn't even exist.
-  if (proto.__reactAutoBindMap && proto.__reactAutoBindMap[method]) {
-    return proto.__reactAutoBindMap;
-  }
-
-  // Static methods sit here.
-  if (proto.constructor[method]) {
-    return proto.constructor;
-  }
-
-  // All the other methods sit here.
-  if (proto[method]) {
-    return proto;
-  }
-
-  throw new Error('Could not find method `' + method + '` on the class ' +
-                  'prototype');
-}
-
-
-/**
  * Stub a method on a React class.
  *
  * @param {React} _class
@@ -64,7 +16,7 @@ function getMethodLocation(_class, method) {
  */
 module.exports.stubMethod = function(_class, method, resp) {
 
-  var methodLoc = getMethodLocation(_class, method);
+  var methodLoc = _getMethodLocation(_class, method);
 
   if (_.isFunction(resp)) {
     return sandbox.stub(methodLoc, method, resp);
@@ -151,3 +103,51 @@ module.exports.render = function(Component, fixture, container) {
 
   return component;
 };
+
+
+/**
+ * Get the prototype of a React class.
+ *
+ * @param {React} _class
+ *
+ * @return {prototype}
+ */
+function _getClassPrototyppe(_class) {
+  try {
+    return _class.prototype;
+  } catch (e) {
+    throw new Error('Couldn\'t get the component\'s prototype');
+  }
+}
+
+
+/**
+ * Get the object of which a method is part of.
+ *
+ * @param {React} _class
+ * @param {String} method
+ *
+ * @returns {Object}
+ */
+function _getMethodLocation(_class, method) {
+  var proto = _getClassPrototyppe(_class);
+
+  // React.createClass automagically binds event handlers and stores a cache of
+  // them..ES6 classes don't autobind methods so this cache doesn't even exist.
+  if (proto.__reactAutoBindMap && proto.__reactAutoBindMap[method]) {
+    return proto.__reactAutoBindMap;
+  }
+
+  // Static methods sit here.
+  if (proto.constructor[method]) {
+    return proto.constructor;
+  }
+
+  // All the other methods sit here.
+  if (proto[method]) {
+    return proto;
+  }
+
+  throw new Error('Could not find method `' + method + '` on the class ' +
+                  'prototype');
+}
