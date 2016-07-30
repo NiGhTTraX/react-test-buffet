@@ -1,5 +1,6 @@
 var React = require('react'),
     Parent = require('../../../src/components/parent.jsx'),
+    fixture = require('../../fixtures/parent/base.js'),
     TestUtils = require('react/addons').addons.TestUtils,
     TestHelpers = require('../../helpers.js');
 
@@ -11,7 +12,7 @@ describe('Parent', function() {
     // We only care about the `children` methods here.
     TestHelpers.stubMethod(Parent, 'render', null);
 
-    component = TestHelpers.render(Parent);
+    component = TestHelpers.render(Parent, fixture);
   });
 
   describe('Child', function() {
