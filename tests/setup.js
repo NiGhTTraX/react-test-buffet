@@ -6,6 +6,7 @@
 
 import './setup/sandbox.js';
 import './setup/chai.js';
+import './setup/react-warnings.js';
 import { unmount } from './helpers.js';
 
 
