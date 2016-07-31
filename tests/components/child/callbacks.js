@@ -1,6 +1,6 @@
 import Child from '../../../src/components/child.jsx';
 import fixture from '../../fixtures/child/base.js';
-import { render, stubMethod }from '../../helpers.js';
+import { render, stubMethod } from '../../helpers.js';
 
 
 describe('Child', function() {
@@ -21,8 +21,8 @@ describe('Child', function() {
   });
 
   it('should react to new props', function() {
-    render(Child, Object.assign({}, fixture, { foo: 42 }));
+    render(Child, Object.assign({}, fixture, { foo: 'foo' }));
 
-    expect(component.foo).to.equal(42);
+    expect(component.foo).to.equal('foo');
   });
 });

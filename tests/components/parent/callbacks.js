@@ -1,6 +1,6 @@
 import Parent from '../../../src/components/parent.jsx';
 import fixture from '../../fixtures/parent/base.js';
-import { render, stubMethod }from '../../helpers.js';
+import { render, stubMethod } from '../../helpers.js';
 
 
 describe('Parent', function() {

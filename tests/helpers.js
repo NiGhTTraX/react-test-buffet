@@ -38,8 +38,8 @@ export function render(Component, fixture = {}) {
         Component, props, fixture.children),
         _container);
   } catch (e) {
-    throw new Error('The component threw an exception while rendering:\n' +
-                     e.message);
+    throw new Error(
+      `The component threw an exception while rendering:\n ${e.message}`);
   }
 
   if (fixture.state) {
@@ -51,7 +51,7 @@ export function render(Component, fixture = {}) {
   }
 
   return component;
-};
+}
 
 
 /**
@@ -59,7 +59,7 @@ export function render(Component, fixture = {}) {
  */
 export function unmount() {
   React.unmountComponentAtNode(_container);
-};
+}
 
 
 /**
@@ -80,7 +80,7 @@ export function stubMethod(_class, method, resp) {
   }
 
   return sandbox.stub(methodLoc, method).returns(resp);
-};
+}
 
 
 /**
@@ -96,7 +96,7 @@ export function getChildProps(component, name, args = []) {
   const children = component.children;
 
   if (children === undefined) {
-    throw new Error(`Component doesn't have children`);
+    throw new Error('Component doesn\'t have children');
   }
 
   const method = children[name];
@@ -106,7 +106,7 @@ export function getChildProps(component, name, args = []) {
   }
 
   return method.apply(component, args);
-};
+}
 
 
 /**

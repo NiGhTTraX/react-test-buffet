@@ -19,20 +19,18 @@ export default class Parent extends Component {
       {this.loadChild('child')}
       <button ref="btn" onClick={this.doStuff}>Do stuff</button>
     </div>;
-
-    const unreachableCode = 2;
   }
 
   get children() {
     return {
-      child: function() {
+      child() {
         return {
           component: Child,
           foo: this.state.foo,
           callback: this.changeFoo
         };
       }
-    }
+    };
   }
 
 
@@ -47,4 +45,4 @@ export default class Parent extends Component {
       stuff: 'potato'
     });
   }
-};
+}

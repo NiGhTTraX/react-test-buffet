@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 
 export default class Child extends Component {
@@ -7,16 +7,15 @@ export default class Child extends Component {
       Foo is now <span ref="foo">{this.props.foo}</span>
       <button ref="btn" onClick={this.changeFoo}>Let us change it!</button>
     </div>;
-
-    const unreachableCode = 3;
   }
 
   componentWillReceiveProps(nextProps) {
-    if (1) {
-      this.foo = nextProps.foo;
+    const { foo } = nextProps;
+
+    if (foo === 'foobar') {
+      this.foo = 42;
     } else {
-      // Unreachable branch.
-      alert('waaaa');
+      this.foo = foo;
     }
   }
 
@@ -24,12 +23,17 @@ export default class Child extends Component {
     this.props.callback('baz');
   }
 
-  dontMindMe() {
+  _dontMindMe() {
     // This function is not covered by tests.
-    alert('tra la la');
+    this.foo = -1;
   }
-};
+}
 
 Child.defaultProps = {
   foo: 'bar'
+};
+
+Child.propTypes = {
+  foo: PropTypes.string,
+  callback: PropTypes.func.isRequired
 };

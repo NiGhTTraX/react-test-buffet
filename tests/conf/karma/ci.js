@@ -1,5 +1,5 @@
-var coverageConfig = require('./coverage.js'),
-    path = require('path');
+const coverageConfig = require('./coverage.js');
+const path = require('path');
 
 
 module.exports = function(config) {

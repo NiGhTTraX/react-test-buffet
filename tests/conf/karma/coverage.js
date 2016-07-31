@@ -1,5 +1,5 @@
-var baseConfig = require('./base.js'),
-    path = require('path');
+const baseConfig = require('./base.js');
+const path = require('path');
 
 
 module.exports = function(config) {
