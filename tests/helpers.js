@@ -1,5 +1,4 @@
-var TestUtils = require('react/addons').addons.TestUtils,
-    React = require('react'),
+var React = require('react'),
     _ = require('lodash'),
     ComponentTree = require('react-component-tree');
 
@@ -108,22 +107,6 @@ module.exports.getChildProps = function(component, name, args) {
   }
 
   return method.apply(component, args);
-};
-
-
-/**
- * Simulate typing into an input.
- *
- * Works by updating the value of the given node and then triggering a change
- * event with TestUtils.Simulate. Only a single event will be triggered.
- *
- * @param {ref} node React reference.
- * @param {String} value
- */
-module.exports.simulateTyping = function(ref, value) {
-  var node = ref.getDOMNode();
-  node.value = value;
-  TestUtils.Simulate.change(node);
 };
 
 
