@@ -1,23 +1,23 @@
 import Parent from '../../../src/components/parent.jsx';
 import fixture from '../../fixtures/parent/base.js';
-import TestHelpers from '../../helpers.js';
+import { render, stubMethod, getChildProps }from '../../helpers.js';
 
 
 describe('Parent', function() {
-  var component;
+  let component;
 
   beforeEach(function() {
     // We only care about the `children` methods here.
-    TestHelpers.stubMethod(Parent, 'render', null);
+    stubMethod(Parent, 'render', null);
 
-    component = TestHelpers.render(Parent, fixture);
+    component = render(Parent, fixture);
   });
 
   describe('Child', function() {
-    var props;
+    let props;
 
     beforeEach(function() {
-      props = TestHelpers.getChildProps(component, 'child');
+      props = getChildProps(component, 'child');
     });
 
     it('should send foo', function() {

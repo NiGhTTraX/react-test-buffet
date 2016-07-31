@@ -4,16 +4,14 @@
  * Require all your setup modules here while enforcing the order between them.
  */
 
-var TestHelpers = require('./helpers.js');
-
-require('./setup/sandbox.js');
-
-require('./setup/chai.js');
+import './setup/sandbox.js';
+import './setup/chai.js';
+import { unmount } from './helpers.js';
 
 
 // Clean up the rendering container between tests.
 afterEach(function() {
-  TestHelpers.unmount();
+  unmount();
 });
 
 // Clean up the sandbox between tests. It's important that we clean it up after

@@ -1,7 +1,7 @@
-var path = require('path');
+import path from 'path';
 
 
-module.exports = {
+export default {
   entry: [
     path.join(__dirname, '..', '..', 'setup.js'),
     path.join(__dirname, '..', '..', 'index.js')

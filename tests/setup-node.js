@@ -5,6 +5,5 @@
  * setup module.
  */
 
-require('./setup/jsdom.js');
-
-require('./setup.js');
+import './setup/jsdom.js';
+import './setup.js';

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   callback: sandbox.spy(),
   foo: 'bar'
 };

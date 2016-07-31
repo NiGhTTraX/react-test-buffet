@@ -1,4 +1,4 @@
-var config = require('./unit-tests.config.js');
+import config from './base.babel.js';
 
 
 config.output.filename = 'tests-coverage.js';
@@ -12,5 +12,4 @@ config.module.preLoaders.push({
   loader: 'babel-istanbul'
 });
 
-
-module.exports = config;
+export default config;

@@ -1,14 +1,14 @@
 import Child from '../../../src/components/child.jsx';
 import fixture from '../../fixtures/child/base.js';
-import TestHelpers from '../../helpers.js';
+import { render }from '../../helpers.js';
 import $ from 'jquery';
 
 
 describe('Child', function() {
-  var component;
+  let component;
 
   beforeEach(function() {
-    component = TestHelpers.render(Child, fixture);
+    component = render(Child, fixture);
   });
 
   it('should render foo', function() {

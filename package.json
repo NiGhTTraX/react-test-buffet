@@ -46,8 +46,8 @@
   "scripts": {
     "test": "mocha --compilers js:babel-register --recursive tests/setup-node.js tests/components/",
     "test:browser": "npm run test:browser:build && karma start tests/conf/karma/base.js",
-    "test:browser:build": "webpack --config tests/conf/webpack/unit-tests.config.js --bail",
+    "test:browser:build": "webpack --config tests/conf/webpack/base.babel.js --bail",
     "test:coverage": "npm run test:coverage:build && karma start tests/conf/karma/coverage.js",
-    "test:coverage:build": "webpack --config tests/conf/webpack/unit-tests-coverage.config.js --bail"
+    "test:coverage:build": "webpack --config tests/conf/webpack/coverage.babel.js --bail"
   }
 }

@@ -1,15 +1,15 @@
-var React = require('react'),
-    _ = require('lodash'),
-    ComponentTree = require('react-component-tree');
+import React from 'react/addons';
+import _ from 'lodash';
+import ComponentTree from 'react-component-tree';
 
 
-var _container;
+let _container;
 
 // If there's a container on the page named #test-area, use that, otherwise
 // create a detached div and use that. The former case is useful when running
 // the tests in your own browser so you can debug how the component is
 // rendered.
-var testArea = document.querySelector('#test-area');
+const testArea = document.querySelector('#test-area');
 
 if (testArea) {
   _container = testArea;
@@ -28,9 +28,10 @@ if (testArea) {
  *
  * @returns {React instance}
  */
-exports.render = function(Component, fixture = {}) {
-  var props = _.omit(fixture, 'state', 'children'),
-      component;
+export function render(Component, fixture = {}) {
+  const props = _.omit(fixture, 'state', 'children');
+
+  let component;
 
   try {
     component = React.render(React.createElement(
@@ -56,7 +57,7 @@ exports.render = function(Component, fixture = {}) {
 /**
  * Unmount the currently rendered component.
  */
-exports.unmount = function() {
+export function unmount() {
   React.unmountComponentAtNode(_container);
 };
 
@@ -71,8 +72,8 @@ exports.unmount = function() {
  *
  * @returns {Stub}
  */
-module.exports.stubMethod = function(_class, method, resp) {
-  var methodLoc = _getMethodLocation(_class, method);
+export function stubMethod(_class, method, resp) {
+  const methodLoc = _getMethodLocation(_class, method);
 
   if (_.isFunction(resp)) {
     return sandbox.stub(methodLoc, method, resp);
@@ -91,19 +92,17 @@ module.exports.stubMethod = function(_class, method, resp) {
  *
  * @returns {Object} The props.
  */
-module.exports.getChildProps = function(component, name, args) {
-  args = args || [];
-
-  var children = component.children;
+export function getChildProps(component, name, args = []) {
+  const children = component.children;
 
   if (children === undefined) {
-    throw new Error('Component doesn\'t have children');
+    throw new Error(`Component doesn't have children`);
   }
 
-  var method = children[name];
+  const method = children[name];
 
   if (method === undefined) {
-    throw new Error('Component doesn\'t have child `' + name + '`');
+    throw new Error(`Component doesn't have child '${name}'`);
   }
 
   return method.apply(component, args);
@@ -135,7 +134,7 @@ function _getClassPrototyppe(_class) {
  * @returns {Object}
  */
 function _getMethodLocation(_class, method) {
-  var proto = _getClassPrototyppe(_class);
+  const proto = _getClassPrototyppe(_class);
 
   // React.createClass automagically binds event handlers and stores a cache of
   // them..ES6 classes don't autobind methods so this cache doesn't even exist.
@@ -153,6 +152,5 @@ function _getMethodLocation(_class, method) {
     return proto;
   }
 
-  throw new Error('Could not find method `' + method + '` on the class ' +
-                  'prototype');
+  throw new Error(`Could not find method '${method}' on the class prototype`);
 }
