@@ -26,6 +26,8 @@ coverage with Istanbul.
 
 ## Running the tests in Node
 
+![node](./screenshots/node.png)
+
 `npm test` will run the tests in Node using `Mocha`. This is useful for a rapid
 feedback loop.
 
@@ -35,6 +37,8 @@ storage or style cascading.
 
 
 ## Running the tests in real browsers
+
+![karma](./screenshots/karma.png)
 
 `npm run test:browser` will run the tests in real browsers using `Karma` and
 `Webpack`. This is useful for debugging (Chrome dev tools rock!) and when
@@ -59,6 +63,8 @@ coverage reports. You need to build the instrumented bundle first by running
 
 ## Stack traces
 
+![stack-traces](./screenshots/stack-traces.png)
+
 Stack traces pointing to original line numbers are achieved using:
 - [karma-sourcemap-loader](https://github.com/demerzel3/karma-sourcemap-loader)
   for Karma and
@@ -82,10 +88,10 @@ be loaded and parsed.
 
 The bundle is built using source maps so you can step through your original
 code. Moreover, there's a special div with the id `test-area`, which is
-positioned offscreen, which you can use to render components in tests. It's
-bound to `this.container` inside the tests. When debugging, you can remove its
-absolute positioning to make it visible and see how your rendered components
-look like.
+positioned offscreen, which you can use to render components in tests.
+
+When debugging, you can remove its absolute positioning to make it visible and
+see what your rendered components look like.
 
 Any console calls will output to the terminal when run through Karma and to the
 actual console when running through the manual test runner.
