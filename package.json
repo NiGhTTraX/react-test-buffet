@@ -1,6 +1,6 @@
 {
   "name": "react-test-buffet",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Complete example of testing React components with Mocha, Chai and Sinon, running the tests in real browsers using Karma and Webpack, and generating code coverage with Istanbul",
   "repository": {
     "type": "git",
