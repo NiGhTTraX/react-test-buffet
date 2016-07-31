@@ -47,10 +47,6 @@ storage or style cascading.
 Running `npm test:browser:build` will build the non instrumented testing bundle
 and start Karma. Karma is configured to run the tests in Firefox and Chrome.
 
-To generate code coverage reports, run `npm test:coverage`. This will
-instrument the source files with Istanbul and generate coverage reports in the
-`coverage/` folder.
-
 If you want to run the tests in your own browsers, run `npm run
 test:browser:build` to build the non instrumented testing bundle and then open
 `runner.html`.
@@ -59,6 +55,15 @@ If you want to run the tests inside a CI environment you can use the
 `karma.conf.ci.js` that will run the tests in PhantomJS and generate Cobertura
 coverage reports. You need to build the instrumented bundle first by running
 `npm run test:coverage:build`.
+
+
+## Coverage
+
+![coverage](./screenshots/coverage.png)
+
+To generate code coverage reports, run `npm test:coverage`. This will
+instrument the source files with Istanbul and generate coverage reports in the
+`coverage/` folder.
 
 
 ## Stack traces
