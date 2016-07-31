@@ -19,7 +19,7 @@ coverage with Istanbul.
 - [jsdom](https://github.com/tmpvar/jsdom) - server side DOM
 - [Babel](https://babeljs.io/) - transpile ES6 (including JSX) to ES5
 - [Webpack](https://webpack.github.io/) - module bundler
-- [Karma](http://karma-runner.github.io/0.12/index.html) - test runner
+- [Karma](http://karma-runner.github.io/) - test runner
 - [PhantomJS](http://phantomjs.org/) - headless WebKit
 - [Istanbul](http://gotwarlost.github.io/istanbul/) - code coverage
 
