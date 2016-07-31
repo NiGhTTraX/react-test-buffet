@@ -62,12 +62,6 @@ exports.unmount = function() {
 };
 
 
-// Unmount the component after each test. A hidden side effect, but worth it.
-afterEach(function() {
-  exports.unmount();
-});
-
-
 /**
  * Stub a method on a React class.
  *
