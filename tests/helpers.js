@@ -23,8 +23,6 @@ if (testArea) {
  *
  * @param {React class} Component
  * @param {Object} fixture
- * @param {DOM} container You should set this to this.container inside your
- *     tests.
  *
  * @returns {React instance}
  */
