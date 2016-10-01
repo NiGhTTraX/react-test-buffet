@@ -21,6 +21,29 @@ module.exports = {
     'react/wrap-multilines': 0,
     'react/prefer-stateless-function': 0,
     'react/jsx-first-prop-new-line': 0,
-    'react/jsx-no-bind': 0
+    'react/jsx-no-bind': 0,
+    'react/sort-comp': [2, {
+      order: [
+        'displayName',
+        'propTypes',
+        'mixins',
+        'statics',
+        'getDefaultProps',
+        'getInitialState',
+        'constructor',
+        'render',
+        '/^_render.+$/', // any auxiliary _render methods
+        'componentWillMount',
+        'componentDidMount',
+        'componentWillReceiveProps',
+        'shouldComponentUpdate',
+        'componentWillUpdate',
+        'componentDidUpdate',
+        'componentWillUnmount',
+        '/^on[A-Z].+$/', // event handlers
+        'everything-else',
+        '/^_.+$/' // private methods
+      ]
+    }]
   }
 }
