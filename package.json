@@ -31,10 +31,9 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.5",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "todomvc-app-css": "~2.0.6"
-  },
-  "peerDependencies": {
-    "react": "~15.1.0"
   },
   "devDependencies": {
     "babel": "~6.5.2",
@@ -56,9 +55,7 @@
     "jsdom": "~9.2.1",
     "lodash.merge": "~4.4.0",
     "mocha": "~2.5.3",
-    "react": "~15.1.0",
-    "react-addons-test-utils": "~15.1.0",
-    "react-dom": "~15.1.0",
+    "react-addons-test-utils": "^15.3.2",
     "sinon": "https://github.com/uberVU/Sinon.JS.git",
     "sinon-chai": "~2.8.0",
     "skip-amd-webpack-plugin": "0.0.2",
