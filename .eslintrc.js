@@ -3,7 +3,10 @@ module.exports = {
 
   'parser': 'babel-eslint',
 
-  'extends': 'airbnb',
+  'extends': [
+    'airbnb',
+    'plugin:import/errors'
+  ],
 
   'rules': {
     'space-before-function-paren': 0,
