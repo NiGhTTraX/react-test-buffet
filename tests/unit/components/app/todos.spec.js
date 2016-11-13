@@ -8,14 +8,14 @@ describe('App', function() {
     beforeEach(function() {
       render(<App />);
 
-      const addTodo = AddTodo.props.addTodo;
+      const addTodo = AddTodo.lastPropsReceived.addTodo;
 
       addTodo({ title: 'buy milk' });
       addTodo({ title: 'buy eggs' });
     });
 
     it('should mark a todo as completed when being called', function() {
-      TodoList.props.toggleTodo({ index: 0 });
+      TodoList.lastPropsReceived.toggleTodo({ index: 0 });
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [{
@@ -29,8 +29,8 @@ describe('App', function() {
     });
 
     it('should mark a todo as active when being called', function() {
-      TodoList.props.toggleTodo({ index: 0 });
-      TodoList.props.toggleTodo({ index: 0 });
+      TodoList.lastPropsReceived.toggleTodo({ index: 0 });
+      TodoList.lastPropsReceived.toggleTodo({ index: 0 });
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [{

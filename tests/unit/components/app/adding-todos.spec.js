@@ -15,7 +15,7 @@ describe('App', function() {
     });
 
     it('should render the new todo', function() {
-      AddTodo.props.addTodo({ title: 'buy milk' });
+      AddTodo.lastPropsReceived.addTodo({ title: 'buy milk' });
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [checkTodoTitle('buy milk')]
@@ -23,7 +23,7 @@ describe('App', function() {
     });
 
     it('should mark the new todo as active', function() {
-      AddTodo.props.addTodo({ title: 'buy more milk' });
+      AddTodo.lastPropsReceived.addTodo({ title: 'buy more milk' });
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [match({ completed: false })]
@@ -31,7 +31,7 @@ describe('App', function() {
     });
 
     it('should trim whitespace from new todos', function() {
-      AddTodo.props.addTodo({ title: '   wash car   ' });
+      AddTodo.lastPropsReceived.addTodo({ title: '   wash car   ' });
 
       expect(TodoList).to.have.been.renderedWith({
         todos: [checkTodoTitle('wash car')]
@@ -39,7 +39,7 @@ describe('App', function() {
     });
 
     it('should not add an empty todo', function() {
-      AddTodo.props.addTodo({ title: '' });
+      AddTodo.lastPropsReceived.addTodo({ title: '' });
 
       expect(TodoList).to.not.have.been.renderedWith({
         todos: [checkTodoTitle('')]

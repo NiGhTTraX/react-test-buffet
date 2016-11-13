@@ -68,7 +68,7 @@ export function fakeComponentFactory({ name } = { name: 'FakeComponent' }) {
 
     static renderSpy = _renderSpy;
 
-    static get props() {
+    static get lastPropsReceived() {
       return _lastProps;
     }
 
