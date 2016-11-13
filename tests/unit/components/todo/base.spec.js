@@ -4,9 +4,7 @@ import { render } from '../../../helpers/rendering.js';
 import { Simulate } from 'react-addons-test-utils';
 import { spy } from 'sinon';
 import $ from 'jquery';
-import todoFactoy from '../../../../src/components/todo.jsx';
-
-const Todo = todoFactoy();
+import Todo from '../../../../src/components/todo.jsx';
 
 
 describe('Todo', function() {

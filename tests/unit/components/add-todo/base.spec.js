@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom';
 import { Simulate } from 'react-addons-test-utils';
 import { render } from '../../../helpers/rendering.js';
 import $ from 'jquery';
-import addTodoFactory from '../../../../src/components/add-todo.jsx';
+import AddTodo from '../../../../src/components/add-todo.jsx';
 import { spy } from 'sinon';
 
-const AddTodo = addTodoFactory();
 
 const ENTER = 13;
 
