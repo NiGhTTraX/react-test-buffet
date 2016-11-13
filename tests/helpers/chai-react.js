@@ -76,6 +76,14 @@ export function fakeComponentFactory({ name } = { name: 'FakeComponent' }) {
       return _lastProps;
     }
 
+    static get props() {
+      if (!_renderSpy.called) {
+        throw new Error('Component was never rendered');
+      }
+
+      return _renderSpy.args.map(args => args[0]);
+    }
+
     static reset() {
       _renderSpy.reset();
     }
