@@ -21,7 +21,7 @@ describe('Todo', function() {
     };
 
     beforeEach(function() {
-      const component = render(<Todo {...todo} toggleTodo={toggleTodoSpy} />);
+      const component = render(<Todo {...todo} onSelect={toggleTodoSpy} />);
 
       $component = $(ReactDOM.findDOMNode(component));
     });
@@ -47,7 +47,7 @@ describe('Todo', function() {
     };
 
     beforeEach(function() {
-      const component = render(<Todo {...todo} toggleTodo={toggleTodoSpy} />);
+      const component = render(<Todo {...todo} onSelect={toggleTodoSpy} />);
 
       $component = $(ReactDOM.findDOMNode(component));
     });

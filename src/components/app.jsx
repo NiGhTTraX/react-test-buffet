@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 export default class App extends Component {
   static propTypes = {
     AddTodo: PropTypes.func.isRequired,
-    TodoList: PropTypes.func.isRequired
+    List: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -28,11 +28,11 @@ export default class App extends Component {
   }
 
   _renderTodos() {
-    const { TodoList } = this.props;
+    const { List } = this.props;
 
     return <section className="main">
-      <TodoList todos={this.state.todos}
-        toggleTodo={this.onToggleTodo.bind(this)}
+      <List items={this.state.todos}
+        onSelect={this.onToggleTodo.bind(this)}
       />
     </section>;
   }

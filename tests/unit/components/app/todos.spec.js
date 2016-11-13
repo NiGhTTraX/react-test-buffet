@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../../helpers/rendering.js';
-import App, { AddTodo, TodoList } from './setup.js';
+import App, { AddTodo, List } from './setup.js';
 
 
 describe('App', function() {
@@ -15,10 +15,10 @@ describe('App', function() {
     });
 
     it('should mark a todo as completed when being called', function() {
-      TodoList.lastPropsReceived.toggleTodo({ index: 0 });
+      List.lastPropsReceived.onSelect({ index: 0 });
 
-      expect(TodoList).to.have.been.renderedWith({
-        todos: [{
+      expect(List).to.have.been.renderedWith({
+        items: [{
           title: 'buy milk',
           completed: true
         }, {
@@ -29,11 +29,11 @@ describe('App', function() {
     });
 
     it('should mark a todo as active when being called', function() {
-      TodoList.lastPropsReceived.toggleTodo({ index: 0 });
-      TodoList.lastPropsReceived.toggleTodo({ index: 0 });
+      List.lastPropsReceived.onSelect({ index: 0 });
+      List.lastPropsReceived.onSelect({ index: 0 });
 
-      expect(TodoList).to.have.been.renderedWith({
-        todos: [{
+      expect(List).to.have.been.renderedWith({
+        items: [{
           title: 'buy milk',
           completed: false
         }, {
