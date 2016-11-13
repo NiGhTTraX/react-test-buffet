@@ -1,11 +1,12 @@
 import React from 'react';
 import { render } from '../../../helpers/rendering.js';
 import { spy } from 'sinon';
-import todoListFactoy from '../../../../src/components/todo-list.jsx';
+import TodoList from '../../../../src/components/todo-list.jsx';
 import { fakeComponentFactory } from '../../../helpers/chai-react.js';
+import { inject } from '../../../../src/lib/inject.js';
 
 const Todo = fakeComponentFactory({ name: 'Todo' });
-const TodoList = todoListFactoy(Todo);
+const TodoList2 = inject({ Todo }, TodoList);
 
 
 describe('TodoList', function() {
@@ -27,7 +28,7 @@ describe('TodoList', function() {
 
     toggleTodoSpy = spy();
 
-    render(<TodoList todos={todos} toggleTodo={toggleTodoSpy} />);
+    render(<TodoList2 todos={todos} toggleTodo={toggleTodoSpy} />);
   });
 
   it('should render every todo', function() {
