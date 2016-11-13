@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app.setup.js';
+import App from '../../src/app-setup.js';
 import $ from 'jquery';
 
 
