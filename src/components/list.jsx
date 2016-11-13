@@ -12,9 +12,9 @@ export default class List extends Component {
     const { Item, items, onSelect } = this.props;
 
     return <ul>
-      {items.map(item =>
+      {items.map((item, index) =>
         <li key={item.id}>
-          <Item {...item} onSelect={() => { onSelect(item.id); }} />
+          <Item {...item} onSelect={() => { onSelect({ index }); }} />
         </li>
       )}
     </ul>;

@@ -26,18 +26,18 @@ describe('List', function() {
   it('should call the parent when the first item is selected', function() {
     Item.props[0].onSelect();
 
-    expect(onSelectSpy).to.have.been.calledWith(1);
+    expect(onSelectSpy).to.have.been.calledWith({ index: 0 });
   });
 
   it('should call the parent when the last item is selected', function() {
     Item.lastPropsReceived.onSelect();
 
-    expect(onSelectSpy).to.have.been.calledWith(3);
+    expect(onSelectSpy).to.have.been.calledWith({ index: 2 });
   });
 
   it('should call the parent when any item is selected', function() {
     Item.props[1].onSelect();
 
-    expect(onSelectSpy).to.have.been.calledWith(2);
+    expect(onSelectSpy).to.have.been.calledWith({ index: 1 });
   });
 });
