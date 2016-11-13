@@ -13,7 +13,7 @@ export default class List extends Component {
 
     return <ul>
       {items.map((item, index) =>
-        <li key={item.id}>
+        <li key={index}>
           <Item {...item} onSelect={() => { onSelect({ index }); }} />
         </li>
       )}
