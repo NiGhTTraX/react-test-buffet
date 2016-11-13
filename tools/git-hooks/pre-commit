@@ -10,7 +10,7 @@ if [ $? != 0 ]; then
 fi
 
 
-npm run --silent lint-files -- $CHANGED_JS_FILES
+npm run --silent lint:files-- $CHANGED_JS_FILES
 
 
 if [ $? != 0 ]; then

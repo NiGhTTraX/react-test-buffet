@@ -17,8 +17,8 @@
     "test:acceptance:watch": "npm run build -- ./tests/acceptance/webpack.config.babel.js -w",
     "build:bail": "webpack --progress --bail --config",
     "build": "webpack --progress --config",
-    "lint": "npm run lint-files -- .",
-    "lint-files": "eslint --ext js --ext jsx",
+    "lint": "npm run lint:files -- .",
+    "lint:files": "eslint --ext js --ext jsx",
     "postinstall": "./tools/install-git-hooks.sh",
     "start": "npm run build:bail -- ./src/webpack.config.babel.js -w"
   },
