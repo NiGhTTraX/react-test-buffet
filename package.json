@@ -55,7 +55,7 @@
     "jquery": "~2.2.4",
     "jsdom": "~9.2.1",
     "lodash.merge": "~4.4.0",
-    "mocha": "~2.5.3",
+    "mocha": "~3.2.0",
     "react-addons-test-utils": "^15.3.2",
     "sinon": "https://github.com/uberVU/Sinon.JS.git",
     "sinon-chai": "~2.8.0",
