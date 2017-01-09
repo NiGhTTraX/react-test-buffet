@@ -29,6 +29,7 @@ module.exports = {
         'mixins',
         'statics',
         'getDefaultProps',
+        'defaultProps',
         'getInitialState',
         'constructor',
         'render',
