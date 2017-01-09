@@ -13,30 +13,21 @@ describe('Checkbox', function() {
     $component => Simulate.change($component.find(':checkbox')[0])
   );
 
-  let $checkbox;
-  const onToggle = () => { };
+  function renderCheckbox(props) {
+    const component = render(<Checkbox onToggle={() => { }} {...props} />);
 
-  describe('checked', function() {
-    beforeEach(function() {
-      const component = render(<Checkbox onToggle={onToggle} checked />);
+    return $(':checkbox', ReactDOM.findDOMNode(component));
+  }
 
-      $checkbox = $(':checkbox', ReactDOM.findDOMNode(component));
-    });
+  it('should mark the checkbox when checked', function() {
+    const $checkbox = renderCheckbox({ checked: true });
 
-    it('should be checked', function() {
-      expect($checkbox.is(':checked')).to.be.true;
-    });
+    expect($checkbox.is(':checked')).to.be.true;
   });
 
-  describe('unchecked', function() {
-    beforeEach(function() {
-      const component = render(<Checkbox onToggle={onToggle} />);
+  it('should not mark the checkbox when unchecked', function() {
+    const $checkbox = renderCheckbox({ checked: false });
 
-      $checkbox = $(':checkbox', ReactDOM.findDOMNode(component));
-    });
-
-    it('should be unchecked', function() {
-      expect($checkbox.is(':checked')).to.be.false;
-    });
+    expect($checkbox.is(':checked')).to.be.false;
   });
 });
