@@ -11,46 +11,38 @@ import $ from 'jquery';
  */
 export default function toggleableTests(render, toggle) {
   describe('toggleable', function() {
-    let $component, onToggle;
+    let onToggle;
+
+    function renderToggle(props) {
+      const component = render({ ...props, onToggle });
+
+      return $(ReactDOM.findDOMNode(component));
+    }
 
     beforeEach(function() {
       onToggle = spy();
-
-      const component = render({ className: 'test-class', onToggle });
-
-      $component = $(ReactDOM.findDOMNode(component));
     });
 
     it('should apply the given class name', function() {
+      const $component = renderToggle({ className: 'test-class' });
+
       expect($component.hasClass('test-class')).to.be.true;
     });
 
-    describe('checked', function() {
-      beforeEach(function() {
-        const component = render({ onToggle, checked: true });
+    it('should call back when unchecking', function() {
+      const $component = renderToggle({ checked: true });
 
-        $component = $(ReactDOM.findDOMNode(component));
-      });
+      toggle($component);
 
-      it('should call back when unchecking', function() {
-        toggle($component);
-
-        expect(onToggle).to.have.been.calledWith({ checked: false });
-      });
+      expect(onToggle).to.have.been.calledWith({ checked: false });
     });
 
-    describe('unchecked', function() {
-      beforeEach(function() {
-        const component = render({ onToggle, checked: false });
+    it('should call back when checking', function() {
+      const $component = renderToggle({ checked: false });
 
-        $component = $(ReactDOM.findDOMNode(component));
-      });
+      toggle($component);
 
-      it('should call back when checking', function() {
-        toggle($component);
-
-        expect(onToggle).to.have.been.calledWith({ checked: true });
-      });
+      expect(onToggle).to.have.been.calledWith({ checked: true });
     });
   });
 }
