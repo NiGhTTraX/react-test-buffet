@@ -5,6 +5,6 @@ import Todo from './components/todo.jsx';
 import List from './components/list.jsx';
 
 
-const TodoList = inject({ Item: Todo }, List);
+const TodoList = inject({ Item: Todo, className: 'todo-list' }, List);
 
 export default inject({ AddTodo, List: TodoList }, App);
