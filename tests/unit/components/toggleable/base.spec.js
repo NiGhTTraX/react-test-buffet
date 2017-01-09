@@ -4,8 +4,8 @@ import $ from 'jquery';
 
 
 /**
- * @param {Function} render Accept a set of props and render the component. It
- *     should return the component instance.
+ * @param {Function} render Receive a set of props and render the component.
+ *     It should return the component instance.
  * @param {Function} toggle Toggle the toggleable. Receives the component DOM
  *     node wrapped in a jQuery object.
  */
