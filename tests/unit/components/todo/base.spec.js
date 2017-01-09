@@ -10,6 +10,14 @@ import Todo from '../../../../src/components/todo.jsx';
 describe('Todo', function() {
   let $component, Toggle, toggleTodoSpy;
 
+  function renderTodo(todo) {
+    const component = render(<Todo
+      Toggle={Toggle} {...todo} onSelect={toggleTodoSpy}
+    />);
+
+    return $(ReactDOM.findDOMNode(component));
+  }
+
   beforeEach(function() {
     Toggle = fakeComponentFactory({ name: 'Toggle' });
     toggleTodoSpy = spy();
@@ -22,11 +30,7 @@ describe('Todo', function() {
     };
 
     beforeEach(function() {
-      const component = render(<Todo
-        Toggle={Toggle} {...todo} onSelect={toggleTodoSpy}
-      />);
-
-      $component = $(ReactDOM.findDOMNode(component));
+      $component = renderTodo(todo);
     });
 
     it('should not visually mark active todos', function() {
@@ -52,11 +56,7 @@ describe('Todo', function() {
     };
 
     beforeEach(function() {
-      const component = render(<Todo
-        Toggle={Toggle} {...todo} onSelect={toggleTodoSpy}
-      />);
-
-      $component = $(ReactDOM.findDOMNode(component));
+      $component = renderTodo(todo);
     });
 
     it('should visually mark a completed todo', function() {
