@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import List from '../../../../src/components/list.jsx';
 import { fakeComponentFactory } from '../../../helpers/chai-react.js';
 import { render } from '../../../helpers/rendering.js';
@@ -6,15 +7,22 @@ import { spy } from 'sinon';
 
 
 describe('List', function() {
-  let Item, onSelectSpy;
+  let component, Item, onSelectSpy;
 
   beforeEach(function() {
     Item = fakeComponentFactory({ name: 'Item' });
     onSelectSpy = spy();
 
-    render(<List Item={Item} items={[{ id: 1 }, { id: 2 }, { id: 3 }]}
+    component = render(<List
+      className="test-class"
+      Item={Item}
+      items={[{ id: 1 }, { id: 2 }, { id: 3 }]}
       onSelect={onSelectSpy}
     />);
+  });
+
+  it('should apply the given class name', function() {
+    expect(ReactDOM.findDOMNode(component).className).to.contain('test-class');
   });
 
   it('should render the given items', function() {
