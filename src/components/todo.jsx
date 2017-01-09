@@ -6,19 +6,20 @@ import classnames from 'classnames';
 
 export default class Todo extends Component {
   static propTypes = {
+    Toggle: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
     onSelect: PropTypes.func.isRequired
   };
 
   render() {
-    const { completed, title, onSelect } = this.props;
+    const { Toggle, completed, title, onSelect } = this.props;
 
     return <div className={classnames('todo', { completed })}>
       <div className="view">
-        <input className="toggle" type="checkbox"
+        <Toggle
           checked={completed}
-          onChange={onSelect}
+          onToggle={onSelect}
         />
         <label>{title}</label>
       </div>

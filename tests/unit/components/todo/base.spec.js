@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from '../../../helpers/rendering.js';
-import { Simulate } from 'react-addons-test-utils';
+import { fakeComponentFactory } from '../../../helpers/chai-react.js';
 import { spy } from 'sinon';
 import $ from 'jquery';
 import Todo from '../../../../src/components/todo.jsx';
 
 
 describe('Todo', function() {
-  let $component, toggleTodoSpy;
+  let $component, Toggle, toggleTodoSpy;
 
   beforeEach(function() {
+    Toggle = fakeComponentFactory({ name: 'Toggle' });
     toggleTodoSpy = spy();
   });
 
@@ -21,20 +22,24 @@ describe('Todo', function() {
     };
 
     beforeEach(function() {
-      const component = render(<Todo {...todo} onSelect={toggleTodoSpy} />);
+      const component = render(<Todo
+        Toggle={Toggle} {...todo} onSelect={toggleTodoSpy}
+      />);
 
       $component = $(ReactDOM.findDOMNode(component));
     });
 
-    it('should not mark active todos', function() {
+    it('should not visually mark active todos', function() {
       expect($component.hasClass('completed'),
             'Todo should not be marked as completed').to.be.false;
-      expect($component.find('.toggle').is(':checked'),
-            'Todo should not be checked').to.be.false;
+    });
+
+    it('should not mark active todos', function() {
+      expect(Toggle).to.not.have.been.renderedWith({ checked: true });
     });
 
     it('should call to toggle a todo when toggling it', function() {
-      Simulate.change($component.find('.toggle')[0]);
+      Toggle.lastPropsReceived.onToggle();
 
       expect(toggleTodoSpy).to.have.been.calledOnce;
     });
@@ -47,16 +52,20 @@ describe('Todo', function() {
     };
 
     beforeEach(function() {
-      const component = render(<Todo {...todo} onSelect={toggleTodoSpy} />);
+      const component = render(<Todo
+        Toggle={Toggle} {...todo} onSelect={toggleTodoSpy}
+      />);
 
       $component = $(ReactDOM.findDOMNode(component));
     });
 
-    it('should mark a completed todo', function() {
+    it('should visually mark a completed todo', function() {
       expect($component.hasClass('completed'),
             'Todo should be marked as completed').to.be.true;
-      expect($component.find('.toggle').is(':checked'),
-            'Todo should be checked').to.be.true;
+    });
+
+    it('should mark a completed todo', function() {
+      expect(Toggle).to.have.been.renderedWith({ checked: true });
     });
   });
 });
