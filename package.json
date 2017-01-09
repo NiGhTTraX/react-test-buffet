@@ -20,7 +20,7 @@
     "lint": "npm run lint:files -- .",
     "lint:files": "eslint --ext js --ext jsx",
     "postinstall": "./tools/install-git-hooks.sh",
-    "start": "npm run build:bail -- ./src/webpack.config.babel.js -w"
+    "start": "npm run build -- ./src/webpack.config.babel.js -w"
   },
   "keywords": [
     "todomvc",
