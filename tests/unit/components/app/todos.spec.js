@@ -15,13 +15,15 @@ describe('App', function() {
     });
 
     it('should mark a todo as completed when being called', function() {
-      List.lastPropsReceived.onSelect({ index: 0 });
+      List.lastPropsReceived.onSelect({ id: 0 });
 
       expect(List).to.have.been.renderedWith({
         items: [{
+          id: 0,
           title: 'buy milk',
           completed: true
         }, {
+          id: 1,
           title: 'buy eggs',
           completed: false
         }]
@@ -29,14 +31,16 @@ describe('App', function() {
     });
 
     it('should mark a todo as active when being called', function() {
-      List.lastPropsReceived.onSelect({ index: 0 });
-      List.lastPropsReceived.onSelect({ index: 0 });
+      List.lastPropsReceived.onSelect({ id: 0 });
+      List.lastPropsReceived.onSelect({ id: 0 });
 
       expect(List).to.have.been.renderedWith({
         items: [{
+          id: 0,
           title: 'buy milk',
           completed: false
         }, {
+          id: 1,
           title: 'buy eggs',
           completed: false
         }]

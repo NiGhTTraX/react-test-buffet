@@ -11,7 +11,8 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      todos: []
+      todos: [],
+      id: 0
     };
   }
 
@@ -45,13 +46,16 @@ export default class App extends Component {
 
     this.setState({
       todos: this.state.todos.concat({
+        id: this.state.id,
         title: title.trim(),
         completed: false
-      })
+      }),
+      id: this.state.id + 1
     });
   }
 
-  onToggleTodo({ index }) {
+  onToggleTodo({ id }) {
+    const index = this.state.todos.findIndex(todo => todo.id === id);
     const newTodos = this.state.todos.slice();
 
     newTodos[index] = Object.assign({}, newTodos[index], {
