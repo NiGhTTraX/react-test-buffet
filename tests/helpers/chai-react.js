@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import sinon from 'sinon';
+import { spy } from 'sinon';
 import { inspect } from 'util';
 
 
@@ -58,7 +58,7 @@ export default chai => {
 
 
 export function createSpy({ name } = { name: 'Spy' }) {
-  const _renderSpy = sinon.spy();
+  const _renderSpy = spy();
 
   return class Spy extends Component {
     static displayName = name;
