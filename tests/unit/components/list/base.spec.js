@@ -37,7 +37,7 @@ describe('List', function() {
   });
 
   it('should call the parent when the last item is selected', function() {
-    Item.lastPropsReceived.onSelect();
+    Item.lastProps.onSelect();
 
     expect(onSelectSpy).to.have.been.calledWith({ id: 1 });
   });

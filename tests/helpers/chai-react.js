@@ -71,7 +71,7 @@ export function createSpy({ name } = { name: 'Spy' }) {
      *
      * @return {Object}
      */
-    static get lastPropsReceived() {
+    static get lastProps() {
       if (!_renderSpy.called) {
         throw new Error('Component was never rendered');
       }

@@ -8,14 +8,14 @@ describe('App', function() {
     beforeEach(function() {
       render(<App />);
 
-      const addTodo = AddTodo.lastPropsReceived.addTodo;
+      const addTodo = AddTodo.lastProps.addTodo;
 
       addTodo({ title: 'buy milk' });
       addTodo({ title: 'buy eggs' });
     });
 
     it('should mark a todo as completed when being called', function() {
-      List.lastPropsReceived.onSelect({ id: 0 });
+      List.lastProps.onSelect({ id: 0 });
 
       expect(List).to.have.been.renderedWith({
         items: [{
@@ -31,8 +31,8 @@ describe('App', function() {
     });
 
     it('should mark a todo as active when being called', function() {
-      List.lastPropsReceived.onSelect({ id: 0 });
-      List.lastPropsReceived.onSelect({ id: 0 });
+      List.lastProps.onSelect({ id: 0 });
+      List.lastProps.onSelect({ id: 0 });
 
       expect(List).to.have.been.renderedWith({
         items: [{

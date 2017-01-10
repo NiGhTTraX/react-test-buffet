@@ -40,7 +40,7 @@ describe('Todo', function() {
     });
 
     it('should call to toggle a todo when toggling it', function() {
-      Toggle.lastPropsReceived.onToggle();
+      Toggle.lastProps.onToggle();
 
       expect(toggleTodoSpy).to.have.been.calledOnce;
     });
