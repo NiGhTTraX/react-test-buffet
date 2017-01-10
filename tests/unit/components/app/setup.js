@@ -1,9 +1,9 @@
 import inject from '../../../../src/lib/inject.js';
 import App from '../../../../src/components/app.jsx';
-import { fakeComponentFactory } from '../../../helpers/chai-react.js';
+import { createSpy } from '../../../helpers/chai-react.js';
 
-export const AddTodo = fakeComponentFactory({ name: 'AddTodo' });
-export const List = fakeComponentFactory({ name: 'List' });
+export const AddTodo = createSpy({ name: 'AddTodo' });
+export const List = createSpy({ name: 'List' });
 
 export default inject({ AddTodo, List }, App);
 

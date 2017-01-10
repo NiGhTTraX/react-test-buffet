@@ -58,12 +58,12 @@ export default chai => {
 };
 
 
-export function fakeComponentFactory({ name } = { name: 'FakeComponent' }) {
+export function createSpy({ name } = { name: 'Spy' }) {
   const _renderSpy = sinon.spy();
 
   let _lastProps;
 
-  return class FakeComponent extends Component {
+  return class Spy extends Component {
     static displayName = name;
 
     static renderSpy = _renderSpy;

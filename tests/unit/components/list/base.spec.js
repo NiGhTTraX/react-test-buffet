@@ -1,7 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import List from '../../../../src/components/list.jsx';
-import { fakeComponentFactory } from '../../../helpers/chai-react.js';
+import { createSpy } from '../../../helpers/chai-react.js';
 import { $render } from '../../../helpers/rendering.js';
 
 
@@ -9,7 +9,7 @@ describe('List', function() {
   let $component, Item, onSelectSpy;
 
   beforeEach(function() {
-    Item = fakeComponentFactory({ name: 'Item' });
+    Item = createSpy({ name: 'Item' });
     onSelectSpy = spy();
 
     $component = $render(<List

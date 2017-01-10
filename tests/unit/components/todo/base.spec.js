@@ -1,7 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { $render } from '../../../helpers/rendering.js';
-import { fakeComponentFactory } from '../../../helpers/chai-react.js';
+import { createSpy } from '../../../helpers/chai-react.js';
 import Todo from '../../../../src/components/todo.jsx';
 
 
@@ -15,7 +15,7 @@ describe('Todo', function() {
   }
 
   beforeEach(function() {
-    Toggle = fakeComponentFactory({ name: 'Toggle' });
+    Toggle = createSpy({ name: 'Toggle' });
     toggleTodoSpy = spy();
   });
 
