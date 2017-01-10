@@ -15,6 +15,7 @@ export default class Toggleable extends Component {
   };
 
   static defaultProps = {
+    className: 'toggleable',
     checked: false
   };
 

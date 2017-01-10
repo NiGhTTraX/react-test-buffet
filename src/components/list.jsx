@@ -9,6 +9,10 @@ export default class List extends Component {
     onSelect: PropTypes.func.isRequired
   };
 
+  static defaultProps = {
+    className: 'list'
+  };
+
   render() {
     const { className, Item, items, onSelect } = this.props;
 
