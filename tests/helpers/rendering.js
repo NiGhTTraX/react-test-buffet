@@ -4,6 +4,7 @@
  * This module has side effects.
  */
 
+import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
@@ -18,8 +19,14 @@ const _container = document.createElement('div');
  * @returns {Object} The component instance.
  */
 export function render(element) {
-  // TODO: use ref callbacks to get the instance
-  return ReactDOM.render(element, _container);
+  let component;
+
+  ReactDOM.render(
+    React.cloneElement(element, { ref: inst => { component = inst; } }),
+    _container
+  );
+
+  return component;
 }
 
 
