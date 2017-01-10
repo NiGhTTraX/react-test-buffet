@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import App from '../../src/app-factory.js';
 
+const container = document.getElementById('test-area');
+
 
 export default function setup() {
-  const component = ReactDOM.render(<App />,
-                                    document.getElementById('test-area'));
+  ReactDOM.render(<App />, container);
 
-  // TODO: use ref functions
-  const $component = $(ReactDOM.findDOMNode(component));
-
-  return $component;
+  return $(container).children().eq(0);
 }
 
 afterEach(function() {
