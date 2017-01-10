@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   'root': true,
 
@@ -11,6 +13,14 @@ module.exports = {
     'airbnb',
     'plugin:import/errors'
   ],
+
+  'settings': {
+    'import/resolver': {
+      'webpack': {
+        'config': path.join(__dirname, 'src', 'webpack.config.babel.js')
+      }
+    }
+  },
 
   'rules': {
     'space-before-function-paren': 0,
