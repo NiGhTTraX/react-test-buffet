@@ -67,6 +67,15 @@ export function createSpy({ name } = { name: 'Spy' }) {
     static renderSpy = _renderSpy;
 
     /**
+     * Get whether the component was rendered at least once.
+     *
+     * @return {Boolean}
+     */
+    static get rendered() {
+      return _renderSpy.called;
+    }
+
+    /**
      * Get the props used in the last render.
      *
      * @return {Object}
