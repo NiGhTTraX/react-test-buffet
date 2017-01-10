@@ -64,6 +64,7 @@ export function createSpy({ name } = { name: 'Spy' }) {
   return class Spy extends Component {
     static displayName = name;
 
+    // TODO: this is used only by the chai plugin; figure out how to remove it
     static renderSpy = _renderSpy;
 
     /**
