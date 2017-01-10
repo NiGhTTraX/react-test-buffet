@@ -31,7 +31,7 @@ describe('List', function() {
   });
 
   it('should call the parent when the first item is selected', function() {
-    Item.props[0].onSelect();
+    Item.renders[0].onSelect();
 
     expect(onSelectSpy).to.have.been.calledWith({ id: 3 });
   });
@@ -43,7 +43,7 @@ describe('List', function() {
   });
 
   it('should call the parent when any item is selected', function() {
-    Item.props[1].onSelect();
+    Item.renders[1].onSelect();
 
     expect(onSelectSpy).to.have.been.calledWith({ id: 2 });
   });

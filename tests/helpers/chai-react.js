@@ -74,7 +74,12 @@ export function createSpy({ name } = { name: 'Spy' }) {
       return _renderSpy.args[_renderSpy.callCount - 1][0];
     }
 
-    static get props() {
+    /**
+     * Get the props used in every render ever.
+     *
+     * @returns {Object[]}
+     */
+    static get renders() {
       if (!_renderSpy.called) {
         throw new Error('Component was never rendered');
       }
