@@ -34,13 +34,11 @@ export default chai => {
     const ComponentClass = this._obj;
 
     function constructMessage({ not }) {
-      let msg = `Expected component '${ComponentClass.displayName}' to ${not ? 'not ' : ''}have been rendered with ${inspect(expectedProps, { depth: 0 })}`;
+      let msg = `Expected component '${ComponentClass.displayName}' to ${not ? 'not ' : ''}have been rendered with ${inspect(expectedProps)}`;
 
       if (ComponentClass.rendered) {
         const renders = ComponentClass.renders.map(
-          // Printing a single level of nesting should be enough for almost
-          // everyone (TM).
-          props => inspect(props, { depth: 0 })
+          props => inspect(props)
         ).join('\n');
 
         msg += `\n\nThe component has so far been rendered with:\n${renders}`;
