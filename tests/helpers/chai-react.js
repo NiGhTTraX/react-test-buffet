@@ -61,8 +61,6 @@ export default chai => {
 export function createSpy({ name } = { name: 'Spy' }) {
   const _renderSpy = sinon.spy();
 
-  let _lastProps;
-
   return class Spy extends Component {
     static displayName = name;
 
@@ -73,7 +71,7 @@ export function createSpy({ name } = { name: 'Spy' }) {
         throw new Error('Component was never rendered');
       }
 
-      return _lastProps;
+      return _renderSpy.args[_renderSpy.callCount - 1][0];
     }
 
     static get props() {
@@ -90,8 +88,6 @@ export function createSpy({ name } = { name: 'Spy' }) {
 
     render() {
       _renderSpy(this.props);
-
-      _lastProps = this.props;
 
       return <div>I am a fake component, here to spy on you!</div>;
     }
