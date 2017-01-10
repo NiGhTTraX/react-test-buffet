@@ -17,7 +17,7 @@ export default chai => {
              `to ${not ? 'not ' : ''}have been rendered`;
     }
 
-    this.assert(ComponentClass.renderSpy.called,
+    this.assert(ComponentClass.rendered,
                 constructMessage({ not: false }),
                 constructMessage({ not: true }));
   });
@@ -40,7 +40,7 @@ export default chai => {
                 `to ${not ? 'not ' : ''}have been rendered with ` +
                 `${renderSpy.printf('%*', props)}`;
 
-      if (renderSpy.called) {
+      if (ComponentClass.rendered) {
         const renders = renderSpy.args.map(render =>
           // Each render is an array with a single element, the props.
           renderSpy.printf('%*', render[0])).join('\n');
