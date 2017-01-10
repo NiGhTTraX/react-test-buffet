@@ -10,7 +10,7 @@ import React from 'react';
  *
  * @returns {ReactComponent}
  */
-export function inject(deps, Component) {
+export default function inject(deps, Component) {
   // We can't return a pure component because the user might want to get its DOM
   // node.
   return class Injector extends React.Component {

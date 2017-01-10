@@ -1,4 +1,4 @@
-import { inject } from '../../../../src/lib/inject.js';
+import inject from '../../../../src/lib/inject.js';
 import App from '../../../../src/components/app.jsx';
 import { fakeComponentFactory } from '../../../helpers/chai-react.js';
 
