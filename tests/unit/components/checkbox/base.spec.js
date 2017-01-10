@@ -1,22 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Simulate } from 'react-addons-test-utils';
 import $ from 'jquery';
 import Checkbox from '../../../../src/components/checkbox.jsx';
 import toggleableTests from '../toggleable/base.spec.js';
-import { render } from '../../../helpers/rendering.js';
+import { $render } from '../../../helpers/rendering.js';
 
 
 describe('Checkbox', function() {
   toggleableTests(
-    props => render(<Checkbox {...props} />),
+    props => $render(<Checkbox {...props} />),
     $component => Simulate.change($component.find(':checkbox')[0])
   );
 
   function renderCheckbox(props) {
-    const component = render(<Checkbox onToggle={() => { }} {...props} />);
+    const $component = $render(<Checkbox onToggle={() => { }} {...props} />);
 
-    return $(':checkbox', ReactDOM.findDOMNode(component));
+    return $(':checkbox', $component);
   }
 
   it('should mark the checkbox when checked', function() {

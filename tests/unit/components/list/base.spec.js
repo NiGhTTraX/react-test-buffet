@@ -1,19 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import List from '../../../../src/components/list.jsx';
 import { fakeComponentFactory } from '../../../helpers/chai-react.js';
-import { render } from '../../../helpers/rendering.js';
+import { $render } from '../../../helpers/rendering.js';
 
 
 describe('List', function() {
-  let component, Item, onSelectSpy;
+  let $component, Item, onSelectSpy;
 
   beforeEach(function() {
     Item = fakeComponentFactory({ name: 'Item' });
     onSelectSpy = spy();
 
-    component = render(<List
+    $component = $render(<List
       className="test-class"
       Item={Item}
       items={[{ id: 3 }, { id: 2 }, { id: 1 }]}
@@ -22,7 +21,7 @@ describe('List', function() {
   });
 
   it('should apply the given class name', function() {
-    expect(ReactDOM.findDOMNode(component).className).to.contain('test-class');
+    expect($component.attr('class')).to.contain('test-class');
   });
 
   it('should render the given items', function() {

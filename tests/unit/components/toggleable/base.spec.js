@@ -1,22 +1,18 @@
-import ReactDOM from 'react-dom';
 import { spy } from 'sinon';
-import $ from 'jquery';
 
 
 /**
- * @param {Function} render Receive a set of props and render the component.
- *     It should return the component instance.
+ * @param {Function} $render Receive a set of props and render the component.
+ *     It should return the component DOM wrapped in jQuery.
  * @param {Function} toggle Toggle the toggleable. Receives the component DOM
  *     node wrapped in a jQuery object.
  */
-export default function toggleableTests(render, toggle) {
+export default function toggleableTests($render, toggle) {
   describe('toggleable', function() {
     let onToggle;
 
     function renderToggle(props) {
-      const component = render({ ...props, onToggle });
-
-      return $(ReactDOM.findDOMNode(component));
+      return $render({ ...props, onToggle });
     }
 
     beforeEach(function() {

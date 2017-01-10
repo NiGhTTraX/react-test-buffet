@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Simulate } from 'react-addons-test-utils';
 import { spy } from 'sinon';
 import $ from 'jquery';
-import { render } from '../../../helpers/rendering.js';
+import { $render } from '../../../helpers/rendering.js';
 import AddTodo from '../../../../src/components/add-todo.jsx';
 
 
@@ -16,9 +15,7 @@ describe('AddTodo', function() {
   beforeEach(function() {
     addTodoSpy = spy();
 
-    const component = render(<AddTodo addTodo={addTodoSpy} />);
-
-    $component = $(ReactDOM.findDOMNode(component));
+    $component = $render(<AddTodo addTodo={addTodoSpy} />);
   });
 
   it('should update the new todo input field when typing', function() {

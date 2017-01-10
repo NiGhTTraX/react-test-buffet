@@ -5,6 +5,7 @@
  */
 
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 
 const _container = document.createElement('div');
 
@@ -17,8 +18,23 @@ const _container = document.createElement('div');
  * @returns {Object} The component instance.
  */
 export function render(element) {
-  // TODO: return the DOM node directly, maybe even wrap it in jQuery
+  // TODO: use ref callbacks to get the instance
   return ReactDOM.render(element, _container);
+}
+
+
+/**
+ * Render the given component.
+ *
+ * @param {ReactElement} element
+ *
+ * @returns {jQuery} The component's root DOM node wrapped in jQuery.
+ */
+export function $render(element) {
+  render(element);
+
+  // Return the first (and only) child in the container wrapped in jQuery.
+  return $(_container).children().eq(0);
 }
 
 

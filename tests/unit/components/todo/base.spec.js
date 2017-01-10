@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { spy } from 'sinon';
-import $ from 'jquery';
-import { render } from '../../../helpers/rendering.js';
+import { $render } from '../../../helpers/rendering.js';
 import { fakeComponentFactory } from '../../../helpers/chai-react.js';
 import Todo from '../../../../src/components/todo.jsx';
 
@@ -11,11 +9,9 @@ describe('Todo', function() {
   let $component, Toggle, toggleTodoSpy;
 
   function renderTodo(todo) {
-    const component = render(<Todo
+    return $render(<Todo
       Toggle={Toggle} {...todo} onSelect={toggleTodoSpy}
     />);
-
-    return $(ReactDOM.findDOMNode(component));
   }
 
   beforeEach(function() {
