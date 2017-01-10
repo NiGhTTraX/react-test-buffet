@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render } from '../../../helpers/rendering.js';
-import { fakeComponentFactory } from '../../../helpers/chai-react.js';
 import { spy } from 'sinon';
 import $ from 'jquery';
+import { render } from '../../../helpers/rendering.js';
+import { fakeComponentFactory } from '../../../helpers/chai-react.js';
 import Todo from '../../../../src/components/todo.jsx';
 
 

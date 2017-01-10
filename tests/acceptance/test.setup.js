@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../../src/app-factory.js';
 import $ from 'jquery';
+import App from '../../src/app-factory.js';
 
 
 export default function setup() {

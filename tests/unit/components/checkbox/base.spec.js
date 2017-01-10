@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Simulate } from 'react-addons-test-utils';
+import $ from 'jquery';
 import Checkbox from '../../../../src/components/checkbox.jsx';
 import toggleableTests from '../toggleable/base.spec.js';
 import { render } from '../../../helpers/rendering.js';
-import $ from 'jquery';
 
 
 describe('Checkbox', function() {

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { spy } from 'sinon';
 import List from '../../../../src/components/list.jsx';
 import { fakeComponentFactory } from '../../../helpers/chai-react.js';
 import { render } from '../../../helpers/rendering.js';
-import { spy } from 'sinon';
 
 
 describe('List', function() {

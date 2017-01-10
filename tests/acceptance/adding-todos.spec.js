@@ -1,5 +1,5 @@
-import setup from './test.setup.js';
 import { Simulate } from 'react-addons-test-utils';
+import setup from './test.setup.js';
 
 
 const ENTER = 13;

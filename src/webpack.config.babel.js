@@ -1,6 +1,6 @@
 import path from 'path';
-import baseConfig from '../webpack.base.js';
 import merge from 'lodash.merge';
+import baseConfig from '../webpack.base.js';
 
 
 export default merge({}, baseConfig, {
