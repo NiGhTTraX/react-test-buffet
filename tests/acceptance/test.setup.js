@@ -8,6 +8,7 @@ export default function setup() {
   const component = ReactDOM.render(<App />,
                                     document.getElementById('test-area'));
 
+  // TODO: use ref functions
   const $component = $(ReactDOM.findDOMNode(component));
 
   return $component;

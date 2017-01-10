@@ -17,6 +17,7 @@ const _container = document.createElement('div');
  * @returns {Object} The component instance.
  */
 export function render(element) {
+  // TODO: return the DOM node directly, maybe even wrap it in jQuery
   return ReactDOM.render(element, _container);
 }
 
