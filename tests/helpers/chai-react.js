@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import sinon from 'sinon';
 
 
-export default (chai) => {
+export default chai => {
   const Assertion = chai.Assertion;
 
   /**
