@@ -66,6 +66,11 @@ export function createSpy({ name } = { name: 'Spy' }) {
 
     static renderSpy = _renderSpy;
 
+    /**
+     * Get the props used in the last render.
+     *
+     * @return {Object}
+     */
     static get lastPropsReceived() {
       if (!_renderSpy.called) {
         throw new Error('Component was never rendered');
