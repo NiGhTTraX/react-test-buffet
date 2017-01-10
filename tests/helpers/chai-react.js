@@ -34,8 +34,6 @@ export default chai => {
     expectedProps) {
     const ComponentClass = this._obj;
 
-    const renderSpy = ComponentClass.renderSpy;
-
     function constructMessage({ not }) {
       let msg = `Expected component '${ComponentClass.displayName}' to ${not ? 'not ' : ''}have been rendered with ${inspect(expectedProps, { depth: 0 })}`;
 
@@ -52,7 +50,7 @@ export default chai => {
       return msg;
     }
 
-    this.assert(renderSpy.calledWithMatch(expectedProps),
+    this.assert(ComponentClass.renderedWith(expectedProps),
                 constructMessage({ not: false }),
                 constructMessage({ not: true }));
   });
@@ -64,9 +62,6 @@ export function createSpy({ name } = { name: 'Spy' }) {
 
   return class Spy extends Component {
     static displayName = name;
-
-    // TODO: this is used only by the chai plugin; figure out how to remove it
-    static renderSpy = _renderSpy;
 
     /**
      * Get whether the component was rendered at least once.
@@ -101,6 +96,18 @@ export function createSpy({ name } = { name: 'Spy' }) {
       }
 
       return _renderSpy.args.map(args => args[0]);
+    }
+
+    /**
+     * Check if the component was rendered at least once with the given props.
+     *
+     * @param {Object} props Supports sinon matchers. See
+     * http://sinonjs.org/docs/#sinon-match-api.
+     *
+     * @returns {Boolean}
+     */
+    static renderedWith(props) {
+      return _renderSpy.calledWithMatch(props);
     }
 
     static reset() {
