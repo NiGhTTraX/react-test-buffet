@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import sinon from 'sinon';
+import { inspect } from 'util';
 
 
 export default chai => {
@@ -24,26 +25,26 @@ export default chai => {
 
 
   /**
-   * @param {Object} props
+   * @param {Object} expectedProps
    *
    * @example
    * expect(ComponentClass).to.have.been.renderedWith({foo: 'bar'});
    */
   Assertion.addMethod('renderedWith', function expectComponentRenderedWith(
-    props) {
+    expectedProps) {
     const ComponentClass = this._obj;
 
     const renderSpy = ComponentClass.renderSpy;
 
     function constructMessage({ not }) {
-      let msg = `Expected component '${ComponentClass.displayName}' ` +
-                `to ${not ? 'not ' : ''}have been rendered with ` +
-                `${renderSpy.printf('%*', props)}`;
+      let msg = `Expected component '${ComponentClass.displayName}' to ${not ? 'not ' : ''}have been rendered with ${inspect(expectedProps, { depth: 0 })}`;
 
       if (ComponentClass.rendered) {
-        const renders = renderSpy.args.map(render =>
-          // Each render is an array with a single element, the props.
-          renderSpy.printf('%*', render[0])).join('\n');
+        const renders = ComponentClass.renders.map(
+          // Printing a single level of nesting should be enough for almost
+          // everyone (TM).
+          props => inspect(props, { depth: 0 })
+        ).join('\n');
 
         msg += `\n\nThe component has so far been rendered with:\n${renders}`;
       }
@@ -51,7 +52,7 @@ export default chai => {
       return msg;
     }
 
-    this.assert(renderSpy.calledWithMatch(props),
+    this.assert(renderSpy.calledWithMatch(expectedProps),
                 constructMessage({ not: false }),
                 constructMessage({ not: true }));
   });
