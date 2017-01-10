@@ -14,8 +14,7 @@ export default chai => {
     const ComponentClass = this._obj;
 
     function constructMessage({ not }) {
-      return `Expected component '${ComponentClass.displayName}' ` +
-             `to ${not ? 'not ' : ''}have been rendered`;
+      return `Expected component '${ComponentClass.displayName}' to ${not ? 'not ' : ''}have been rendered`;
     }
 
     this.assert(ComponentClass.rendered,
