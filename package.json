@@ -30,9 +30,9 @@
   "author": "Andrei Picus",
   "license": "MIT",
   "dependencies": {
-    "classnames": "^2.2.5",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
+    "classnames": "~2.2.5",
+    "react": "~15.3.2",
+    "react-dom": "~15.3.2",
     "todomvc-app-css": "~2.0.6"
   },
   "devDependencies": {
@@ -56,7 +56,7 @@
     "jsdom": "~9.2.1",
     "lodash.merge": "~4.4.0",
     "mocha": "~3.2.0",
-    "react-addons-test-utils": "^15.3.2",
+    "react-addons-test-utils": "~15.3.2",
     "sinon": "https://github.com/uberVU/Sinon.JS.git",
     "sinon-chai": "~2.8.0",
     "skip-amd-webpack-plugin": "0.0.2",
