@@ -30,7 +30,7 @@ export default chai => {
    * expect(ComponentClass).to.have.been.renderedWith({foo: 'bar'});
    */
   Assertion.addMethod('renderedWith', function expectComponentRenderedWith(
-     props) {
+    props) {
     const ComponentClass = this._obj;
 
     const renderSpy = ComponentClass.renderSpy;
