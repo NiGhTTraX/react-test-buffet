@@ -7,21 +7,22 @@ import classnames from 'classnames';
 export default class Todo extends Component {
   static propTypes = {
     Toggle: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
     onSelect: PropTypes.func.isRequired
   };
 
   render() {
-    const { Toggle, completed, title, onSelect } = this.props;
+    const { Toggle, id, completed, title, onSelect } = this.props;
 
     return <div className={classnames('todo', { completed })}>
       <div className="view">
-        <Toggle
+        <Toggle id={`todo-${id}`}
           checked={completed}
           onToggle={onSelect}
         />
-        <label>{title}</label>
+        <label htmlFor={`todo-${id}`}>{title}</label>
       </div>
     </div>;
   }

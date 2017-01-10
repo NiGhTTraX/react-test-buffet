@@ -25,6 +25,7 @@ describe('Todo', function() {
 
   describe('active', function() {
     const todo = {
+      id: 42,
       title: 'buy milk',
       completed: false
     };
@@ -51,6 +52,7 @@ describe('Todo', function() {
 
   describe('completed', function() {
     const todo = {
+      id: 21,
       title: 'buy eggs',
       completed: true
     };
