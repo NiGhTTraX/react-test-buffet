@@ -10,17 +10,17 @@
     "test": "npm run test:unit --silent && npm run test:acceptance --silent",
     "test:unit": "mocha --compilers js:babel-register --reporter min tests/helpers/index.node.js \"tests/unit/**/*.spec.js\"",
     "test:unit:watch": "npm run test:unit -- --watch",
-    "test:unit:browser:build": "npm run build:bail -- ./tests/unit/webpack.config.babel.js",
-    "test:unit:browser:watch": "npm run build -- ./tests/unit/webpack.config.babel.js -w",
+    "test:unit:browser:build": "npm run build:bail -- ./tests/unit/webpack.config.unit.js",
+    "test:unit:browser:watch": "npm run build -- ./tests/unit/webpack.config.unit.js -w",
     "test:acceptance": "",
-    "test:acceptance:build": "npm run build:bail -- ./tests/acceptance/webpack.config.babel.js",
-    "test:acceptance:watch": "npm run build -- ./tests/acceptance/webpack.config.babel.js -w",
+    "test:acceptance:build": "npm run build:bail -- ./tests/acceptance/webpack.config.acceptance.js",
+    "test:acceptance:watch": "npm run build -- ./tests/acceptance/webpack.config.acceptance.js -w",
     "build:bail": "webpack --progress --bail --config",
     "build": "webpack --progress --config",
     "lint": "npm run lint:files -- .",
     "lint:files": "eslint --ext js --ext jsx",
     "postinstall": "./tools/install-git-hooks.sh",
-    "start": "npm run build -- ./src/webpack.config.babel.js -w"
+    "start": "npm run build -- ./src/webpack.config.dev.js -w"
   },
   "keywords": [
     "todomvc",

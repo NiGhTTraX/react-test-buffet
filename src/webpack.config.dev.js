@@ -1,10 +1,13 @@
-import path from 'path';
+const path = require('path');
 
 
-export default {
+module.exports = {
+  entry: path.join(__dirname, 'index.jsx'),
+
   output: {
-    path: path.join(__dirname, 'build'),
-    publicPath: 'build/'
+    filename: 'app.js',
+    path: path.join(__dirname, '..', 'build'),
+    publicPath: '/build/'
   },
 
   resolve: {
