@@ -9,7 +9,7 @@ services:
     command: npm run start
 
   selenium:
-    image: selenium/standalone-chrome-debug
+    image: selenium/standalone-chrome
     expose:
       - '4444'
     ports:
