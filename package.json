@@ -12,7 +12,7 @@
     "test:unit:watch": "npm run test:unit -- --watch",
     "test:unit:browser:build": "npm run build:bail -- ./tests/unit/webpack.config.unit.js",
     "test:unit:browser:watch": "npm run build -- ./tests/unit/webpack.config.unit.js -w",
-    "test:acceptance": "",
+    "test:acceptance": "mocha --compilers js:babel-register --reporter min tests/acceptance/setup.js tests/acceptance/todos.spec.js",
     "test:acceptance:build": "npm run build:bail -- ./tests/acceptance/webpack.config.acceptance.js",
     "test:acceptance:watch": "npm run build -- ./tests/acceptance/webpack.config.acceptance.js -w",
     "build:bail": "webpack --progress --bail --config",
@@ -64,7 +64,8 @@
     "sinon-chai": "~2.8.0",
     "skip-amd-webpack-plugin": "0.0.2",
     "style-loader": "~0.13.1",
-    "webpack": "~1.13.1"
+    "webdriverio": "~4.6.1",
+    "webpack": "~1.13.1",
     "webpack-dev-middleware": "~1.9.0",
     "webpack-hot-middleware": "~2.15.0"
   }

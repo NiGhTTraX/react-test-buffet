@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  app:
+    build:
+      context: ../../
+    expose:
+      - "3000"
+    command: npm run start
+
+  selenium:
+    image: selenium/standalone-chrome-debug
+    expose:
+      - '4444'
+    ports:
+      - '5900:5900'
+    links:
+      - app
+
+  tests:
+    extends:
+      service: app
+    links:
+      - selenium
+    command: npm run test:acceptance

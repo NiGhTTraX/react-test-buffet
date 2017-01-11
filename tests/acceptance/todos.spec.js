@@ -1,65 +1,36 @@
-import { Simulate } from 'react-addons-test-utils';
-import $ from 'jquery';
-import setup from './test.setup.js';
-
-const ENTER = 13;
+import { expect } from 'chai';
 
 
 describe('App', function() {
-  let $component;
-
   beforeEach(function() {
-    $component = setup();
-
-    addTodo($component, 'buy cheddar');
-    addTodo($component, 'buy chorizo');
-    addTodo($component, 'buy bacon');
+    // TODO: refactor this using something like async.series
+    return addTodo(this.client, 'buy cheddar')
+      .then(() => addTodo(this.client, 'buy chorizo'))
+      .then(() => addTodo(this.client, 'buy bacon'));
   });
 
   describe('todos', function() {
     it('should not be marked as completed after being added', function() {
-      const $toggles = $component.find('.todo .toggle');
+      return this.client.getAttribute('.todo .toggle', 'checked')
+        .then(states => {
+          expect(states).to.have.length(3);
 
-      expect($toggles).to.have.length(3);
-
-      $toggles.each(toggle => {
-        expect($(toggle).is(':checked'),
-               'Todo toggle should be unchecked').to.be.false;
-      });
+          expect(states.every(state => state === true)).to.be.false;
+        });
     });
 
     it('should be marked as completed when checking them', function() {
-      const $buyChorizoTodo = $component.find('.todo').eq(1);
-
-      $buyChorizoTodo.find('.toggle')[0].click();
-
-      expect($buyChorizoTodo.hasClass('completed'),
-            'Todo should be marked as completed').to.be.true;
-      expect($buyChorizoTodo.find('.toggle').is(':checked'),
-            'Todo toggle should be checked').to.be.true;
-    });
-
-    it('should be marked as active when unchecking them', function() {
-      const $buyChorizoTodo = $component.find('.todo').eq(1);
-
-      $buyChorizoTodo.find('.toggle')[0].click();
-      $buyChorizoTodo.find('.toggle')[0].click();
-
-      expect($buyChorizoTodo.hasClass('completed'),
-            'Todo should not be marked as completed').to.be.false;
-      expect($buyChorizoTodo.find('.toggle').is(':checked'),
-            'Todo toggle should not be checked').to.be.false;
+      return this.client.element('.todo=buy chorizo')
+        .element('.toggle').click()
+        .then(() => this.client.element('.todo=buy chorizo')
+              .element('.toggle').getAttribute('checked'))
+        .then(completed => { expect(completed).to.equal('true'); });
     });
   });
 });
 
-function addTodo($component, todo) {
-  const node = $component.find('.new-todo')[0];
-
-  // TODO: this exposes too much of the internals; figure out a way to write
-  // tests without knowing all of this
-  Simulate.change(node, { target: { value: todo } });
-  Simulate.keyDown(node, {
-    keyCode: ENTER
-  });
+function addTodo(client, todo) {
+  return client.click('.new-todo')
+    .then(() => client.keys(todo))
+    .then(() => client.keys(['Enter']));
 }
