@@ -1,8 +1,12 @@
 const path = require('path');
+const { HotModuleReplacementPlugin, NoErrorsPlugin } = require('webpack');
 
 
 module.exports = {
-  entry: path.join(__dirname, 'index.jsx'),
+  entry: [
+    'webpack-hot-middleware/client',
+    path.join(__dirname, 'index.jsx')
+  ],
 
   output: {
     filename: 'app.js',
@@ -26,5 +30,10 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'style!css'
     }]
-  }
+  },
+
+  plugins: [
+    new HotModuleReplacementPlugin(),
+    new NoErrorsPlugin()
+  ]
 };
