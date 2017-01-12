@@ -3,3 +3,5 @@ version: '2'
 services:
   selenium:
     image: selenium/standalone-chrome-debug
+    ports:
+      - '5900:5900'

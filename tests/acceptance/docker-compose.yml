@@ -12,8 +12,6 @@ services:
     image: selenium/standalone-chrome
     expose:
       - '4444'
-    ports:
-      - '5900:5900'
     links:
       - app
 
