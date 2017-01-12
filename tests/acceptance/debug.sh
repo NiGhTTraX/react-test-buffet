@@ -3,6 +3,11 @@
 cd tests/acceptance
 
 docker-compose build
+RESULT=$?
+
+if [[ $RESULT != 0 ]]; then
+  exit $RESULT
+fi
 
 # After the selenium container is up connect to vnc://localhost:5900 with
 # password 'secret'.
