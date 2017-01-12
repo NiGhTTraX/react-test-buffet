@@ -2,6 +2,8 @@ import { remote } from 'webdriverio';
 
 
 before(function() {
+  this.timeout(10 * 1000);
+
   const options = {
     host: 'selenium',
     desiredCapabilities: { browserName: 'chrome' }
