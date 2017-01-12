@@ -13,6 +13,7 @@
     "test:unit:browser:build": "npm run build:bail -- ./tests/unit/webpack.config.unit.js",
     "test:unit:browser:watch": "npm run build -- ./tests/unit/webpack.config.unit.js -w",
     "test:acceptance": "./tests/acceptance/run.sh",
+    "test:acceptance:debug": "./tests/acceptance/debug.sh",
     "_test:acceptance": "mocha --compilers js:babel-register --reporter min --recursive tests/acceptance/setup.js tests/acceptance/specs/",
     "build:bail": "webpack --progress --bail --config",
     "build": "webpack --progress --config",
