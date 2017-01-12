@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { addTodo } from './common.js';
 
 
 describe('App', function() {
@@ -33,9 +34,3 @@ describe('App', function() {
     });
   });
 });
-
-function addTodo(client, todo) {
-  return client.click('.new-todo')
-    .then(() => client.keys(todo))
-    .then(() => client.keys(['Enter']));
-}
