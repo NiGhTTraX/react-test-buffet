@@ -14,6 +14,7 @@
     "test:acceptance": "./tests/acceptance/run.sh",
     "test:acceptance:debug": "./tests/acceptance/debug.sh",
     "_test:acceptance": "wdio tests/acceptance/wdio.conf.js",
+    "_test:acceptance:debug": "wdio tests/acceptance/wdio.conf.debug.js",
     "build:bail": "webpack --progress --bail --config",
     "build": "webpack --progress --config",
     "lint": "npm run lint:files -- .",
