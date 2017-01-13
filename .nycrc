@@ -1,0 +1,13 @@
+{
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx"
+  ],
+  "exclude": [
+    "tests/unit/**/*.js"
+  ],
+  "extension": [".js", ".jsx"],
+  "reporter": ["html"],
+
+  "report-dir": "tests/unit/results/coverage"
+}
