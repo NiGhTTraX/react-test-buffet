@@ -6,5 +6,10 @@ exports.config = Object.assign({}, config, {
 
   mochaOpts: Object.assign({}, config.mochaOpts, {
     timeout: 24 * 60 * 60 * 1000
-  })
+  }),
+
+  // Enable node inspector.
+  debug: true,
+
+  execArgv: ['--inspect=9222']
 });
