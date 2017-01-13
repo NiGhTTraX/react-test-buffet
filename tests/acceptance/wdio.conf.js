@@ -10,7 +10,7 @@ exports.config = {
     browserName: 'chrome'
   }],
 
-  sync: false,
+  sync: true,
   logLevel: 'error',
   coloredLogs: true,
   bail: 0,
@@ -29,8 +29,8 @@ exports.config = {
   reporters: ['dot'],
 
   beforeTest: function resetApp() {
-    return browser.url('http://app:3000')
-      .then(() => browser.waitForVisible('.todoapp', 5 * 1000));
+    browser.url('http://app:3000')
+      .waitForVisible('.todoapp', 5 * 1000);
   }
 };
 
