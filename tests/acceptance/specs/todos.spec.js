@@ -16,7 +16,7 @@ describe('App', function() {
         .then(states => {
           expect(states).to.have.length(3);
 
-          expect(states.every(state => state === true)).to.be.false;
+          expect(states.every(state => state === 'true')).to.be.false;
         });
     });
 
