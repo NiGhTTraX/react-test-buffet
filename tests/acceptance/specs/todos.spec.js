@@ -21,7 +21,7 @@ describe('App', function() {
     });
 
     function allTodosChecked() {
-      // We can use getAttribute without map after
+      // TODO: we can use getAttribute without map after
       // https://github.com/webdriverio/wdio-sync/issues/43 is fixed.
       const states = $$('.todo .toggle').map(
         toggle => toggle.getAttribute('checked'));
