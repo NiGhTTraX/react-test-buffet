@@ -24,6 +24,7 @@ exports.config = {
   framework: 'mocha',
   mochaOpts: {
     ui: 'bdd',
+    compilers: ['js:babel-register'],
     timeout: 10 * 1000
   },
 
@@ -34,7 +35,3 @@ exports.config = {
       .waitForVisible('.todoapp', 5 * 1000);
   }
 };
-
-// Enable ES6.
-// https://github.com/webdriverio/webdriverio/issues/600#issuecomment-126233086
-require('babel-register');
