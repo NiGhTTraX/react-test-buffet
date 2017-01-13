@@ -14,7 +14,6 @@ exports.config = {
   logLevel: 'error',
   coloredLogs: true,
   bail: 0,
-  screenshotPath: './tests/acceptance/results/',
   baseUrl: 'http://app:3000',
 
   waitforTimeout: 10 * 1000,
