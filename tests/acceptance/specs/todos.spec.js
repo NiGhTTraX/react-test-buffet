@@ -21,10 +21,13 @@ describe('App', function() {
     });
 
     it('should be marked as completed when checking them', function() {
-      browser.element('.todo=buy chorizo').click('.toggle');
+      $$('.todo .toggle').forEach(toggle => toggle.click());
 
-      expect(browser.element('.todo=buy chorizo').element('.toggle')
-        .getAttribute('checked')).to.equal('true');
+      const states = browser.elements('input[type=checkbox]').getAttribute('checked');
+
+      expect(states).to.have.length(3);
+
+      expect(states.every(state => state === 'true')).to.be.true;
     });
   });
 });
