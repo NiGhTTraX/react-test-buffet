@@ -2,8 +2,8 @@ import React from 'react';
 import { Simulate } from 'react-addons-test-utils';
 import { spy } from 'sinon';
 import $ from 'jquery';
-import { $render } from '../../../helpers/rendering.js';
-import AddTodo from '../../../../src/components/add-todo.jsx';
+import { $render } from '../../helpers/rendering.js';
+import AddTodo from '../../../src/components/add-todo.jsx';
 
 
 const ENTER = 13;
