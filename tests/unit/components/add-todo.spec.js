@@ -37,6 +37,17 @@ describe('AddTodo', function() {
     expect(addTodoSpy).to.have.been.calledWith({ title: 'buy eggs' });
   });
 
+  it('should not call when pressing another key', function() {
+    const node = $component[0];
+
+    Simulate.change(node, { target: { value: 'buy eggs' } });
+    Simulate.keyDown(node, {
+      keyCode: ENTER + 1
+    });
+
+    expect(addTodoSpy).to.not.have.been.called;
+  });
+
   it('should clear the input after adding a todo', function() {
     const node = $component[0];
 
