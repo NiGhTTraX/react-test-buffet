@@ -54,11 +54,22 @@ export default chai => {
 };
 
 
-export function createSpy({ name } = { name: 'Spy' }) {
+/**
+ * @param {Object} options
+ * @param {String} options.name The display name of the component.
+ * @param {ReactClass} [options.Mock] If given, the spy will try to look like
+ *     it. Currently it only copies the prop types.
+ *     TODO: copy public methods; maybe inherit?
+ *
+ * @returns {ReactClass}
+ */
+export function createSpy({ name = 'Spy', Mock = Component } = {}) {
   const _renderSpy = spy();
 
   return class Spy extends Component {
     static displayName = name;
+
+    static propTypes = Mock.propTypes;
 
     /**
      * Get whether the component was rendered at least once.
