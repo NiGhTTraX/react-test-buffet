@@ -15,7 +15,7 @@ describe('List', function() {
     $component = $render(<List
       className="test-class"
       Item={Item}
-      items={[{ id: 4 }, { id: 2 }, { id: 1 }]}
+      items={[{ id: 3 }, { id: 2 }, { id: 1 }]}
       onSelect={onSelectSpy}
     />);
   });
