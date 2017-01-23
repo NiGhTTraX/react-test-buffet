@@ -1,7 +1,5 @@
 /**
  * @fileoverview Test helpers for mounting/unmounting components.
- *
- * This module has side effects.
  */
 
 import React from 'react';
@@ -54,11 +52,3 @@ export function unmount() {
   // unmounted inside a test i.e. to test cleanup logic.
   ReactDOM.unmountComponentAtNode(_container);
 }
-
-
-/**
- * Unmount the currently mounted component after each test.
- */
-afterEach(function() {
-  unmount();
-});
