@@ -1,7 +1,23 @@
 {
   "name": "react-test-buffet",
   "version": "3.0.0",
-  "description": "Complete example of testing React components with Mocha, Chai and Sinon, running the tests in real browsers using Karma and Webpack, and generating code coverage with Istanbul",
+  "description": "Complete example of building UI with TDD and React",
+  "keywords": [
+    "react",
+    "tdd",
+    "testing",
+    "unit",
+    "acceptance",
+    "mocha",
+    "chai",
+    "sinon",
+    "selenium",
+    "webdriverio",
+    "coverage",
+    "istanbul",
+    "nyc",
+    "docker"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:NiGhTTraX/react-test-buffet.git"

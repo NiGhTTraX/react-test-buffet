@@ -3,9 +3,9 @@ react-test-buffet
 
 [![Join the chat at https://gitter.im/NiGhTTraX/react-test-buffet](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NiGhTTraX/react-test-buffet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Complete example of testing React components with Mocha, Chai and Sinon, running
-the tests in real browsers using Karma and Webpack and generating code
-coverage with Istanbul.
+Complete example of building UI with TDD and React
+
+----
 
 
 ## Testing tools
