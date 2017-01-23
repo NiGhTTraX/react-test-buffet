@@ -26,11 +26,13 @@ Complete example of building UI with TDD and React
 
 Unit tests should check a single unit at a time - in the case of UI, a single
 component. And what I mean by single component is exactly that, rendering only
-one component, without any child components. Why? Because unit tests should
-clearly separate your concerns. You want the tests for `LoginView` to drive the
-design for `LoginView`, not for `Button` and `Input`. When you set expectations
-on the communication between `LoginView` and `Button` and then test each of them
-in isolation, then will you get reusable and composable UI blocks.
+one component, without any child components.
+
+Why? Because unit tests should clearly separate your concerns.
+
+If you render `Checkbox` alongside `Todo` you couple them together. And testing
+`Todo` in this way will also test `Checkbox` and if `Checkbox` suddenly has a
+bug then your tests will tell you that `Todo` also has a bug, which is not true.
 
 
 ## Running the tests in Node
