@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  app:
+    build:
+      context: ../../
+    expose:
+      - "3000"
+    command: npm run start
+
+  selenium:
+    image: selenium/standalone-chrome
+    expose:
+      - '4444'
+    links:
+      - app
+
+  tests:
+    extends:
+      service: app
+    links:
+      - selenium
+    command: npm run _test:acceptance

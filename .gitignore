@@ -1,3 +1,5 @@
 node_modules/
 build/
-tests/results
+npm-debug.log
+.nyc_output/
+results/

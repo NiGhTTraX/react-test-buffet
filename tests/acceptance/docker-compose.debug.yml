@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  selenium:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - '5900:5900' # VNC
+
+  tests:
+    command: npm run _test:acceptance:debug
+    ports:
+      - '9222:9222' # node --inspect
