@@ -3,7 +3,7 @@ import { Simulate } from 'react-addons-test-utils';
 import $ from 'jquery';
 import Checkbox from '../../../src/components/checkbox.jsx';
 import toggleableTests from './toggleable.spec.js';
-import { $render } from '../../helpers/rendering.js';
+import { $render } from '../helpers/rendering.js';
 
 
 describe('Checkbox', function() {

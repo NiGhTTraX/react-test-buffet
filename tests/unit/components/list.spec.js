@@ -1,8 +1,8 @@
 import React from 'react';
 import { spy } from 'sinon';
 import List from '../../../src/components/list.jsx';
-import { createSpy } from '../../helpers/chai-react.js';
-import { $render } from '../../helpers/rendering.js';
+import { createSpy } from '../helpers/chai-react.js';
+import { $render } from '../helpers/rendering.js';
 
 
 describe('List', function() {

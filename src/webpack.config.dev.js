@@ -5,7 +5,7 @@ const { HotModuleReplacementPlugin, NoErrorsPlugin } = require('webpack');
 module.exports = {
   entry: [
     'webpack-hot-middleware/client',
-    path.join(__dirname, '..', 'tests', 'helpers', 'react-warnings.js'),
+    path.join(__dirname, '..', 'tests', 'unit', 'helpers', 'react-warnings.js'),
     path.join(__dirname, 'index.jsx')
   ],
 

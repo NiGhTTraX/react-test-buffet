@@ -1,7 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
-import { $render } from '../../helpers/rendering.js';
-import { createSpy } from '../../helpers/chai-react.js';
+import { $render } from '../helpers/rendering.js';
+import { createSpy } from '../helpers/chai-react.js';
 import Todo from '../../../src/components/todo.jsx';
 import Toggleable from '../../../src/components/toggleable.jsx';
 

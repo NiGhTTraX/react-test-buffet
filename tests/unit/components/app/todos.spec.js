@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../../helpers/rendering.js';
+import { render } from '../../helpers/rendering.js';
 import App, { AddTodo, List } from './setup.js';
 
 

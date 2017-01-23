@@ -1,6 +1,6 @@
 import React from 'react';
 import { match } from 'sinon';
-import { render } from '../../../helpers/rendering.js';
+import { render } from '../../helpers/rendering.js';
 import App, { AddTodo, List } from './setup.js';
 
 
