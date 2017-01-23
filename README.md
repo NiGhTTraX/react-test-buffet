@@ -90,8 +90,11 @@ what's going on.
 
 ### Debugging the page
 
+![debugging-acceptance-page](./docs/debugging-acceptance-page.png)
+
 Add `browser.debug()` inside your test and run `npm run test:acceptance:debug`.
-You will get a REPL where you can access the global `browser` instance.
+You will get a REPL where you can access the global `browser` instance. You
+could also connect to the browser using VNC and manipulate it any way you want.
 
 
 ### Debugging the tests
