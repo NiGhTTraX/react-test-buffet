@@ -1,4 +1,4 @@
-import '../helpers/index.js';
+import './helpers/index.js';
 
 
 const context = require.context('./', true, /\.spec\.js$/);
