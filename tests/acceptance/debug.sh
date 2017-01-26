@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd tests/acceptance
+cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 docker-compose build
 RESULT=$?
