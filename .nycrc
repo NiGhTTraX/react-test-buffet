@@ -4,6 +4,7 @@
     "src/**/*.jsx"
   ],
   "extension": [".js", ".jsx"],
+  "all": true,
 
   "sourceMap": false,
   "instrument": false,
