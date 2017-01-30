@@ -3,10 +3,11 @@
     "src/**/*.js",
     "src/**/*.jsx"
   ],
-  "exclude": [
-    "tests/unit/**/*.js"
-  ],
   "extension": [".js", ".jsx"],
+
+  "sourceMap": false,
+  "instrument": false,
+
   "reporter": ["html"],
 
   "lines": 100,

@@ -5,6 +5,16 @@
   "env": {
     "development": {
       "presets": ["react-hmre"]
+    },
+
+    "tests": {
+      "plugins": [
+        ["istanbul", {
+          "exclude": [
+            "tests/unit/**/*.js"
+          ]
+        }]
+      ]
     }
   }
 }
