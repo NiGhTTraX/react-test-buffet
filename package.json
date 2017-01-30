@@ -47,7 +47,6 @@
     "todomvc-app-css": "~2.0.6"
   },
   "devDependencies": {
-    "babel": "~6.5.2",
     "babel-core": "~6.9.0",
     "babel-eslint": "~7.1.1",
     "babel-loader": "~6.2.4",
