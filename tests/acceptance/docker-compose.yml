@@ -5,7 +5,7 @@ services:
     build:
       context: ../../
     expose:
-      - "3000"
+      - '3000'
     command: npm run start
 
   selenium:

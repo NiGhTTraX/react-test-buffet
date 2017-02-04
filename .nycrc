@@ -3,14 +3,16 @@
     "src/**/*.js",
     "src/**/*.jsx"
   ],
-  "exclude": [
-    "tests/unit/**/*.js"
-  ],
   "extension": [".js", ".jsx"],
+  "all": true,
+
+  "sourceMap": false,
+  "instrument": false,
+
   "reporter": ["html"],
+  "report-dir": "tests/unit/results/coverage",
 
   "lines": 100,
   "branches": 100,
-  "check-coverage": true,
-  "report-dir": "tests/unit/results/coverage"
+  "check-coverage": true
 }
