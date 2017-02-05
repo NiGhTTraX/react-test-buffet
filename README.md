@@ -1,6 +1,7 @@
 An all-you-can-eat buffet of React TDD
 ======================================
 
+[![Build Status](https://travis-ci.org/NiGhTTraX/react-test-buffet.svg?branch=master)](https://travis-ci.org/NiGhTTraX/react-test-buffet)
 
 ----
 
