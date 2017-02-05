@@ -5,6 +5,6 @@ WORKDIR /usr/src/app
 
 COPY package.json ./
 COPY tools tools
-RUN npm install --silent
+RUN npm install --unsafe-perm --quiet
 
 COPY . .
