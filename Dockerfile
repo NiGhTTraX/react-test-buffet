@@ -10,6 +10,6 @@ RUN apt-get update && apt-get install -y yarn
 
 COPY package.json yarn.lock ./
 COPY tools tools
-RUN yarn install --pure-lockfile
+RUN yarn install --pure-lockfile --verbose
 
 COPY . .
