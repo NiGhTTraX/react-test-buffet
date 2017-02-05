@@ -1,7 +1,7 @@
 An all-you-can-eat buffet of React TDD
 ======================================
 
-[![Join the chat at https://gitter.im/NiGhTTraX/react-test-buffet](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NiGhTTraX/react-test-buffet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/NiGhTTraX/react-test-buffet.svg?branch=master)](https://travis-ci.org/NiGhTTraX/react-test-buffet)
 
 ----
 
