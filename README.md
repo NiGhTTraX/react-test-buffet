@@ -1,9 +1,7 @@
 An all-you-can-eat buffet of React TDD
 ======================================
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/NiGhTTraX/react-test-buffet.svg)](https://greenkeeper.io/)
-
-[![Build Status](https://travis-ci.org/NiGhTTraX/react-test-buffet.svg?branch=master)](https://travis-ci.org/NiGhTTraX/react-test-buffet)
+[![Build Status](https://travis-ci.org/NiGhTTraX/react-test-buffet.svg?branch=master)](https://travis-ci.org/NiGhTTraX/react-test-buffet) [![Greenkeeper badge](https://badges.greenkeeper.io/NiGhTTraX/react-test-buffet.svg)](https://greenkeeper.io/)
 
 ----
 
