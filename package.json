@@ -28,7 +28,7 @@
     "test": "npm run test:unit --silent && npm run test:acceptance --silent",
     "test:unit": "NODE_ENV=tests nyc mocha --compilers js:babel-register --reporter min tests/unit/helpers/index.node.js \"tests/unit/**/*.spec.js\"",
     "test:unit:watch": "npm run test:unit -- --watch",
-    "test:unit:debug": "webpack --bail -w --config  ./tests/unit/webpack.config.unit.js",
+    "test:unit:debug": "NODE_ENV=tests webpack --bail -w --config  ./tests/unit/webpack.config.unit.js",
     "test:acceptance": "./tests/acceptance/run.sh",
     "test:acceptance:debug": "./tests/acceptance/debug.sh",
     "_test:acceptance": "wdio tests/acceptance/wdio.conf.js",
