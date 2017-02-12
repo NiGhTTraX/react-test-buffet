@@ -1,5 +1,5 @@
 const path = require('path');
-const { HotModuleReplacementPlugin, NoErrorsPlugin } = require('webpack');
+const { HotModuleReplacementPlugin, NoEmitOnErrorsPlugin } = require('webpack');
 
 
 module.exports = {
@@ -16,25 +16,25 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
 
   devtool: 'sourcemap',
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'babel'
+      use: 'babel-loader'
     }, {
       test: /\.css$/,
       exclude: /node_modules/,
-      loader: 'style!css'
+      use: ['style-loader', 'css-loader']
     }]
   },
 
   plugins: [
     new HotModuleReplacementPlugin(),
-    new NoErrorsPlugin()
+    new NoEmitOnErrorsPlugin()
   ]
 };
