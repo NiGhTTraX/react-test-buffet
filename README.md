@@ -22,6 +22,8 @@ An all-you-can-eat buffet of React TDD
 
 # Running the app
 
+![npm-start](./docs/npm-start.gif)
+
 Running `npm start` will spin up a Docker container that will install the npm
 packages and start a Webpack dev server with hot reloading. Changes to the
 source code on the host will be reflected inside the container. Having the app
