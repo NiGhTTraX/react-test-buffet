@@ -30,7 +30,7 @@ source code on the host will be reflected inside the container. Having the app
 in the container removes the need for devs to install Node and the npm packages
 on their machines. This in turn makes it very easy to get rid of problems where
 developers get out of sync with the Node version or have stale packages
-instaled.
+installed.
 
 If you need to stop/restart the container you can use `npm stop`. Given that you
 don't change the `package.json` file, the npm packages will be cached next time
