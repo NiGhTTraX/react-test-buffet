@@ -20,6 +20,24 @@ An all-you-can-eat buffet of React TDD
 - [Docker](https://www.docker.com/) - containerization platform
 
 
+# Running the app
+
+Running `npm start` will spin up a Docker container that will install the npm
+packages and start a Webpack dev server with hot reloading. Changes to the
+source code on the host will be reflected inside the container. Having the app
+in the container removes the need for devs to install Node and the npm packages
+on their machines. This in turn makes it very easy to get rid of problems where
+developers get out of sync with the Node version or have stale packages
+instaled.
+
+If you need to stop/restart the container you can use `npm stop`. Given that you
+don't change the `package.json` file, the npm packages will be cached next time
+you start the container.
+
+If for some reason you prefer to install everything locally, you can use `npm
+run _start` instead.
+
+
 # Unit tests
 
 Unit tests should check a single unit at a time - in the case of UI, a single
