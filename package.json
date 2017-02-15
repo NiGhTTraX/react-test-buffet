@@ -36,7 +36,7 @@
     "lint": "npm run lint:files -- .",
     "lint:files": "eslint --ext js --ext jsx",
     "postinstall": "./tools/install-git-hooks.sh",
-    "start": "docker-compose up --build -d",
+    "start": "docker-compose -f docker-compose.dev.yml up --build -d",
     "_start": "node tests/dev-server.js",
     "stop": "docker-compose down"
   },
