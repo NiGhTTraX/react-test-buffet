@@ -15,6 +15,7 @@ if [ $? != 0 ]; then
 fi
 
 
+# The --silent flag is to not output the entire npm ERR epilogue.
 npm run --silent lint:files -- $CHANGED_JS_FILES
 
 
