@@ -17,7 +17,7 @@ fi
 
 # The --silent flag is to not output the entire npm ERR epilogue.
 # TODO: this requires npm to be installed on the host; either document or work
-# around it
+# around it (maybe run it through docker?)
 npm run --silent lint:files -- $CHANGED_JS_FILES
 
 
