@@ -4,6 +4,7 @@ const { HotModuleReplacementPlugin, NoEmitOnErrorsPlugin } = require('webpack');
 
 module.exports = {
   entry: [
+    'react-hot-loader/patch',
     'webpack-hot-middleware/client',
     path.join(__dirname, '..', 'tests', 'unit', 'helpers', 'react-warnings.js'),
     path.join(__dirname, 'index.jsx')

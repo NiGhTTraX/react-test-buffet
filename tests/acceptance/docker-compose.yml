@@ -2,11 +2,11 @@ version: '2'
 
 services:
   app:
-    build:
-      context: ../../
+    extends:
+      file: ../../docker-compose.yml
+      service: app
     expose:
       - '3000'
-    command: npm run start
 
   selenium:
     image: selenium/standalone-chrome
