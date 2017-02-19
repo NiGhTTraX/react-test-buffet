@@ -3,28 +3,27 @@ import { addTodo } from './common.js';
 
 
 describe('App', function() {
-  beforeEach(function() {
-    addTodo('buy cheddar');
-    addTodo('buy chorizo');
-    addTodo('buy bacon');
+  beforeEach(async function() {
+    await addTodo('buy cheddar');
+    await addTodo('buy chorizo');
+    await addTodo('buy bacon');
   });
 
   describe('todos', function() {
-    it('should not be marked as completed after being added', function() {
-      expect(allTodosChecked()).to.be.false;
+    it('should not be marked as completed after being added', async function() {
+      expect(await allTodosChecked()).to.be.false;
     });
 
-    it('should be marked as completed when checking them', function() {
-      $$('.todo .toggle').forEach(toggle => toggle.click());
+    it('should be marked as completed when checking them', async function() {
+      (await browser.elements('.todo .toggle')).value.forEach(
+        async toggle => browser.elementIdClick(toggle.ELEMENT)
+      );
 
-      expect(allTodosChecked()).to.be.true;
+      expect(await allTodosChecked()).to.be.true;
     });
 
-    function allTodosChecked() {
-      // TODO: we can use getAttribute without map after
-      // https://github.com/webdriverio/wdio-sync/issues/43 is fixed.
-      const states = $$('.todo .toggle').map(
-        toggle => toggle.getAttribute('checked'));
+    async function allTodosChecked() {
+      const states = await browser.getAttribute('.todo .toggle', 'checked');
 
       expect(states).to.have.length(3);
 

@@ -1,0 +1,5 @@
+--require babel-polyfill
+--compilers js:babel-register
+--timeout 0
+--inspect
+--debug-brk
