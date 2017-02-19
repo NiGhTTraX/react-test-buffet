@@ -78,8 +78,6 @@
     "sinon": "https://github.com/uberVU/Sinon.JS.git",
     "sinon-chai": "~2.8.0",
     "style-loader": "~0.13.1",
-    "wdio": "~0.3.3",
-    "wdio-mocha-framework": "~0.5.8",
     "webdriverio": "~4.6.1",
     "webpack": "~2.2.1",
     "webpack-dev-middleware": "~1.10.0",
