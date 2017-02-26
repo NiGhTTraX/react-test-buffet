@@ -18,7 +18,8 @@ before(function() {
 
   const adapter = new WebdriverIOAdapte(global.browser);
   mugshot = new Mugshot(adapter, {
-    rootDirectory: path.join(__dirname, 'screenshots')
+    rootDirectory: path.join(__dirname, 'screenshots'),
+    acceptFirstBaseline: false
   });
 
   return global.browser;
