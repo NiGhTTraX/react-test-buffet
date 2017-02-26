@@ -30,6 +30,7 @@ function takeScreenshot(name, selector = '.todoapp', test) {
       mugshot.test({ name, selector }, (err, result) => {
         if (err) {
           reject(err);
+          return;
         }
 
         if (result.isEqual) {
