@@ -3,3 +3,5 @@ build/
 npm-debug.log
 .nyc_output/
 results/
+*.new.png
+*.diff.png

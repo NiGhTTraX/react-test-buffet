@@ -9,4 +9,4 @@ services:
   tests:
     command: npm run _test:acceptance:debug
     ports:
-      - '9222:9222' # node --inspect
+      - '9229:9229' # node --inspect

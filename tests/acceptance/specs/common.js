@@ -4,8 +4,8 @@
 /**
  * @param {String} todo
  */
-export function addTodo(todo) {
-  browser.click('.new-todo');
-  browser.keys(todo);
-  browser.keys(['Enter']);
+export async function addTodo(todo) {
+  await browser.click('.new-todo');
+  await browser.keys(todo);
+  await browser.keys(['Enter']);
 }
