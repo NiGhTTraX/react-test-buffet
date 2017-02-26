@@ -25,7 +25,7 @@ before(function() {
   return global.browser;
 });
 
-function takeScreenshot(test, name, selector = '.todoapp') {
+function checkForVisualChanges(test, name, selector = '.todoapp') {
   return new Promise((resolve, reject) => {
     try {
       mugshot.test({ name, selector }, (err, result) => {
@@ -59,7 +59,7 @@ beforeEach(function() {
 });
 
 afterEach(function() {
-  return takeScreenshot(this.test, this.currentTest.fullTitle());
+  return checkForVisualChanges(this.test, this.currentTest.fullTitle());
 });
 
 
