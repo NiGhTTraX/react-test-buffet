@@ -35,14 +35,13 @@ function checkForVisualChanges(test, name, selector = '.todoapp') {
           return;
         }
 
-        if (result.isEqual) {
-          resolve();
-        } else {
+        if (!result.isEqual) {
           // If we reject the promise Mocha will halt the suite. Workaround from
           // https://github.com/mochajs/mocha/issues/1635#issuecomment-191019928
           test.error(new Error('Visual changes detected. Check screenshots'));
-          resolve();
         }
+
+        resolve();
       });
     } catch (e) {
       test.error(e);
