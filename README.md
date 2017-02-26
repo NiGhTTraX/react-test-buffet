@@ -18,6 +18,7 @@ An all-you-can-eat buffet of React TDD
 - [WebdriverIO](http://webdriver.io/) - Selenium 2.0 bindings for NodeJS
 - [Selenium](http://www.seleniumhq.org/) - Web Browser Automation
 - [Docker](https://www.docker.com/) - containerization platform
+- [Mugshot](https://github.com/uberVU/mugshot) - visual regression testing
 
 
 # Running the app
