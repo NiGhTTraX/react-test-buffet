@@ -98,29 +98,16 @@ happens in `Docker` containers for stable and reproducible builds.
 
 ## Debugging the acceptance tests
 
-### Watching the browser
-
-![debugging-acceptance-browser](./docs/debugging-acceptance-browser.gif)
-
-Run `npm run test:acceptance:debug` and when you start seeing output from the
-test command connect to `vnc://localhost:5900` with the password `secret`. Sit
-back and enjoy the browser doing things too fast for you to actually comprehend
-what's going on.
-
-
-### Debugging the page
-
-![debugging-acceptance-page](./docs/debugging-acceptance-page.png)
-
-Add `browser.debug()` inside your test and run `npm run test:acceptance:debug`.
-You will get a REPL where you can access the global `browser` instance. You
-could also connect to the browser using VNC and manipulate it any way you want.
-
-
-### Debugging the tests
-
 ![debugging-acceptance-tests](./docs/debugging-acceptance-tests.gif)
 
-Add `browser.debug()` inside your test and run `npm run test:acceptance:debug`.
-When at the REPL, open the debug URL in a browser, set your breakpoints, and
-type `.exit` in the REPL to continue debugging in Chrome DevTools.
+Add `debugger` statements in your tests and run `npm run test:acceptance:debug`.
+The tests won't start until you connect to the debugger by opening the debug URL
+that's printed to the console in Chrome. Once in the inspector, press the
+continue execution button and the tests will start running.
+
+Unfortunately, source maps won't work so you'll have to step through transpiled
+code. For more details check https://github.com/nodejs/node/issues/7087.
+
+Alongside debugging the test code, you can also follow the state of the browser
+by connecting with VNC to [localhost:5900](vnc://localhost:5900) with the
+password `secret`.
