@@ -1,5 +1,7 @@
 FROM node:6
 
+USER ${DOCKER_USER:-root}
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
