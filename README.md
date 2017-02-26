@@ -112,3 +112,14 @@ code. For more details check https://github.com/nodejs/node/issues/7087.
 Alongside debugging the test code, you can also follow the state of the browser
 by connecting with VNC to [localhost:5900](vnc://localhost:5900) with the
 password `secret`.
+
+
+# Visual regression tests
+
+![visual-tests](./docs/visual-tests.png)
+
+After each acceptance test a screenshot is taken and compared to the previous
+version. If there are any visual changes a diff will be created highlighting
+them and the test will fail. If the changes are deliberate you should commit the
+new screenshot and rerun the tests. You can find the new screenshots and diffs
+in the [tests/acceptance/screenshots](./tests/acceptance/screenshots) folder.
