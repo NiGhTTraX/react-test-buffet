@@ -1,6 +1,6 @@
 import { remote } from 'webdriverio';
 import Mugshot from 'mugshot';
-import WebdriverIOAdapte from 'mugshot-webdriverio';
+import WebdriverIOAdapter from 'mugshot-webdriverio';
 import path from 'path';
 
 
@@ -16,7 +16,7 @@ before(function() {
 
   global.browser = remote(options).init();
 
-  const adapter = new WebdriverIOAdapte(global.browser);
+  const adapter = new WebdriverIOAdapter(global.browser);
   mugshot = new Mugshot(adapter, {
     rootDirectory: path.join(__dirname, 'screenshots'),
     acceptFirstBaseline: false
