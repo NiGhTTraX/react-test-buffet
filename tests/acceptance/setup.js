@@ -26,7 +26,7 @@ before(function() {
 });
 
 function checkForVisualChanges(test, name, selector = '.todoapp') {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     try {
       mugshot.test({ name, selector }, (err, result) => {
         if (err) {
@@ -45,9 +45,8 @@ function checkForVisualChanges(test, name, selector = '.todoapp') {
         }
       });
     } catch (e) {
-      // These are Mugshot internal errors. Rejecting them here will halt the
-      // suite.
-      reject(e);
+      test.error(e);
+      resolve();
     }
   });
 }
