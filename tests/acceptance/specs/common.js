@@ -5,7 +5,5 @@
  * @param {String} todo
  */
 export async function addTodo(todo) {
-  await browser.click('.new-todo');
-  await browser.keys(todo);
-  await browser.keys(['Enter']);
+  await browser.setValue('.new-todo', [todo, 'Enter']);
 }
