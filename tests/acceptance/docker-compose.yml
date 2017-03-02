@@ -31,4 +31,6 @@ services:
       service: app
     links:
       - selenium
+    environment:
+      - BROWSER=chrome
     command: npm run _test:acceptance

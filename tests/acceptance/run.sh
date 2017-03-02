@@ -10,7 +10,7 @@ if [[ $RESULT != 0 ]]; then
 fi
 
 # If we don't create it here, docker-compose will and it will be owned by root.
-mkdir -p screenshots
+mkdir -p screenshots/chrome
 
 docker-compose up -d selenium
 echo Waiting for Chrome to connect to the Selenium hub...

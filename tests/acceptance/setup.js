@@ -11,14 +11,14 @@ before(function() {
 
   const options = {
     host: 'selenium',
-    desiredCapabilities: { browserName: 'chrome' }
+    desiredCapabilities: { browserName: process.env.BROWSER }
   };
 
   global.browser = remote(options).init();
 
   const adapter = new WebdriverIOAdapter(global.browser);
   mugshot = new Mugshot(adapter, {
-    rootDirectory: path.join(__dirname, 'screenshots'),
+    rootDirectory: path.join(__dirname, 'screenshots', process.env.BROWSER),
     acceptFirstBaseline: false
   });
 
