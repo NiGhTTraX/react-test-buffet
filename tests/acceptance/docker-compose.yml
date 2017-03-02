@@ -11,10 +11,19 @@ services:
       - ./screenshots:/usr/src/app/tests/acceptance/screenshots
 
   selenium:
-    image: selenium/standalone-chrome
+    image: selenium/hub
     expose:
       - '4444'
-    links:
+    depends_on:
+      - chrome
+
+  chrome:
+    image: selenium/node-chrome
+    environment:
+      # These are legacy compose links env vars that the image is relying on.
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_PORT_4444_TCP_ADDR=selenium
+    depends_on:
       - app
 
   tests:
