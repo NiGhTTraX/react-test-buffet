@@ -16,9 +16,19 @@ services:
       - '4444'
     depends_on:
       - chrome
+      - firefox
 
   chrome:
     image: selenium/node-chrome
+    environment:
+      # These are legacy compose links env vars that the image is relying on.
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_PORT_4444_TCP_ADDR=selenium
+    depends_on:
+      - app
+
+  firefox:
+    image: selenium/node-firefox
     environment:
       # These are legacy compose links env vars that the image is relying on.
       - HUB_PORT_4444_TCP_PORT=4444
@@ -33,4 +43,13 @@ services:
       - selenium
     environment:
       - BROWSER=chrome
+    command: npm run _test:acceptance
+
+  tests_firefox:
+    extends:
+      service: app
+    links:
+      - selenium
+    environment:
+      - BROWSER=firefox
     command: npm run _test:acceptance

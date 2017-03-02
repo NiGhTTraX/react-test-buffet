@@ -9,15 +9,17 @@ if [[ $RESULT != 0 ]]; then
   exit $RESULT
 fi
 
-# If we don't create it here, docker-compose will and it will be owned by root.
-mkdir -p screenshots/chrome
+# If we don't create these here, docker-compose will and they will be owned by
+# root.
+mkdir -p screenshots/chrome screenshots/firefox
 
 docker-compose up -d selenium
-echo Waiting for Chrome to connect to the Selenium hub...
+echo Waiting for the browsers to connect to the Selenium hub...
 # TODO: poll the hub for its status
 sleep 5
 
-docker-compose run tests
+# TODO: run in parallel
+docker-compose run tests && docker-compose run tests_firefox
 RESULT=$?
 
 docker-compose down
