@@ -1,12 +1,25 @@
 version: '2'
 
 services:
+  app:
+    extends:
+      file: ./docker-compose.yml
+      service: app
+
   selenium:
     image: selenium/standalone-chrome-debug
+    links:
+      - app
+    expose:
+      - '4444'
     ports:
       - '5900:5900' # VNC
 
   tests:
+    extends:
+      service: app
+    links:
+      - selenium
     command: npm run _test:acceptance:debug
     ports:
       - '9229:9229' # node --inspect
