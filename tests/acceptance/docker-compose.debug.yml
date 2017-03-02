@@ -7,7 +7,7 @@ services:
       service: app
 
   selenium:
-    image: selenium/standalone-chrome-debug
+    image: "selenium/standalone-${BROWSER:-chrome}-debug"
     links:
       - app
     expose:
@@ -20,6 +20,8 @@ services:
       service: app
     links:
       - selenium
+    environment:
+      - BROWSER=${BROWSER:-chrome}
     command: npm run _test:acceptance:debug
     ports:
       - '9229:9229' # node --inspect
