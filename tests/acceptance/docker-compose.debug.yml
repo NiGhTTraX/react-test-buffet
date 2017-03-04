@@ -1,12 +1,27 @@
-version: '2'
+version: '2.1'
 
 services:
+  app:
+    extends:
+      file: ./docker-compose.yml
+      service: app
+
   selenium:
-    image: selenium/standalone-chrome-debug
+    image: "selenium/standalone-${BROWSER:-chrome}-debug"
+    links:
+      - app
+    expose:
+      - '4444'
     ports:
       - '5900:5900' # VNC
 
-  tests:
+  acceptance_debug:
+    extends:
+      service: app
+    links:
+      - selenium
+    environment:
+      - BROWSER=${BROWSER:-chrome}
     command: npm run _test:acceptance:debug
     ports:
       - '9229:9229' # node --inspect

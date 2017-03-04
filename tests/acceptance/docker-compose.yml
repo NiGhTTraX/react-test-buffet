@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 services:
   app:
@@ -11,15 +11,45 @@ services:
       - ./screenshots:/usr/src/app/tests/acceptance/screenshots
 
   selenium:
-    image: selenium/standalone-chrome
+    image: selenium/hub
     expose:
       - '4444'
-    links:
+    depends_on:
+      - chrome
+      - firefox
+
+  chrome:
+    image: selenium/node-chrome
+    environment:
+      # These are legacy compose links env vars that the image is relying on.
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_PORT_4444_TCP_ADDR=selenium
+    depends_on:
       - app
 
-  tests:
+  firefox:
+    image: selenium/node-firefox
+    environment:
+      # These are legacy compose links env vars that the image is relying on.
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_PORT_4444_TCP_ADDR=selenium
+    depends_on:
+      - app
+
+  acceptance_chrome:
     extends:
       service: app
     links:
       - selenium
+    environment:
+      - BROWSER=chrome
+    command: npm run _test:acceptance
+
+  acceptance_firefox:
+    extends:
+      service: app
+    links:
+      - selenium
+    environment:
+      - BROWSER=firefox
     command: npm run _test:acceptance

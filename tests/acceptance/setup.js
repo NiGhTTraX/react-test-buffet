@@ -4,6 +4,7 @@ import WebdriverIOAdapter from 'mugshot-webdriverio';
 import path from 'path';
 
 
+const { BROWSER } = process.env;
 let mugshot;
 
 before(function() {
@@ -11,14 +12,14 @@ before(function() {
 
   const options = {
     host: 'selenium',
-    desiredCapabilities: { browserName: 'chrome' }
+    desiredCapabilities: { browserName: BROWSER }
   };
 
   global.browser = remote(options).init();
 
   const adapter = new WebdriverIOAdapter(global.browser);
   mugshot = new Mugshot(adapter, {
-    rootDirectory: path.join(__dirname, 'screenshots'),
+    rootDirectory: path.join(__dirname, 'screenshots', BROWSER),
     acceptFirstBaseline: false
   });
 
