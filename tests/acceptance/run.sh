@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# We don't want to set -e here because there are cleanup jobs that must be
+# performed regardless if the containers failed.
+
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 docker-compose build
