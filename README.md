@@ -89,6 +89,8 @@ find them in the
 
 # Acceptance tests
 
+![acceptance-tests](./docs/acceptance-tests.png)
+
 Use these to validate the client needs of your product. Always start with a
 failing acceptance test for every new feature. Then write failing unit tests to
 drive your design.
