@@ -93,8 +93,9 @@ Use these to validate the client needs of your product. Always start with a
 failing acceptance test for every new feature. Then write failing unit tests to
 drive your design.
 
-The tests open an actual browser and control it through `Selenium`. Everything
-happens in `Docker` containers for stable and reproducible builds.
+The tests open actual browsers (Chrome and Firefox) and control them through
+`Selenium`. Everything happens in `Docker` containers for stable and
+reproducible builds.
 
 
 ## Debugging the acceptance tests
