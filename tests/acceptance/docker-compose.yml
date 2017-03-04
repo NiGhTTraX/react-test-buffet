@@ -36,7 +36,7 @@ services:
     depends_on:
       - app
 
-  tests:
+  acceptance_chrome:
     extends:
       service: app
     links:
@@ -45,7 +45,7 @@ services:
       - BROWSER=chrome
     command: npm run _test:acceptance
 
-  tests_firefox:
+  acceptance_firefox:
     extends:
       service: app
     links:

@@ -18,7 +18,7 @@ echo Waiting for the browsers to connect to the Selenium hub...
 # TODO: poll the hub for its status
 sleep 5
 
-docker-compose up tests tests_firefox
+docker-compose up acceptance_chrome acceptance_firefox
 
 RESULT=$(docker-compose ps -q \
   | xargs docker inspect -f '{{ .State.ExitCode }}' \
