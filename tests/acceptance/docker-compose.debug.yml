@@ -15,7 +15,7 @@ services:
     ports:
       - '5900:5900' # VNC
 
-  tests:
+  acceptance_debug:
     extends:
       service: app
     links:
