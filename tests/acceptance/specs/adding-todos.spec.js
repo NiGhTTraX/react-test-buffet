@@ -15,23 +15,5 @@ describe('App', function() {
 
       expect(await browser.element('.todo').getText()).to.equal('buy milk');
     });
-
-    it('should trim whitespace from new todos', async function() {
-      await addTodo('   buy milk    ');
-
-      expect(await browser.element('.todo').getText()).to.equal('buy milk');
-    });
-
-    it('should clear the add todo input after adding a todo', async function() {
-      await addTodo('buy eggs');
-
-      expect(await browser.element('.new-todo').getValue()).to.be.empty;
-    });
-
-    it('should not add an empty todo', async function() {
-      await addTodo('');
-
-      expect(await browser.isExisting('.todo')).to.be.false;
-    });
   });
 });
