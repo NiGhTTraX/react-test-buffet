@@ -61,7 +61,7 @@
     "babel-register": "~6.24.0",
     "chai": "~3.5.0",
     "css-loader": "~0.27.0",
-    "eslint": "~3.17.0",
+    "eslint": "~3.18.0",
     "eslint-config-airbnb": "~14.1.0",
     "eslint-import-resolver-webpack": "~0.8.0",
     "eslint-plugin-import": "~2.2.0",
