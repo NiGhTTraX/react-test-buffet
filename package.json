@@ -36,7 +36,7 @@
     "lint": "npm run lint:files -- .",
     "lint:files": "eslint --ext js --ext jsx",
     "postinstall": "./tools/install-git-hooks.sh",
-    "start": "docker-compose -f docker-compose.dev.yml up --build",
+    "start": "./start.sh",
     "_start": "node tests/dev-server.js",
     "stop": "docker-compose down"
   },
@@ -45,7 +45,7 @@
     "react": "~15.4.2",
     "react-dom": "~15.4.2",
     "react-hot-loader": "~3.0.0-beta.6",
-    "todomvc-app-css": "~2.0.6"
+    "todomvc-app-css": "~2.1.0"
   },
   "devDependencies": {
     "babel-core": "~6.24.0",

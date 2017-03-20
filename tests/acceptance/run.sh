@@ -1,16 +1,13 @@
 #!/bin/bash
 
-# We don't want to set -e here because there are cleanup jobs that must be
-# performed regardless if the containers failed.
+trap cleanup EXIT
+cleanup() {
+  docker-compose down -v
+}
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 docker-compose build
-RESULT=$?
-
-if [[ $RESULT != 0 ]]; then
-  exit $RESULT
-fi
 
 # If we don't create these here, docker-compose will and they will be owned by
 # root.
@@ -21,12 +18,11 @@ echo Waiting for the browsers to connect to the Selenium hub...
 # TODO: poll the hub for its status
 sleep 5
 
+# compose exits with 0 no matter what.
 docker-compose up acceptance_chrome acceptance_firefox
 
 RESULT=$(docker-compose ps -q \
   | xargs docker inspect -f '{{ .State.ExitCode }}' \
   | grep -v 0 | wc -l | tr -d ' ')
-
-docker-compose down
 
 exit $RESULT

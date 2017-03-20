@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 
 
 /**
@@ -9,22 +9,16 @@ import React, { Component, PropTypes } from 'react';
  */
 export default class Toggleable extends Component {
   static propTypes = {
-    className: PropTypes.string,
     checked: PropTypes.bool,
     onToggle: PropTypes.func.isRequired
   };
 
   static defaultProps = {
-    className: 'toggleable',
     checked: false
   };
 
   render() {
-    const { className } = this.props;
-
-    return <div className={className}>
-      {this._render()}
-    </div>;
+    return this._render();
   }
 
   onToggle = () => {
