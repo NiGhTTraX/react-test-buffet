@@ -19,12 +19,6 @@ export default function toggleableTests($render, toggle) {
       onToggle = spy();
     });
 
-    it('should apply the given class name', function() {
-      const $component = renderToggle({ className: 'test-class' });
-
-      expect($component.hasClass('test-class')).to.be.true;
-    });
-
     it('should call back when unchecking', function() {
       const $component = renderToggle({ checked: true });
 

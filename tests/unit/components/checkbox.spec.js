@@ -1,6 +1,5 @@
 import React from 'react';
 import { Simulate } from 'react-addons-test-utils';
-import $ from 'jquery';
 import Checkbox from '../../../src/components/checkbox.jsx';
 import toggleableTests from './toggleable.spec.js';
 import { $render } from '../helpers/rendering.js';
@@ -9,13 +8,11 @@ import { $render } from '../helpers/rendering.js';
 describe('Checkbox', function() {
   toggleableTests(
     props => $render(<Checkbox {...props} />),
-    $component => Simulate.change($component.find(':checkbox')[0])
+    $component => Simulate.change($component[0])
   );
 
   function renderCheckbox(props) {
-    const $component = $render(<Checkbox onToggle={() => { }} {...props} />);
-
-    return $(':checkbox', $component);
+    return $render(<Checkbox onToggle={() => { }} {...props} />);
   }
 
   it('should mark the checkbox when checked', function() {
