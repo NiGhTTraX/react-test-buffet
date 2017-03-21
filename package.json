@@ -79,7 +79,7 @@
     "nyc": "~10.1.2",
     "react-addons-test-utils": "~15.4.2",
     "sinon": "https://github.com/uberVU/Sinon.JS.git",
-    "sinon-chai": "~2.8.0",
+    "sinon-chai": "~2.9.0",
     "style-loader": "~0.14.0",
     "webdriverio": "~4.6.1",
     "webpack": "~2.2.1",
