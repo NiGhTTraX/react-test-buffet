@@ -1,0 +1,4 @@
+input {
+  /* Hide the blinking cursor that might cause test flakyness. */
+  caret-color: transparent;
+}

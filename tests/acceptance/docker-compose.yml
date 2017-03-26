@@ -5,6 +5,9 @@ services:
     extends:
       file: ../../docker-compose.yml
       service: app
+    environment:
+      # Path is relative to the location of the dev server.
+      - WEBPACK_CONFIG=./acceptance/webpack.config.acceptance.js
     expose:
       - '3000'
     volumes:
