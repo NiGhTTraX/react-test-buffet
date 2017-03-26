@@ -26,8 +26,11 @@ before(function() {
   return global.browser;
 });
 
-function checkForVisualChanges(test, name, selector = '.todoapp') {
-  return new Promise(resolve => {
+async function checkForVisualChanges(test, name, selector = '.todoapp') {
+  // TODO: defocus the add todo field because the _blinking_ caret is causing
+  // the tests to be flaky; remove when Firefox 53 is released and leave it to
+  // caret-color: transparent.
+  return global.browser.click('.header h1').then(() => new Promise(resolve => {
     try {
       mugshot.test({ name, selector }, (err, result) => {
         if (err) {
@@ -48,7 +51,7 @@ function checkForVisualChanges(test, name, selector = '.todoapp') {
       test.error(e);
       resolve();
     }
-  });
+  }));
 }
 
 beforeEach(function() {
