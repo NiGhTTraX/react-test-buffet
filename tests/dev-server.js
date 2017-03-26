@@ -2,14 +2,17 @@
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
-const config = require('../src/webpack.config.dev');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const app = express();
-const compiler = webpack(config);
 
 const PORT = process.env.DEV_SERVER_PORT || 3000;
+const configPath = process.env.WEBPACK_CONFIG || '../src/webpack.config.dev';
+
+// eslint-disable-next-line import/no-dynamic-require
+const config = require(configPath);
+const compiler = webpack(config);
 
 
 app.use(webpackDevMiddleware(compiler, {
