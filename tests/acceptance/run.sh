@@ -26,4 +26,10 @@ RESULT=$(docker-compose ps -q \
   | xargs docker inspect -f '{{ .State.ExitCode }}' \
   | grep -v 0 | wc -l | tr -d ' ')
 
+echo App logs:
+docker-compose logs app
+
+echo Selenium logs:
+docker-compose logs selenium
+
 exit $RESULT
