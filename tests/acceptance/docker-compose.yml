@@ -14,7 +14,7 @@ services:
       - ./screenshots:/usr/src/app/tests/acceptance/screenshots
 
   selenium:
-    image: selenium/hub
+    image: selenium/hub:3.3.0
     expose:
       - '4444'
     depends_on:
@@ -22,7 +22,7 @@ services:
       - firefox
 
   chrome:
-    image: selenium/node-chrome
+    image: selenium/node-chrome:3.3.0
     environment:
       # These are legacy compose links env vars that the image is relying on.
       - HUB_PORT_4444_TCP_PORT=4444
@@ -31,7 +31,7 @@ services:
       - app
 
   firefox:
-    image: selenium/node-firefox
+    image: selenium/node-firefox:3.3.0
     environment:
       # These are legacy compose links env vars that the image is relying on.
       - HUB_PORT_4444_TCP_PORT=4444
