@@ -5,6 +5,8 @@ cleanup() {
   docker-compose down -v
 }
 
+set -e
+
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 docker-compose build
