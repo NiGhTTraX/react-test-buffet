@@ -15,15 +15,17 @@ before('Connecting to Selenium', function() {
     desiredCapabilities: { browserName: BROWSER }
   };
 
-  global.browser = remote(options).init();
+  const client = remote(options).init();
+  const adapter = new WebdriverIOAdapter(client);
 
-  const adapter = new WebdriverIOAdapter(global.browser);
   mugshot = new Mugshot(adapter, {
     rootDirectory: path.join(__dirname, 'screenshots', BROWSER),
     acceptFirstBaseline: false
   });
 
-  return global.browser;
+  global.browser = client;
+
+  return client;
 });
 
 async function checkForVisualChanges(test, name, selector = '.todoapp') {
