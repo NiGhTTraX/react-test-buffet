@@ -11,11 +11,15 @@
 
   "plugins": [
     "transform-class-properties",
-    "transform-object-rest-spread",
-    "react-hot-loader/babel"
+    "transform-object-rest-spread"
   ],
 
   "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    },
     "tests": {
       "plugins": [
         ["istanbul", {
