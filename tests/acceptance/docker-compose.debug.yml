@@ -7,11 +7,24 @@ services:
       service: app
 
   selenium:
-    image: "selenium/standalone-${BROWSER:-chrome}-debug:3.3.0"
+    image: selenium/hub:3.3.0
     links:
       - app
     expose:
       - '4444'
+    ports:
+      - '4444:4444' # Selenium Grid
+    depends_on:
+      - browser
+
+  browser:
+    image: "selenium/node-${BROWSER:-chrome}-debug:3.3.0"
+    environment:
+      # These are legacy compose links env vars that the image is relying on.
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_PORT_4444_TCP_ADDR=selenium
+    depends_on:
+      - app
     ports:
       - '5900:5900' # VNC
 
