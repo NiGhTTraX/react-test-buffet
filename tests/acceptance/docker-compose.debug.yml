@@ -7,7 +7,7 @@ services:
       service: app
 
   selenium:
-    image: selenium/hub:3.3.0
+    image: selenium/hub:3.2.0
     links:
       - app
     expose:
@@ -18,7 +18,7 @@ services:
       - browser
 
   browser:
-    image: "selenium/node-${BROWSER:-chrome}-debug:3.3.0"
+    image: "selenium/node-${BROWSER:-chrome}-debug:3.2.0"
     environment:
       # These are legacy compose links env vars that the image is relying on.
       - HUB_PORT_4444_TCP_PORT=4444
