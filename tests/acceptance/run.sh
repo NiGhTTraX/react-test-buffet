@@ -16,9 +16,8 @@ docker-compose build
 mkdir -p screenshots/chrome screenshots/firefox
 
 docker-compose up -d selenium
-echo Waiting for the browsers to connect to the Selenium hub...
-# TODO: poll the hub for its status
-sleep 5
+
+./wait-for-nodes.sh 2
 
 # compose up exits with 0 no matter what.
 docker-compose up acceptance_chrome acceptance_firefox

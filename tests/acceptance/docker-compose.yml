@@ -17,6 +17,8 @@ services:
     image: selenium/hub:3.2.0
     expose:
       - '4444'
+    ports:
+      - '4444:4444' # so we can ping for the status of the nodes
     depends_on:
       - chrome
       - firefox
