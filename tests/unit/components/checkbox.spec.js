@@ -1,5 +1,5 @@
 import React from 'react';
-import { Simulate } from 'react-addons-test-utils';
+import { Simulate } from 'react-dom/test-utils';
 import Checkbox from '../../../src/components/checkbox.jsx';
 import toggleableTests from './toggleable.spec.js';
 import { $render } from '../helpers/rendering.js';
