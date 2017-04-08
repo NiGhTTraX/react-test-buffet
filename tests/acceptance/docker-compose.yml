@@ -3,30 +3,21 @@ version: '2.1'
 services:
   app:
     extends:
-      file: ../../docker-compose.yml
+      file: ./docker-compose.base.yml
       service: app
-    environment:
-      # Path is relative to the location of the dev server.
-      - WEBPACK_CONFIG=./acceptance/webpack.config.acceptance.js
-    expose:
-      - '3000'
-    volumes:
-      - ./screenshots:/usr/src/app/tests/acceptance/screenshots
 
   selenium:
-    image: selenium/hub:3.2.0
-    expose:
-      - '4444'
-    ports:
-      - '4444:4444' # so we can ping for the status of the nodes
+    extends:
+      file: ./docker-compose.base.yml
+      service: selenium
     depends_on:
       - chrome
       - firefox
-    devices:
-      - /dev/urandom:/dev/random
 
   chrome:
-    image: selenium/node-chrome:3.2.0
+    extends:
+      file: ./docker-compose.base.yml
+      service: chrome
     environment:
       # These are legacy compose links env vars that the image is relying on.
       - HUB_PORT_4444_TCP_PORT=4444
@@ -35,7 +26,9 @@ services:
       - app
 
   firefox:
-    image: selenium/node-firefox:3.2.0
+    extends:
+      file: ./docker-compose.base.yml
+      service: firefox
     environment:
       # These are legacy compose links env vars that the image is relying on.
       - HUB_PORT_4444_TCP_PORT=4444
