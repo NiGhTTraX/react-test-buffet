@@ -16,6 +16,8 @@ services:
       - '4444:4444' # Selenium Grid
     depends_on:
       - browser
+    environment:
+      - SE_OPTS=-debug true
 
   browser:
     image: "selenium/node-${BROWSER:-chrome}-debug:3.2.0"
