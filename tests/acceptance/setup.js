@@ -7,7 +7,7 @@ import path from 'path';
 const { BROWSER } = process.env;
 let mugshot;
 
-before(function() {
+before('Connecting to Selenium', function() {
   this.timeout(10 * 1000);
 
   const options = {
@@ -15,15 +15,17 @@ before(function() {
     desiredCapabilities: { browserName: BROWSER }
   };
 
-  global.browser = remote(options).init();
+  const client = remote(options).init();
+  const adapter = new WebdriverIOAdapter(client);
 
-  const adapter = new WebdriverIOAdapter(global.browser);
   mugshot = new Mugshot(adapter, {
     rootDirectory: path.join(__dirname, 'screenshots', BROWSER),
     acceptFirstBaseline: false
   });
 
-  return global.browser;
+  global.browser = client;
+
+  return client;
 });
 
 async function checkForVisualChanges(test, name, selector = '.todoapp') {
@@ -54,7 +56,7 @@ async function checkForVisualChanges(test, name, selector = '.todoapp') {
   }));
 }
 
-beforeEach(function() {
+beforeEach('Waiting for app to render', function() {
   return global.browser.url('http://app:3000/')
     // Wait for webpack to build the app.
     .then(() => global.browser.waitForVisible('.todoapp', 5 * 1000));

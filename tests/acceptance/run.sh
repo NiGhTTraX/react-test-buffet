@@ -5,6 +5,8 @@ cleanup() {
   docker-compose down -v
 }
 
+set -e
+
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 docker-compose build
@@ -14,15 +16,23 @@ docker-compose build
 mkdir -p screenshots/chrome screenshots/firefox
 
 docker-compose up -d selenium
-echo Waiting for the browsers to connect to the Selenium hub...
-# TODO: poll the hub for its status
-sleep 5
 
-# compose exits with 0 no matter what.
+./wait-for-nodes.sh 2
+
+# compose up exits with 0 no matter what.
 docker-compose up acceptance_chrome acceptance_firefox
 
+# Aggregate results from all the containers.
 RESULT=$(docker-compose ps -q \
   | xargs docker inspect -f '{{ .State.ExitCode }}' \
   | grep -v 0 | wc -l | tr -d ' ')
+
+if [ $RESULT != 0 ]; then
+  echo App logs:
+  docker-compose logs app
+
+  echo Selenium logs:
+  docker-compose logs selenium
+fi
 
 exit $RESULT
