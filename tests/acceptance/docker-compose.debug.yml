@@ -18,6 +18,8 @@ services:
       - browser
     environment:
       - SE_OPTS=-debug true
+    devices:
+      - /dev/urandom:/dev/random
 
   browser:
     image: "selenium/node-${BROWSER:-chrome}-debug:3.2.0"
