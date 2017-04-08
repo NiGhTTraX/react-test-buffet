@@ -42,9 +42,9 @@
   },
   "dependencies": {
     "classnames": "~2.2.5",
-    "react": "~15.4.2",
-    "react-dom": "~15.4.2",
-    "react-hot-loader": "~3.0.0-beta.6",
+    "prop-types": "~15.5.4",
+    "react": "~15.5.3",
+    "react-dom": "~15.5.3",
     "todomvc-app-css": "~2.1.0"
   },
   "devDependencies": {
@@ -78,6 +78,7 @@
     "mugshot-webdriverio": "~1.0.0",
     "nyc": "~10.2.0",
     "react-addons-test-utils": "~15.4.2",
+    "react-hot-loader": "~3.0.0-beta.6",
     "sinon": "~2.1.0",
     "sinon-chai": "~2.9.0",
     "style-loader": "~0.16.0",
