@@ -2,7 +2,7 @@ import React from 'react';
 
 
 /**
- * Inject dependencies into a component.
+ * Bind a component to a set of props..
  *
  * @param {Object} deps A set of props that will be passed to the component,
  *     alongside any other props that it will receive from its parent.
@@ -10,7 +10,7 @@ import React from 'react';
  *
  * @returns {ReactComponent}
  */
-export default function inject(deps, Component) {
+export default function bind(deps, Component) {
   // We can't return a pure component because the user might want to get its DOM
   // node.
   return class Injector extends React.Component {
