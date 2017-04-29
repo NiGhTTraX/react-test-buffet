@@ -3,6 +3,12 @@
     "src/**/*.js",
     "src/**/*.jsx"
   ],
+  "exclude": [
+    "**/webpack.config.*",
+    "src/index*",
+    "src/app-factory.js",
+    "tests/unit/**/*.js"
+  ],
   "extension": [".js", ".jsx"],
   "all": true,
 
