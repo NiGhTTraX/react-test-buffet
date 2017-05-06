@@ -16,11 +16,14 @@ services:
       - browser
 
   browser:
-    image: "selenium/node-${BROWSER:-chrome}-debug:3.2.0"
+    extends:
+      file: ./docker-compose.base.yml
+      service: debug_node
     environment:
       # These are legacy compose links env vars that the image is relying on.
       - HUB_PORT_4444_TCP_PORT=4444
       - HUB_PORT_4444_TCP_ADDR=selenium
+      - SE_OPTS=-debug true
     ports:
       - '5900:5900' # VNC
     depends_on:

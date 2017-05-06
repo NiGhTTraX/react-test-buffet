@@ -14,7 +14,7 @@ services:
       - ./screenshots:/usr/src/app/tests/acceptance/screenshots
 
   selenium:
-    image: selenium/hub:3.2.0
+    image: selenium/hub:3.4.0
     expose:
       - '4444'
     ports:
@@ -25,7 +25,10 @@ services:
       - /dev/urandom:/dev/random
 
   chrome:
-    image: selenium/node-chrome:3.2.0
+    image: selenium/node-chrome:3.4.0
 
   firefox:
-    image: selenium/node-firefox:3.2.0
+    image: selenium/node-firefox:3.4.0
+
+  debug_node:
+    image: "selenium/node-${BROWSER:-chrome}-debug:3.4.0"
