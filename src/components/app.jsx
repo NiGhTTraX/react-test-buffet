@@ -26,6 +26,7 @@ export default class App extends Component {
         <AddTodo addTodo={this.onNewTodo.bind(this)} />
       </header>
       {this.state.todos.length ? this._renderTodos() : null}
+      {this.state.todos.length ? this._renderFooter() : null}
     </div>;
   }
 
@@ -37,6 +38,16 @@ export default class App extends Component {
         onSelect={this.onToggleTodo.bind(this)}
       />
     </section>;
+  }
+
+  _renderFooter() {
+    const isActive = todo => !todo.completed;
+
+    return <footer className="footer">
+      <span className="todo-count">
+        {this.state.todos.filter(isActive).length} items left
+      </span>
+    </footer>;
   }
 
   onNewTodo({ title }) {
