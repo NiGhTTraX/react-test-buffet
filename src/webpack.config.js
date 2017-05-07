@@ -26,7 +26,7 @@ module.exports = {
       use: 'babel-loader'
     }, {
       test: /\.css$/,
-      exclude: /node_modules/,
+      // Not excluding node_modules because we can import CSS npm packages.
       use: ['style-loader', 'css-loader']
     }]
   },
