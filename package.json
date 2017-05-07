@@ -81,6 +81,7 @@
     "nyc": "~10.3.0",
     "react-cosmos-webpack": "~2.0.0-beta.11",
     "react-hot-loader": "~3.0.0-beta.6",
+    "rosie": "~1.6.0",
     "sinon": "~2.1.0",
     "sinon-chai": "~2.9.0",
     "style-loader": "~0.16.0",
