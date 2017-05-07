@@ -17,7 +17,7 @@ module.exports = {
   'settings': {
     'import/resolver': {
       'webpack': {
-        'config': path.join(__dirname, 'src', 'webpack.config.babel.js')
+        'config': path.join(__dirname, 'src', 'webpack.config.dev.js')
       }
     }
   },
