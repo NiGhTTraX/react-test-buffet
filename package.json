@@ -40,7 +40,7 @@
     "start": "./start.sh",
     "_start": "node tests/dev-server.js",
     "stop": "docker-compose down",
-    "playground": "cosmos"
+    "playground": "cosmos --config playground/cosmos.config.js"
   },
   "dependencies": {
     "classnames": "~2.2.5",
