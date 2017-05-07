@@ -60,6 +60,11 @@ beforeEach('Waiting for app to render', function() {
 });
 
 afterEach(function() {
+  if (this.currentTest.state !== 'passed') {
+    return;
+  }
+
+  // eslint-disable-next-line consistent-return
   return checkForVisualChanges(this.test, this.currentTest.fullTitle());
 });
 
