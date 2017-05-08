@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 
+const ALL_FILTER = {
+  id: 'all',
+  filter: () => true
+};
+
 export default class App extends Component {
   static propTypes = {
     AddTodo: PropTypes.func.isRequired,
@@ -18,7 +23,8 @@ export default class App extends Component {
 
     this.state = {
       todos: [],
-      id: 0
+      id: 0,
+      activeFilter: ALL_FILTER
     };
   }
 
@@ -49,11 +55,16 @@ export default class App extends Component {
     const isActive = todo => !todo.completed;
 
     const { Select, filters } = this.props;
+    const allFilters = [ALL_FILTER].concat(filters).map(
+      filter => Object.assign({}, filter, {
+        selected: filter.id === this.state.activeFilter.id
+      })
+    );
 
     return <footer className="footer">
       <span className="todo-count">
         {this.state.todos.filter(isActive).length} items left
-        <Select items={filters} />
+        <Select items={allFilters} onSelect={this.onFilterTodos.bind(this)} />
       </span>
     </footer>;
   }

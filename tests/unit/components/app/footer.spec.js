@@ -34,9 +34,24 @@ describe('App', function() {
       });
 
       it('should show the todo filters', function() {
+        const renderedFilters = Select.lastProps.items;
+
+        expect(renderedFilters.map(filter => filter.id))
+          .to.include.members(['none', 'last_one']);
+      });
+
+      it('should contain an extra `off` filter', function() {
         expect(Select).to.have.been.renderedWith({
-          items: match.array.contains(filters)
+          items: match.has('length', filters.length + 1)
         });
+      });
+
+      it('should initially select the `off` filter', function() {
+        const selectedFilter = Select.lastProps.items.find(
+          filter => filter.selected
+        );
+
+        expect(['none', 'last_one']).to.not.include(selectedFilter.id);
       });
     });
   });
