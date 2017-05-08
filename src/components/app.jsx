@@ -5,7 +5,12 @@ import PropTypes from 'prop-types';
 export default class App extends Component {
   static propTypes = {
     AddTodo: PropTypes.func.isRequired,
-    List: PropTypes.func.isRequired
+    List: PropTypes.func.isRequired,
+    Select: PropTypes.func.isRequired,
+    filters: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      filter: PropTypes.func.isRequired
+    })).isRequired
   };
 
   constructor(props) {
@@ -43,9 +48,12 @@ export default class App extends Component {
   _renderFooter() {
     const isActive = todo => !todo.completed;
 
+    const { Select, filters } = this.props;
+
     return <footer className="footer">
       <span className="todo-count">
         {this.state.todos.filter(isActive).length} items left
+        <Select items={filters} />
       </span>
     </footer>;
   }
