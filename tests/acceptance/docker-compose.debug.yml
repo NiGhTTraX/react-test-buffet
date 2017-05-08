@@ -12,6 +12,8 @@ services:
       service: selenium
     environment:
       - SE_OPTS=-debug true
+      - GRID_TIMEOUT=0
+      - BROWSER_TIMEOUT=0
     depends_on:
       - browser
 
