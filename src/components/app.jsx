@@ -43,9 +43,12 @@ export default class App extends Component {
 
   _renderTodos() {
     const { List } = this.props;
+    const filteredTodos = this.state.todos.filter(
+      this.state.activeFilter.filter
+    );
 
     return <section className="main">
-      <List items={this.state.todos}
+      <List items={filteredTodos}
         onSelect={this.onToggleTodo.bind(this)}
       />
     </section>;
@@ -95,6 +98,16 @@ export default class App extends Component {
 
     this.setState({
       todos: newTodos
+    });
+  }
+
+  onFilterTodos({ id }) {
+    const { filters } = this.props;
+
+    const allFilters = [ALL_FILTER].concat(filters);
+
+    this.setState({
+      activeFilter: allFilters.find(filter => filter.id === id)
     });
   }
 }

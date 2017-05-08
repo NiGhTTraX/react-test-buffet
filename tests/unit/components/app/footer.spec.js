@@ -53,6 +53,44 @@ describe('App', function() {
 
         expect(['none', 'last_one']).to.not.include(selectedFilter.id);
       });
+
+      it('should apply the first available filter when it is selected', () => {
+        List.reset();
+
+        Select.lastProps.onSelect({ id: 'none' });
+
+        expect(List).to.have.been.renderedWith({ items: [] });
+      });
+
+      it('should apply the last available filter when it is selected', () => {
+        List.reset();
+
+        Select.lastProps.onSelect({ id: 'last_one' });
+
+        expect(List).to.have.been.renderedWith({
+          // Checking the ID of the todos is enough.
+          items: [match.has('id', 2)]
+        });
+      });
+
+      it('should turn off filtering when selecting the `off` filter', () => {
+        const offFilter = Select.lastProps.items.find(
+          filter => filter.selected
+        );
+
+        Select.lastProps.onSelect({ id: 'last_one' });
+        List.reset();
+        Select.lastProps.onSelect({ id: offFilter.id });
+
+        expect(List).to.have.been.renderedWith({
+          // Checking the ID of the todos is enough.
+          items: [
+            match.has('id', 0),
+            match.has('id', 1),
+            match.has('id', 2)
+          ]
+        });
+      });
     });
   });
 });
