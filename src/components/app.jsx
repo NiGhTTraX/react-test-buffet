@@ -67,8 +67,8 @@ export default class App extends Component {
     return <footer className="footer">
       <span className="todo-count">
         {this.state.todos.filter(isActive).length} items left
-        <Select items={allFilters} onSelect={this.onFilterTodos.bind(this)} />
       </span>
+      <Select items={allFilters} onSelect={this.onFilterTodos.bind(this)} />
     </footer>;
   }
 
