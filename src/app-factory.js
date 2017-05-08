@@ -9,4 +9,4 @@ import List from './components/list.jsx';
 const CheckableTodo = bind({ Toggle: Checkbox }, Todo);
 const TodoList = bind({ Item: CheckableTodo, className: 'todo-list' }, List);
 
-export default bind({ AddTodo, List: TodoList }, App);
+export default bind({ AddTodo, TodoList }, App);

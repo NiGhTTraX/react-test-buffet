@@ -10,8 +10,8 @@ const ALL_FILTER = {
 export default class App extends Component {
   static propTypes = {
     AddTodo: PropTypes.func.isRequired,
-    List: PropTypes.func.isRequired,
-    Select: PropTypes.func.isRequired,
+    TodoList: PropTypes.func.isRequired,
+    TodoFilters: PropTypes.func.isRequired,
     filters: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       filter: PropTypes.func.isRequired
@@ -42,13 +42,13 @@ export default class App extends Component {
   }
 
   _renderTodos() {
-    const { List } = this.props;
+    const { TodoList } = this.props;
     const filteredTodos = this.state.todos.filter(
       this.state.activeFilter.filter
     );
 
     return <section className="main">
-      <List items={filteredTodos}
+      <TodoList items={filteredTodos}
         onSelect={this.onToggleTodo.bind(this)}
       />
     </section>;
@@ -57,7 +57,7 @@ export default class App extends Component {
   _renderFooter() {
     const isActive = todo => !todo.completed;
 
-    const { Select, filters } = this.props;
+    const { TodoFilters, filters } = this.props;
     const allFilters = [ALL_FILTER].concat(filters).map(
       filter => Object.assign({}, filter, {
         selected: filter.id === this.state.activeFilter.id
@@ -68,7 +68,7 @@ export default class App extends Component {
       <span className="todo-count">
         {this.state.todos.filter(isActive).length} items left
       </span>
-      <Select items={allFilters} onSelect={this.onFilterTodos.bind(this)} />
+      <TodoFilters items={allFilters} onSelect={this.onFilterTodos.bind(this)} />
     </footer>;
   }
 

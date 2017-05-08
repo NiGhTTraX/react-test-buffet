@@ -1,7 +1,7 @@
 import React from 'react';
 import { match } from 'sinon';
 import { $render } from '../../helpers/rendering.js';
-import App, { AddTodo, List, Select, filters } from './setup.js';
+import App, { AddTodo, TodoList, TodoFilters, filters } from './setup.js';
 
 
 describe('App', function() {
@@ -22,7 +22,7 @@ describe('App', function() {
         AddTodo.lastProps.addTodo({ title: 'buy chorizo' });
         AddTodo.lastProps.addTodo({ title: 'buy cheddar' });
 
-        List.lastProps.onSelect({ id: 2 });
+        TodoList.lastProps.onSelect({ id: 2 });
       });
 
       it('should be rendered when there are todos', function() {
@@ -34,20 +34,20 @@ describe('App', function() {
       });
 
       it('should show the todo filters', function() {
-        const renderedFilters = Select.lastProps.items;
+        const renderedFilters = TodoFilters.lastProps.items;
 
         expect(renderedFilters.map(filter => filter.id))
           .to.include.members(['none', 'last_one']);
       });
 
       it('should contain an extra `off` filter', function() {
-        expect(Select).to.have.been.renderedWith({
+        expect(TodoFilters).to.have.been.renderedWith({
           items: match.has('length', filters.length + 1)
         });
       });
 
       it('should initially select the `off` filter', function() {
-        const selectedFilter = Select.lastProps.items.find(
+        const selectedFilter = TodoFilters.lastProps.items.find(
           filter => filter.selected
         );
 
@@ -55,34 +55,34 @@ describe('App', function() {
       });
 
       it('should apply the first available filter when it is selected', () => {
-        List.reset();
+        TodoList.reset();
 
-        Select.lastProps.onSelect({ id: 'none' });
+        TodoFilters.lastProps.onSelect({ id: 'none' });
 
-        expect(List).to.have.been.renderedWith({ items: [] });
+        expect(TodoList).to.have.been.renderedWith({ items: [] });
       });
 
       it('should apply the last available filter when it is selected', () => {
-        List.reset();
+        TodoList.reset();
 
-        Select.lastProps.onSelect({ id: 'last_one' });
+        TodoFilters.lastProps.onSelect({ id: 'last_one' });
 
-        expect(List).to.have.been.renderedWith({
+        expect(TodoList).to.have.been.renderedWith({
           // Checking the ID of the todos is enough.
           items: [match.has('id', 2)]
         });
       });
 
       it('should turn off filtering when selecting the `off` filter', () => {
-        const offFilter = Select.lastProps.items.find(
+        const offFilter = TodoFilters.lastProps.items.find(
           filter => filter.selected
         );
 
-        Select.lastProps.onSelect({ id: 'last_one' });
-        List.reset();
-        Select.lastProps.onSelect({ id: offFilter.id });
+        TodoFilters.lastProps.onSelect({ id: 'last_one' });
+        TodoList.reset();
+        TodoFilters.lastProps.onSelect({ id: offFilter.id });
 
-        expect(List).to.have.been.renderedWith({
+        expect(TodoList).to.have.been.renderedWith({
           // Checking the ID of the todos is enough.
           items: [
             match.has('id', 0),

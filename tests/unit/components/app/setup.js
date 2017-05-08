@@ -3,8 +3,8 @@ import App from '../../../../src/components/app.jsx';
 import { createSpy } from '../../helpers/chai-react.js';
 
 export const AddTodo = createSpy({ name: 'AddTodo' });
-export const List = createSpy({ name: 'List' });
-export const Select = createSpy({ name: 'Select' });
+export const TodoList = createSpy({ name: 'TodoList' });
+export const TodoFilters = createSpy({ name: 'TodoFilters' });
 export const filters = [{
   id: 'none',
   filter: () => false
@@ -13,10 +13,10 @@ export const filters = [{
   filter: (todo, i, todos) => i === todos.length - 1
 }];
 
-export default bind({ AddTodo, List, Select, filters }, App);
+export default bind({ AddTodo, TodoList, TodoFilters, filters }, App);
 
 beforeEach(function() {
   AddTodo.reset();
-  List.reset();
-  Select.reset();
+  TodoList.reset();
+  TodoFilters.reset();
 });
