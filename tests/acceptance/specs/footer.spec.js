@@ -8,21 +8,25 @@ describe('App', function() {
       expect(await browser.isExisting('.footer')).to.be.false;
     });
 
-    beforeEach(async function() {
-      await addTodo('buy cheddar');
-      await addTodo('buy chorizo');
-      await addTodo('buy bacon');
+    describe('with todos', function() {
+      beforeEach(async function() {
+        await addTodo('buy cheddar');
+        await addTodo('buy chorizo');
+        await addTodo('buy bacon');
 
-      // webdriverio will only click on the first match.
-      await browser.click('.todo .toggle');
-    });
+        // webdriverio will only click on the first match.
+        await browser.click('.todo .toggle');
+      });
 
-    it('should show the number of active todos', async function() {
-      expect(await browser.getText('.todo-count')).to.contain('2');
-    });
+      it('should show the number of active todos', async function() {
+        expect(await browser.getText('.todo-count')).to.contain('2');
+      });
 
-    it('should show the number of completed todos', async function() {
-      expect(await browser.elements('.todo')).to.have.length(1);
+      it('should show the number of completed todos', async function() {
+        await browser.click('=Completed');
+
+        expect((await browser.elements('.todo')).value).to.have.length(1);
+      });
     });
   });
 });
