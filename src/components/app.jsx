@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 const ALL_FILTER = {
   id: 'all',
-  filter: () => true
+  filter: () => true,
+  name: 'All' // TODO: this should probably be injected
 };
 
 export default class App extends Component {
