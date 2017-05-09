@@ -7,9 +7,11 @@ export const TodoList = createSpy({ name: 'TodoList' });
 export const TodoFilters = createSpy({ name: 'TodoFilters' });
 export const filters = [{
   id: 'none',
+  name: 'None',
   filter: () => false
 }, {
   id: 'last_one',
+  name: 'Last one',
   filter: (todo, i, todos) => i === todos.length - 1
 }];
 

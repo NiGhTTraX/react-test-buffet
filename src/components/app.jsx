@@ -15,6 +15,7 @@ export default class App extends Component {
     TodoFilters: PropTypes.func.isRequired,
     filters: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
       filter: PropTypes.func.isRequired
     })).isRequired
   };
