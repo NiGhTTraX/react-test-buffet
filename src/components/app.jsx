@@ -59,8 +59,8 @@ export default class App extends Component {
   _renderFooter() {
     const isActive = todo => !todo.completed;
 
-    const { TodoFilters, filters } = this.props;
-    const allFilters = [ALL_FILTER].concat(filters).map(
+    const { TodoFilters } = this.props;
+    const allFilters = this._getAllFilters().map(
       filter => Object.assign({}, filter, {
         selected: filter.id === this.state.activeFilter.id
       })
@@ -104,12 +104,14 @@ export default class App extends Component {
   }
 
   onFilterTodos({ id }) {
-    const { filters } = this.props;
-
-    const allFilters = [ALL_FILTER].concat(filters);
+    const allFilters = this._getAllFilters();
 
     this.setState({
       activeFilter: allFilters.find(filter => filter.id === id)
     });
+  }
+
+  _getAllFilters() {
+    return [ALL_FILTER].concat(this.props.filters);
   }
 }
