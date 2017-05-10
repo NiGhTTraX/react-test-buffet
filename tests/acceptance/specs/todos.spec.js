@@ -15,7 +15,7 @@ describe('App', function() {
     });
 
     it('should be marked as completed when checking them', async function() {
-      (await browser.elements('.todo .toggle')).value.forEach(
+      (await browser.elements('.todo .checkbox')).value.forEach(
         async toggle => browser.elementIdClick(toggle.ELEMENT)
       );
 
@@ -23,7 +23,7 @@ describe('App', function() {
     });
 
     async function allTodosChecked() {
-      const states = await browser.getAttribute('.todo .toggle', 'checked');
+      const states = await browser.getAttribute('.todo .checkbox', 'checked');
 
       expect(states).to.have.length(3);
 

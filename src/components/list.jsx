@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import './list.less';
 
 
 export default class List extends Component {
@@ -20,7 +22,7 @@ export default class List extends Component {
   render() {
     const { className, Item, items, onSelect } = this.props;
 
-    return <ul className={className}>
+    return <ul className={classnames('list', className)}>
       {items.map(item =>
         <li key={item.id}>
           <Item {...item} onSelect={() => { onSelect({ id: item.id }); }} />

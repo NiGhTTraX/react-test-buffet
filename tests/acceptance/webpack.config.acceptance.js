@@ -3,5 +3,5 @@ const path = require('path');
 
 
 module.exports = Object.assign({}, baseConfig, {
-  entry: [path.join(__dirname, 'styles.css')].concat(baseConfig.entry)
+  entry: [path.join(__dirname, 'styles.less')].concat(baseConfig.entry)
 });

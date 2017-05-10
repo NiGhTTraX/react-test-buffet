@@ -22,7 +22,7 @@ module.exports = {
       use: 'babel-loader'
     }, {
       // Don't bundle static assets.
-      test: /\.css$/,
+      test: /\.css|less$/,
       exclude: /node_modules/,
       use: [path.join(__dirname, 'noop-loader.js')]
     }]
