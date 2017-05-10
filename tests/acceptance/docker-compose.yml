@@ -43,7 +43,7 @@ services:
       - selenium
     environment:
       - BROWSER=chrome
-    command: npm run _test:acceptance
+    command: npm run _test:acceptance --silent
 
   acceptance_firefox:
     extends:
@@ -52,4 +52,4 @@ services:
       - selenium
     environment:
       - BROWSER=firefox
-    command: npm run _test:acceptance
+    command: npm run _test:acceptance --silent

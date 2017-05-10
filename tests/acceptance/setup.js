@@ -60,6 +60,16 @@ beforeEach('Waiting for app to render', function() {
 });
 
 afterEach(function() {
+  // Screenshots failing will make debugging noisier than it needs to be.
+  if (process.env.DEBUG) {
+    return;
+  }
+
+  if (this.currentTest.state !== 'passed') {
+    return;
+  }
+
+  // eslint-disable-next-line consistent-return
   return checkForVisualChanges(this.test, this.currentTest.fullTitle());
 });
 

@@ -40,6 +40,8 @@ module.exports = {
     'react/prefer-stateless-function': 0,
     'react/jsx-first-prop-new-line': 0,
     'react/jsx-no-bind': 0,
+    // https://github.com/yannickcr/eslint-plugin-react/issues/1176
+    'react/jsx-indent': 0,
     'react/sort-comp': [2, {
       order: [
         'displayName',
