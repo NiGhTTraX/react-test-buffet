@@ -1,7 +1,7 @@
 import React from 'react';
 import { match } from 'sinon';
 import { render } from '../../helpers/rendering.js';
-import App, { AddTodo, List } from './setup.js';
+import App, { AddTodo, TodoList } from './setup.js';
 
 
 describe('App', function() {
@@ -17,7 +17,7 @@ describe('App', function() {
     it('should render the new todo', function() {
       AddTodo.lastProps.addTodo({ title: 'buy milk' });
 
-      expect(List).to.have.been.renderedWith({
+      expect(TodoList).to.have.been.renderedWith({
         items: [checkTodoTitle('buy milk')]
       });
     });
@@ -25,7 +25,7 @@ describe('App', function() {
     it('should mark the new todo as active', function() {
       AddTodo.lastProps.addTodo({ title: 'buy more milk' });
 
-      expect(List).to.have.been.renderedWith({
+      expect(TodoList).to.have.been.renderedWith({
         items: [match({ completed: false })]
       });
     });
@@ -33,7 +33,7 @@ describe('App', function() {
     it('should trim whitespace from new todos', function() {
       AddTodo.lastProps.addTodo({ title: '   wash car   ' });
 
-      expect(List).to.have.been.renderedWith({
+      expect(TodoList).to.have.been.renderedWith({
         items: [checkTodoTitle('wash car')]
       });
     });
@@ -41,7 +41,7 @@ describe('App', function() {
     it('should not add an empty todo', function() {
       AddTodo.lastProps.addTodo({ title: '' });
 
-      expect(List).to.not.have.been.renderedWith({
+      expect(TodoList).to.not.have.been.renderedWith({
         items: [checkTodoTitle('')]
       });
     });

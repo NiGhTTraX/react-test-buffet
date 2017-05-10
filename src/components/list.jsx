@@ -8,7 +8,7 @@ export default class List extends Component {
     Item: PropTypes.func.isRequired,
     items: PropTypes.arrayOf(
       // TODO: create an interface for Item
-      PropTypes.shape({ id: PropTypes.number.isRequired })
+      PropTypes.shape({ id: PropTypes.isRequired })
     ).isRequired,
     onSelect: PropTypes.func.isRequired
   };
