@@ -136,6 +136,11 @@ in the [tests/acceptance/screenshots](./tests/acceptance/screenshots) folder.
 
 When developing your components it's useful to load just one of them in complete
 isolation so that you don't have to refresh the entire app to see your changes.
+It also helps you drive your CSS design in order to make components
+encapsulated. If a component doesn't look good by itself in the playground, with
+no global imports, then it means it has some implicit dependencies on global
+styles/scripts and that will make it harder to maintain.
+
 Running `npm run playground` will start a playground with hot reload which uses
 [fixtures](./playground/fixtures) to load components individually. You can use
 [factories](./tests/factories) to create random fixtures.
