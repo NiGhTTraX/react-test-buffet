@@ -1,10 +1,10 @@
-const STATIC_ASSET = /\.less|css$/;
+const STATIC_ASSET = require('./static-asset.js');
 
 
 /**
  * Remove any imports of static assets.
  */
-export default () => ({
+module.exports = () => ({
   visitor: {
     ImportDeclaration(path) {
       // TODO: remove once https://github.com/istanbuljs/nyc/issues/581 is fixed
