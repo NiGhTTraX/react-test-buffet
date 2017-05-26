@@ -31,8 +31,10 @@ describe('App', function() {
     });
 
     it('should mark a todo as active when being called', function() {
-      TodoList.lastProps.onSelect({ id: 0 });
-      TodoList.lastProps.onSelect({ id: 0 });
+      const { onSelect } = TodoList.lastProps;
+      onSelect({ id: 0 });
+      TodoList.reset();
+      onSelect({ id: 0 });
 
       expect(TodoList).to.have.been.renderedWith({
         items: [{
