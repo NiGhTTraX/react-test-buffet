@@ -22,6 +22,7 @@ module.exports = {
       use: 'babel-loader'
     }, {
       // Don't bundle static assets.
+      // TODO: dedupe with babelrc
       test: /\.css|less$/,
       exclude: /node_modules/,
       use: [path.join(__dirname, 'noop-loader.js')]

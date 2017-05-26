@@ -22,6 +22,12 @@
     },
     "tests": {
       "plugins": [
+        "./tests/unit/babel-plugin-remove-asset-imports"
+      ]
+    },
+    "coverage": {
+      "plugins": [
+        "./tests/unit/babel-plugin-remove-asset-imports",
         "istanbul"
       ]
     }
