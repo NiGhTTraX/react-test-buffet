@@ -26,7 +26,7 @@
   "license": "MIT",
   "scripts": {
     "test": "npm run test:unit --silent && npm run test:acceptance --silent",
-    "test:unit": "NODE_ENV=tests nyc --require babel-register npm run _mocha",
+    "test:unit": "NODE_ENV=tests nyc npm run _mocha",
     "test:unit:watch": "npm run _mocha -- --compilers js:babel-register --watch --watch-extensions js,jsx --reporter min",
     "_mocha": "mocha tests/unit/helpers/index.node.js 'tests/unit/**/*.spec.js'",
     "test:unit:debug": "webpack --bail -w --config ./tests/unit/webpack.config.unit.js",
