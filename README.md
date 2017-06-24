@@ -105,12 +105,13 @@ reproducible builds.
 ![debugging-acceptance-tests](./docs/debugging-acceptance-tests.gif)
 
 Add `debugger` statements in your tests and run `npm run test:acceptance:debug`.
-The tests won't start until you connect to the debugger by opening the debug URL
-that's printed to the console in Chrome. Once in the inspector, press the
-continue execution button and the tests will start running.
+The tests won't start until you connect to the debugger by going to
+[chrome://inspect](chrome://inspect) and selecting the local debugger target.
+You're going to need [Chrome
+55+](https://nodejs.org/en/docs/inspector/#chrome-devtools-55) for this to work.
 
-Unfortunately, source maps won't work so you'll have to step through transpiled
-code. For more details check https://github.com/nodejs/node/issues/7087.
+Once in the inspector, press the continue execution button and the tests will
+start running.
 
 Alongside debugging the test code, you can also follow the state of the browser
 by connecting with VNC to [localhost:5900](vnc://localhost:5900) with the
