@@ -83,7 +83,7 @@
     "sinon-chai": "~2.11.0",
     "style-loader": "~0.18.0",
     "webdriverio": "~4.8.0",
-    "webpack": "~3.1.0",
+    "webpack": "~3.2.0",
     "webpack-dev-middleware": "~1.11.0",
     "webpack-hot-middleware": "~2.18.0"
   }
