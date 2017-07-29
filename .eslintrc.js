@@ -14,14 +14,6 @@ module.exports = {
     'plugin:import/errors'
   ],
 
-  'settings': {
-    'import/resolver': {
-      'webpack': {
-        'config': path.join(__dirname, 'src', 'webpack.config.babel.js')
-      }
-    }
-  },
-
   'rules': {
     'space-before-function-paren': 0,
     'comma-dangle': [2, 'never'],
