@@ -33,7 +33,7 @@ describe('Todo', function() {
 
     it('should not visually mark active todos', function() {
       expect($component.hasClass('completed'),
-            'Todo should not be marked as completed').to.be.false;
+             'Todo should not be marked as completed').to.be.false;
     });
 
     it('should not mark active todos', function() {
@@ -60,7 +60,7 @@ describe('Todo', function() {
 
     it('should visually mark a completed todo', function() {
       expect($component.hasClass('completed'),
-            'Todo should be marked as completed').to.be.true;
+             'Todo should be marked as completed').to.be.true;
     });
 
     it('should mark a completed todo', function() {
