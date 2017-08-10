@@ -41,9 +41,8 @@ module.exports = {
         'propTypes',
         'mixins',
         'statics',
-        'getDefaultProps',
         'defaultProps',
-        'getInitialState',
+        'state',
         'constructor',
         'render',
         '/^_render.+$/', // any auxiliary _render methods
