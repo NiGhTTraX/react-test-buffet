@@ -41,6 +41,7 @@ module.exports = {
         'propTypes',
         'mixins',
         'statics',
+        'static-methods',
         'defaultProps',
         'state',
         'constructor',
