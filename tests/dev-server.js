@@ -27,8 +27,21 @@ app.use('/node_modules',
         express.static(path.join(__dirname, '..', 'node_modules'))
 );
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'index.html'));
+app.use('*', (req, res, next) => {
+  // Make it work with the webpack HTML plugin. From
+  // https://github.com/jantimon/html-webpack-plugin/issues/145#issuecomment-170554832.
+  const filename = path.join(compiler.outputPath, 'index.html');
+
+  compiler.outputFileSystem.readFile(filename, (err, result) => {
+    if (err) {
+      next(err);
+      return;
+    }
+
+    res.set('content-type', 'text/html');
+    res.send(result);
+    res.end();
+  });
 });
 
 app.listen(PORT, err => {
