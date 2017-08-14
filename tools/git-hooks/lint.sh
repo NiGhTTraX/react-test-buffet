@@ -6,7 +6,7 @@
 
 # Exclude .eslintrc.js as it gives a warning when linting it.
 CHANGED_JS_FILES=`git diff --cached --name-only --diff-filter=ACM \
-                  | grep -E 'jsx?$' \
+                  | grep -E '\.jsx?$' \
                   | grep -v 'eslintrc\.js'`
 
 # Bail out if there's nothing to lint.
