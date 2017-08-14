@@ -14,15 +14,25 @@ module.exports = {
     'plugin:import/errors'
   ],
 
-  'settings': {
-    'import/resolver': {
-      'webpack': {
-        'config': path.join(__dirname, 'src', 'webpack.config.dev.js')
-      }
-    }
-  },
-
   'rules': {
+    // Overwrite the airbnb one to force CallExpression arguments to be indented
+    // like the first one.
+    'indent': ['error', 2, {
+      'SwitchCase': 1,
+      'VariableDeclarator': 1,
+      'outerIIFEBody': 1,
+      'FunctionDeclaration': {
+        'parameters': 1,
+        'body': 1
+      },
+      'FunctionExpression': {
+        'parameters': 1,
+        'body': 1
+      },
+      'CallExpression': {
+        'arguments': 'first'
+      }
+    }],
     'space-before-function-paren': 0,
     'comma-dangle': [2, 'never'],
     'one-var': 0,
@@ -52,9 +62,9 @@ module.exports = {
         'propTypes',
         'mixins',
         'statics',
-        'getDefaultProps',
+        'static-methods',
         'defaultProps',
-        'getInitialState',
+        'state',
         'constructor',
         'render',
         '/^_render.+$/', // any auxiliary _render methods

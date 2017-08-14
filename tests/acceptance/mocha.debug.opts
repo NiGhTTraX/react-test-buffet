@@ -1,5 +1,4 @@
 --require babel-polyfill
 --compilers js:babel-register
 --timeout 0
---inspect
---debug-brk
+--inspect-brk=0.0.0.0:9229
