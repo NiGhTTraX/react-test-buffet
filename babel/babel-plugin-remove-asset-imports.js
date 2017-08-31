@@ -1,4 +1,4 @@
-const STATIC_ASSET = require('./static-asset.js');
+const STATIC_ASSET = /\.(less|css)$/;
 
 
 /**

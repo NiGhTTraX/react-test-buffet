@@ -1,5 +1,4 @@
 const path = require('path');
-const STATIC_ASSET = require('../../babel/static-asset.js');
 
 
 module.exports = {
@@ -21,11 +20,6 @@ module.exports = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       use: 'babel-loader'
-    }, {
-      // Don't bundle static assets.
-      test: STATIC_ASSET,
-      exclude: /node_modules/,
-      use: [path.join(__dirname, 'noop-loader.js')]
     }]
   }
 };
