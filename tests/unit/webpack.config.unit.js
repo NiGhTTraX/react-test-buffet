@@ -1,5 +1,5 @@
 const path = require('path');
-const STATIC_ASSET = require('./static-asset.js');
+const STATIC_ASSET = require('../../babel/static-asset.js');
 
 
 module.exports = {

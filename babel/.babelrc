@@ -1,0 +1,16 @@
+{
+  // This .babelrc is meant to disable babel-plugin-istanbul from instrumenting
+  // our custom plugins. Because of the way babel-register hook works, a custom
+  // plugin will also be compiled against the project's .babelrc which contains
+  // the istanbul plugin. See https://github.com/istanbuljs/nyc/issues/581 for
+  // more details.
+  // TODO: somehow extend the root .babelrc and reduce duplication. Maybe wait
+  // for .babelrc.js support?
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }]
+  ]
+}
