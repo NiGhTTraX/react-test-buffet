@@ -7,7 +7,8 @@
     "**/webpack.config.*",
     "src/index*",
     "src/app-factory.js",
-    "tests/unit/**/*.js"
+    "tests/unit/**/*.js",
+    "playground"
   ],
   "extension": [".js", ".jsx"],
   "all": true,
