@@ -8,7 +8,7 @@ module.exports = Object.assign({}, baseConfig, {
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
     path.join(__dirname, '..', 'tests', 'unit', 'helpers', 'react-warnings.js'),
-    path.join(__dirname, 'index.dev.jsx')
+    ...baseConfig.entry
   ],
 
   plugins: [
