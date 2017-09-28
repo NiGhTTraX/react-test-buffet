@@ -22,11 +22,6 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler));
 
-// TODO: remove this once we move the styles to the components themselves
-app.use('/node_modules',
-        express.static(path.join(__dirname, '..', 'node_modules'))
-);
-
 app.use('*', (req, res, next) => {
   // Make it work with the webpack HTML plugin. From
   // https://github.com/jantimon/html-webpack-plugin/issues/145#issuecomment-170554832.

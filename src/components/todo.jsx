@@ -4,8 +4,6 @@ import classnames from 'classnames';
 import './todo.less';
 
 
-// TODO: fix completed strikethrough styles
-
 export default class Todo extends Component {
   static propTypes = {
     Toggle: PropTypes.func.isRequired,
