@@ -19,17 +19,6 @@
       "plugins": [
         "react-hot-loader/babel"
       ]
-    },
-    "tests": {
-      "plugins": [
-        "./babel/babel-plugin-remove-asset-imports"
-      ]
-    },
-    "coverage": {
-      "plugins": [
-        "./babel/babel-plugin-remove-asset-imports",
-        "istanbul"
-      ]
     }
   }
 }
