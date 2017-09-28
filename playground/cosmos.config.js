@@ -1,5 +1,8 @@
 module.exports = {
   componentPaths: ['../src/components'],
+  ignore: [
+    /abstract/
+  ],
   webpackConfigPath: '../src/webpack.config.dev.js',
   fixturePaths: ['./fixtures'],
   // TODO: remove this and have every component depend on it
