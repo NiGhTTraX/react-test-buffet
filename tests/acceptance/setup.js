@@ -2,6 +2,7 @@ import { remote } from 'webdriverio';
 import Mugshot from 'mugshot';
 import WebdriverIOAdapter from 'mugshot-webdriverio';
 import path from 'path';
+import fs from 'fs';
 
 
 const { BROWSER } = process.env;
@@ -71,6 +72,19 @@ afterEach(function() {
 
   // eslint-disable-next-line consistent-return
   return checkForVisualChanges(this.test, this.currentTest.fullTitle());
+});
+
+afterEach('coverage', async function() {
+  const { value: coverage } = await browser.execute(function getCoverage() {
+    return JSON.stringify(window.__coverage__);
+  });
+
+  const name = this.currentTest.fullTitle();
+
+  fs.writeFileSync(
+    path.join(__dirname, 'results', 'coverage', `${BROWSER}_${name}.json`),
+    coverage
+  );
 });
 
 

@@ -82,9 +82,11 @@ debugging in Node with the node inspector.
 
 ![coverage](./docs/coverage.png)
 
-The unit tests automatically generate coverage reports using `Istanbul`. You can
-find them in the
-[tests/unit/results/coverage](./tests/unit/results/coverage/index.html) folder.
+The tests automatically generate coverage reports using `Istanbul`. You can find
+them in the [tests/results/coverage](./tests/results/coverage/index.html)
+folder. **Both unit tests and acceptance tests report coverage** which allows
+reaching 100% coverage for those cases where unit tests are not enough (scroll
+event handlers, browser quirks, etc.).
 
 
 # Acceptance tests
