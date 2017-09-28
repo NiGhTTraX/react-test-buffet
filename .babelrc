@@ -19,11 +19,6 @@
       "plugins": [
         "react-hot-loader/babel"
       ]
-    },
-    "tests": {
-      "plugins": [
-        "istanbul"
-      ]
     }
   }
 }
