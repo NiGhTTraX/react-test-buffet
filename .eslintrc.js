@@ -42,8 +42,11 @@ module.exports = {
     'strict': 0,
     'no-use-before-define': [2, {'functions': false}],
     'no-underscore-dangle': 0,
+
     // https://github.com/benmosher/eslint-plugin-import/issues/414
     'import/extensions': 0,
+    // Honestly, everything is a dev dependency since we're not building a lib.
+    'import/no-extraneous-dependencies': 0,
 
     'react/jsx-filename-extension': 0,
     'react/jsx-wrap-multilines': 0,

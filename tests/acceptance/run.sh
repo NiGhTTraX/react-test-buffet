@@ -9,7 +9,7 @@ set -e
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
-export NODE_ENV=tests
+export NODE_ENV=coverage
 
 docker-compose build
 

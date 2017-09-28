@@ -19,6 +19,8 @@ An all-you-can-eat buffet of React TDD
 - [Selenium](http://www.seleniumhq.org/) - Web Browser Automation
 - [Docker](https://www.docker.com/) - containerization platform
 - [Mugshot](https://github.com/uberVU/mugshot) - visual regression testing
+- [React Cosmos](https://github.com/react-cosmos/react-cosmos) - component playground
+- [Rosie](https://github.com/rosiejs/rosie) - JS objects factories
 
 
 # Running the app
@@ -129,3 +131,19 @@ version. If there are any visual changes a diff will be created highlighting
 them and the test will fail. If the changes are deliberate you should commit the
 new screenshot and rerun the tests. You can find the new screenshots and diffs
 in the [tests/acceptance/screenshots](./tests/acceptance/screenshots) folder.
+
+
+# Component playground
+
+![playground](./docs/playground.png)
+
+When developing your components it's useful to load just one of them in complete
+isolation so that you don't have to refresh the entire app to see your changes.
+It also helps you drive your CSS design in order to make components
+encapsulated. If a component doesn't look good by itself in the playground, with
+no global imports, then it means it has some implicit dependencies on global
+styles/scripts and that will make it harder to maintain.
+
+Running `npm run playground` will start a playground with hot reload which uses
+[fixtures](./playground/fixtures) to load components individually. You can use
+[factories](./tests/factories) to create random fixtures.

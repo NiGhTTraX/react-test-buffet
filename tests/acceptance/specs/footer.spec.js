@@ -15,7 +15,7 @@ describe('App', function() {
         await addTodo('buy bacon');
 
         // webdriverio will only click on the first match.
-        await browser.click('.todo .toggle');
+        await browser.click('.todo .checkbox');
       });
 
       it('should show the number of active todos', async function() {

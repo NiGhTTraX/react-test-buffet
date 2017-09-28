@@ -6,7 +6,7 @@
 
 # Exclude .eslintrc.js as it gives a warning when linting it.
 CHANGED_JS_FILES=`git diff --cached --name-only --diff-filter=ACM \
-                  | grep -E 'jsx?$' \
+                  | grep -E '\.jsx?$' \
                   | grep -v 'eslintrc\.js'`
 
 # Bail out if there's nothing to lint.
@@ -15,9 +15,10 @@ if [ $? != 0 ]; then
 fi
 
 
+# This requires npm to be installed on the host. While this project aims to
+# provide a Docker image to run the app in dev mode, some dev dependencies are
+# best installed on the host.
 # The --silent flag is to not output the entire npm ERR epilogue.
-# TODO: this requires npm to be installed on the host; either document or work
-# around it (maybe run it through docker?)
 npm run --silent lint:files -- $CHANGED_JS_FILES
 
 

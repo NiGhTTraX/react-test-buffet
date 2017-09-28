@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './add-todo.less';
 
 const ENTER = 13;
 

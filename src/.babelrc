@@ -2,7 +2,18 @@
   "extends": "../.babelrc",
 
   "env": {
-    "tests": {
+    "unit": {
+      "plugins": [
+        "../babel/babel-plugin-remove-asset-imports",
+        "istanbul"
+      ]
+    },
+    "node": {
+      "plugins": [
+        "../babel/babel-plugin-remove-asset-imports"
+      ]
+    },
+    "coverage": {
       "plugins": [
         "istanbul"
       ]

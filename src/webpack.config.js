@@ -4,7 +4,7 @@ const { HotModuleReplacementPlugin, NoEmitOnErrorsPlugin } = require('webpack');
 
 module.exports = {
   entry: [
-    path.join(__dirname, 'index.dev.jsx')
+    path.join(__dirname, 'index.jsx')
   ],
 
   output: {
@@ -25,9 +25,9 @@ module.exports = {
       exclude: /node_modules/,
       use: 'babel-loader'
     }, {
-      test: /\.css$/,
+      test: /\.less/,
       exclude: /node_modules/,
-      use: ['style-loader', 'css-loader']
+      use: ['style-loader', 'css-loader', 'less-loader']
     }]
   },
 

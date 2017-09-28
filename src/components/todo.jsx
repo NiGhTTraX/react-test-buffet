@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import './todo.less';
 
-
-// TODO: fix completed strikethrough styles
 
 export default class Todo extends Component {
   static propTypes = {
@@ -18,13 +17,11 @@ export default class Todo extends Component {
     const { Toggle, id, completed, title, onSelect } = this.props;
 
     return <div className={classnames('todo', { completed })}>
-      <div className="view">
-        <Toggle id={`todo-${id}`}
-          checked={completed}
-          onToggle={onSelect}
-        />
-        <label htmlFor={`todo-${id}`}>{title}</label>
-      </div>
+      <Toggle id={`todo-${id}`}
+        checked={completed}
+        onToggle={onSelect}
+      />
+      <label htmlFor={`todo-${id}`}>{title}</label>
     </div>;
   }
 }

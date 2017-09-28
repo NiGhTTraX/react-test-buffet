@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  * The derived class should render the actual representation of the component,
  * including the toggle state.
  */
-export default class Toggleable extends Component {
+export default class AbstractToggleable extends Component {
   static propTypes = {
     checked: PropTypes.bool,
     onToggle: PropTypes.func.isRequired

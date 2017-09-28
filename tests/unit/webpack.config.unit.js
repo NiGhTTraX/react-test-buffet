@@ -20,11 +20,6 @@ module.exports = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       use: 'babel-loader'
-    }, {
-      // Don't bundle static assets.
-      test: /\.css$/,
-      exclude: /node_modules/,
-      use: [path.join(__dirname, 'noop-loader.js')]
     }]
   }
 };
