@@ -12,6 +12,7 @@ services:
       - '3000'
     volumes:
       - ./screenshots:/usr/src/app/tests/acceptance/screenshots
+      - ./results/coverage:/usr/src/app/tests/acceptance/results/coverage
 
   selenium:
     image: selenium/hub:3.4.0-chromium

@@ -19,9 +19,9 @@
   ],
 
   "reporter": ["html"],
-  "report-dir": "tests/unit/results/coverage",
+  "report-dir": "tests/results/coverage",
 
   "lines": 100,
   "branches": 100,
-  "check-coverage": true
+  "check-coverage": false
 }
