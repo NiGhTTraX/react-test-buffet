@@ -9,6 +9,8 @@ set -e
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
+export NODE_ENV=tests
+
 docker-compose build
 
 # If we don't create these here, docker-compose will and they will be owned by

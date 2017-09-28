@@ -4,3 +4,5 @@ services:
   app:
     build: ./
     command: npm run _start
+    environment:
+      - NODE_ENV
