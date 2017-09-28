@@ -23,5 +23,5 @@
 
   "lines": 100,
   "branches": 100,
-  "check-coverage": true
+  "check-coverage": false
 }

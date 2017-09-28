@@ -25,7 +25,7 @@
   "author": "Andrei Picus",
   "license": "MIT",
   "scripts": {
-    "test": "npm run test:unit --silent && npm run test:acceptance --silent",
+    "test": "./tests/run.sh",
     "test:unit": "NODE_ENV=tests nyc npm run _mocha",
     "test:unit:watch": "npm run _mocha -- --compilers js:babel-register --watch --watch-extensions js,jsx --reporter min",
     "_mocha": "mocha tests/unit/helpers/index.node.js 'tests/unit/**/*.spec.js'",
