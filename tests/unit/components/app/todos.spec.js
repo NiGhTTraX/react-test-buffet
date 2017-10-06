@@ -8,7 +8,7 @@ describe('App', function() {
     beforeEach(function() {
       render(<App />);
 
-      const addTodo = AddTodo.lastProps.addTodo;
+      const { addTodo } = AddTodo.lastProps;
 
       addTodo({ title: 'buy milk' });
       addTodo({ title: 'buy eggs' });

@@ -42,7 +42,10 @@ module.exports = {
     'strict': 0,
     'no-use-before-define': [2, {'functions': false}],
     'no-underscore-dangle': 0,
-    // https://github.com/benmosher/eslint-plugin-import/issues/414
+    'function-paren-newline': [2, 'consistent'],
+    'object-curly-newline': [2, {'consistent': true }],
+
+    // TODO: https://github.com/benmosher/eslint-plugin-import/issues/414
     'import/extensions': 0,
 
     'react/jsx-filename-extension': 0,
@@ -51,8 +54,10 @@ module.exports = {
     'react/jsx-first-prop-new-line': 0,
     'react/jsx-max-props-per-line': [2, { when: 'multiline', maximum: 3 }],
     'react/jsx-no-bind': 0,
-    // https://github.com/yannickcr/eslint-plugin-react/issues/1176
+    // TODO: https://github.com/yannickcr/eslint-plugin-react/issues/1176
     'react/jsx-indent': 0,
+    // TODO: https://github.com/yannickcr/eslint-plugin-react/issues/1466
+    'react/jsx-closing-tag-location': 0,
     'react/sort-comp': [2, {
       order: [
         'displayName',

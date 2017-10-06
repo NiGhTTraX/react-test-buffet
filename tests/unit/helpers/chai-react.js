@@ -4,7 +4,7 @@ import { inspect } from 'util';
 
 
 export default chai => {
-  const Assertion = chai.Assertion;
+  const { Assertion } = chai;
 
   /**
    * @example
@@ -30,7 +30,8 @@ export default chai => {
    * expect(ComponentClass).to.have.been.renderedWith({foo: 'bar'});
    */
   Assertion.addMethod('renderedWith', function expectComponentRenderedWith(
-    expectedProps) {
+    expectedProps
+  ) {
     const ComponentClass = this._obj;
 
     function constructMessage({ not }) {

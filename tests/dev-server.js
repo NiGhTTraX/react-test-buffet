@@ -23,8 +23,9 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 // TODO: remove this once we move the styles to the components themselves
-app.use('/node_modules',
-        express.static(path.join(__dirname, '..', 'node_modules'))
+app.use(
+  '/node_modules',
+  express.static(path.join(__dirname, '..', 'node_modules'))
 );
 
 app.get('/', (req, res) => {

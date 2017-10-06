@@ -19,7 +19,8 @@ export default class TodoFilter extends Component {
 
     // TODO: use <button> and style it accordingly; <a> is used for now because
     // of the TodoMVC CSS package
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     return <a onClick={onSelect} className={classnames({ selected })}>
       {name}
     </a>;

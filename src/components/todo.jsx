@@ -17,6 +17,8 @@ export default class Todo extends Component {
   render() {
     const { Toggle, id, completed, title, onSelect } = this.props;
 
+    // TODO: wrap Toggle in the label and fix the styles
+    /* eslint-disable jsx-a11y/label-has-for */
     return <div className={classnames('todo', { completed })}>
       <div className="view">
         <Toggle id={`todo-${id}`}
