@@ -1,4 +1,4 @@
 --require babel-polyfill
---compilers js:babel-register
+--require babel-register
 --timeout 0
 --inspect-brk=0.0.0.0:9229
