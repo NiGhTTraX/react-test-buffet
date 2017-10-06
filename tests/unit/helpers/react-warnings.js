@@ -6,7 +6,7 @@
 const REACT_WARNING_PATTERN = /^Warning:/;
 
 
-const error = console.error;
+const { error } = console;
 
 console.error = (msg, ...args) => {
   if (REACT_WARNING_PATTERN.test(msg)) {

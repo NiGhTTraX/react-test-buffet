@@ -21,11 +21,9 @@ export default class List extends Component {
     const { className, Item, items, onSelect } = this.props;
 
     return <ul className={className}>
-      {items.map(item =>
-        <li key={item.id}>
-          <Item {...item} onSelect={() => { onSelect({ id: item.id }); }} />
-        </li>
-      )}
+      {items.map(item => <li key={item.id}>
+        <Item {...item} onSelect={() => { onSelect({ id: item.id }); }} />
+      </li>)}
     </ul>;
   }
 }
