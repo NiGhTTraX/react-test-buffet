@@ -76,7 +76,7 @@
     "mugshot": "~0.3.2",
     "mugshot-looks-same": "~1.0.0",
     "mugshot-webdriverio": "~1.0.0",
-    "nyc": "~11.2.1",
+    "nyc": "~11.3.0",
     "react-hot-loader": "~3.0.0-beta.6",
     "sinon": "~4.0.0",
     "sinon-chai": "~2.14.0",
