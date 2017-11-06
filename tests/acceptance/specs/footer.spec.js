@@ -27,6 +27,15 @@ describe('App', function() {
 
         expect((await browser.elements('.todo')).value).to.have.length(1);
       });
+
+      it('should filter the active todos', async function() {
+        await browser.click('=Active');
+
+        expect((await browser.getText('.todo'))).to.deep.equal([
+          'buy chorizo',
+          'buy bacon'
+        ]);
+      });
     });
   });
 });
