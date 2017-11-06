@@ -8,6 +8,7 @@ import App from './app-factory.js';
 ReactDOM.render(<AppContainer><App /></AppContainer>,
                 document.getElementById('root'));
 
+/* istanbul ignore next */
 module.hot.accept('./app-factory.js', () => {
   // eslint-disable-next-line global-require
   const NextApp = require('./app-factory.js').default;
