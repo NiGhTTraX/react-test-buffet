@@ -4,7 +4,7 @@ import { addTodo } from './common.js';
 
 describe('App', function() {
   describe('footer', function() {
-    it('should should not be shown when there are no todos', async function() {
+    it('should not be shown when there are no todos', async function() {
       expect(await browser.isExisting('.footer')).to.be.false;
     });
 
@@ -22,7 +22,7 @@ describe('App', function() {
         expect(await browser.getText('.todo-count')).to.contain('2');
       });
 
-      it('should show the number of completed todos', async function() {
+      it('should filter the completed todos', async function() {
         await browser.click('=Completed');
 
         expect((await browser.elements('.todo')).value).to.have.length(1);
