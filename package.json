@@ -45,7 +45,7 @@
     "classnames": "~2.2.5",
     "prop-types": "~15.6.0",
     "react": "~16.0.0",
-    "react-dom": "~16.0.0",
+    "react-dom": "~16.2.0",
     "todomvc-app-css": "~2.1.0"
   },
   "devDependencies": {
