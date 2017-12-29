@@ -72,7 +72,7 @@
     "jsdom": "~11.5.1",
     "lodash.isequal": "~4.5.0",
     "lodash.merge": "~4.6.0",
-    "mocha": "~4.0.1",
+    "mocha": "~4.1.0",
     "mugshot": "~0.3.2",
     "mugshot-looks-same": "~1.0.0",
     "mugshot-webdriverio": "~1.0.0",
