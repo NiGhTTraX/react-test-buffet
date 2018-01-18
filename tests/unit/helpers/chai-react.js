@@ -120,7 +120,7 @@ export function createSpy({ name = 'Spy', Mock = Component } = {}) {
     }
 
     static reset() {
-      _renderSpy.reset();
+      _renderSpy.resetHistory();
     }
 
     render() {
