@@ -1,6 +1,0 @@
-# vim: syntax=sh:
-#!/bin/sh
-
-set -e
-
-./tools/git-hooks/lint.sh

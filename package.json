@@ -34,12 +34,14 @@
     "test:acceptance:debug": "./tests/acceptance/debug.sh",
     "_test:acceptance": "mocha --opts tests/acceptance/mocha.opts tests/acceptance/setup.js --recursive tests/acceptance/specs",
     "_test:acceptance:debug": "mocha --opts tests/acceptance/mocha.debug.opts --file tests/acceptance/setup.js --recursive tests/acceptance/specs",
-    "lint": "npm run lint:files -- .",
-    "lint:files": "eslint --ext js --ext jsx",
-    "postinstall": "./tools/install-git-hooks.sh",
+    "lint": "eslint --ext js --ext jsx .",
+    "precommit": "lint-staged",
     "start": "./start.sh",
     "_start": "node tests/dev-server.js",
     "stop": "docker-compose down"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": "eslint"
   },
   "dependencies": {
     "classnames": "~2.2.5",
@@ -68,8 +70,10 @@
     "eslint-plugin-jsx-a11y": "~6.0.2",
     "eslint-plugin-react": "~7.5.1",
     "express": "~4.14.0",
+    "husky": "~0.14.3",
     "jquery": "~3.2.0",
     "jsdom": "~11.5.1",
+    "lint-staged": "~6.0.0",
     "lodash.isequal": "~4.5.0",
     "lodash.merge": "~4.6.0",
     "mocha": "~5.0.0",
