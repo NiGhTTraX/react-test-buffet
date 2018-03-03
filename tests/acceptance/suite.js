@@ -40,9 +40,9 @@ export function describe(name, definition) {
 
   runnerDescribe(name, function() {
     // We only want to set up hooks once - for the root suite.
-    suiteNesting === 1 && setupHooks.call(this);
+    suiteNesting === 1 && setupHooks();
 
-    definition.call(this);
+    definition();
   });
 
   suiteNesting--;
@@ -60,7 +60,7 @@ export function beforeEach(name, definition) {
   }
 
   runnerBeforeEach(name, function() {
-    return definition.call(this, rootSuiteBrowser);
+    return definition(rootSuiteBrowser);
   });
 }
 
@@ -70,7 +70,7 @@ export function beforeEach(name, definition) {
  */
 export function it(name, definition) {
   runnerIt(name, function() {
-    return definition.call(this, rootSuiteBrowser);
+    return definition(rootSuiteBrowser);
   });
 }
 
