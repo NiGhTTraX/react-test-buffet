@@ -1,13 +1,13 @@
 import React from 'react';
 import { match } from 'sinon';
-import { render } from '../../helpers/rendering.js';
+import { $render } from '../../helpers/rendering.js';
 import App, { AddTodo, TodoList } from './setup.js';
 
 
 describe('App', function() {
   describe('adding new todos', function() {
     beforeEach(function() {
-      render(<App />);
+      $render(<App />);
     });
 
     it('should render the add new todo field', function() {

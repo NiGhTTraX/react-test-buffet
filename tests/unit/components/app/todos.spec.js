@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from '../../helpers/rendering.js';
+import { $render } from '../../helpers/rendering.js';
 import App, { AddTodo, TodoList } from './setup.js';
 
 
 describe('App', function() {
   describe('todos', function() {
     beforeEach(function() {
-      render(<App />);
+      $render(<App />);
 
       const { addTodo } = AddTodo.lastProps;
 
