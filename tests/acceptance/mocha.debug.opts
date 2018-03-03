@@ -1,4 +1,6 @@
 --require babel-polyfill
 --require babel-register
+--file tests/acceptance/setup.js
+--recursive
 --timeout 0
 --inspect-brk=0.0.0.0:9229
