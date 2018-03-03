@@ -16,7 +16,11 @@ import {
 const { BROWSER = 'chrome', SELENIUM_HOST = 'selenium' } = process.env;
 
 let suiteNesting = 0;
-let browser, mugshot;
+
+// These will hold root suite level instances. Since most, if not all test
+// runners run tests inside of a suite sequentially and since we only set
+// up the browser once per root test suite, these should be "thread safe".
+let rootSuiteBrowser, rootSuiteMugshot;
 
 /**
  * Run your acceptance tests in a fresh Selenium session.
@@ -56,7 +60,7 @@ export function beforeEach(name, definition) {
   }
 
   runnerBeforeEach(name, function() {
-    return definition.call(this, browser);
+    return definition.call(this, rootSuiteBrowser);
   });
 }
 
@@ -66,14 +70,14 @@ export function beforeEach(name, definition) {
  */
 export function it(name, definition) {
   runnerIt(name, function() {
-    return definition.call(this, browser);
+    return definition.call(this, rootSuiteBrowser);
   });
 }
 
 async function checkForVisualChanges(test, name, selector = '.todoapp') {
   return new Promise(resolve => {
     try {
-      mugshot.test({ name, selector }, (err, result) => {
+      rootSuiteMugshot.test({ name, selector }, (err, result) => {
         if (err) {
           test.error(err);
           resolve();
@@ -104,26 +108,26 @@ function setupHooks() {
       desiredCapabilities: { browserName: BROWSER }
     };
 
-    browser = remote(options).init();
+    rootSuiteBrowser = remote(options).init();
 
-    const adapter = new WebdriverIOAdapter(browser);
+    const adapter = new WebdriverIOAdapter(rootSuiteBrowser);
 
-    mugshot = new Mugshot(adapter, {
+    rootSuiteMugshot = new Mugshot(adapter, {
       rootDirectory: path.join(__dirname, 'screenshots', BROWSER),
       acceptFirstBaseline: false
     });
 
-    return browser;
+    return rootSuiteBrowser;
   });
 
   runnerAfter('End session', function () {
-    return browser.end();
+    return rootSuiteBrowser.end();
   });
 
   runnerBeforeEach('Wait for app to render', function() {
-    return browser.url('http://app:3000/')
+    return rootSuiteBrowser.url('http://app:3000/')
     // Wait for webpack to build the app.
-      .then(() => browser.waitForVisible('.todoapp', 5 * 1000));
+      .then(() => rootSuiteBrowser.waitForVisible('.todoapp', 5 * 1000));
   });
 
   runnerAfterEach('Take screenshot', function () {
@@ -141,7 +145,7 @@ function setupHooks() {
   });
 
   process.env.NODE_ENV === 'tests' && runnerAfterEach('Collect coverage', async function () {
-    const { value: coverage } = await browser.execute(function getCoverage() {
+    const { value: coverage } = await rootSuiteBrowser.execute(function getCoverage() {
       return JSON.stringify(window.__coverage__);
     });
 
