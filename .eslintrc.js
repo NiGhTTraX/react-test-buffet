@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   'root': true,
 
@@ -44,6 +42,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'function-paren-newline': [2, 'consistent'],
     'object-curly-newline': [2, {'consistent': true }],
+    'no-plusplus': 0,
 
     // TODO: https://github.com/benmosher/eslint-plugin-import/issues/414
     'import/extensions': 0,
@@ -90,4 +89,4 @@ module.exports = {
     // behaviour.
     'jsx-a11y/no-autofocus': 0
   }
-}
+};
