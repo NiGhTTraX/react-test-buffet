@@ -4,6 +4,6 @@
 /**
  * @param {String} todo
  */
-export async function addTodo(todo) {
+export async function addTodo(todo, browser) {
   await browser.setValue('.new-todo', [todo, 'Enter']);
 }

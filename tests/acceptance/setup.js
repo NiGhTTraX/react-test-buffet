@@ -23,7 +23,7 @@ before('Connecting to Selenium', function() {
     acceptFirstBaseline: false
   });
 
-  global.browser = client;
+  this.browser = client;
 
   return client;
 });
@@ -54,9 +54,9 @@ async function checkForVisualChanges(test, name, selector = '.todoapp') {
 }
 
 beforeEach('Waiting for app to render', function() {
-  return global.browser.url('http://app:3000/')
+  return this.browser.url('http://app:3000/')
     // Wait for webpack to build the app.
-    .then(() => global.browser.waitForVisible('.todoapp', 5 * 1000));
+    .then(() => this.browser.waitForVisible('.todoapp', 5 * 1000));
 });
 
 afterEach(function() {
@@ -75,7 +75,7 @@ afterEach(function() {
 
 if (process.env.NODE_ENV === 'tests') {
   afterEach('coverage', async function() {
-    const { value: coverage } = await browser.execute(function getCoverage() {
+    const { value: coverage } = await this.browser.execute(function getCoverage() {
       return JSON.stringify(window.__coverage__);
     });
 
@@ -89,5 +89,5 @@ if (process.env.NODE_ENV === 'tests') {
 }
 
 after(function() {
-  return global.browser.end();
+  return this.browser.end();
 });

@@ -5,25 +5,25 @@ import { addTodo } from './common.js';
 
 acceptanceSuite('App', function() {
   beforeEach(async function() {
-    await addTodo('buy cheddar');
-    await addTodo('buy chorizo');
-    await addTodo('buy bacon');
+    await addTodo('buy cheddar', this.browser);
+    await addTodo('buy chorizo', this.browser);
+    await addTodo('buy bacon', this.browser);
   });
 
   acceptanceSuite('todos', function() {
     it('should not be marked as completed after being added', async function() {
-      expect(await allTodosChecked()).to.be.false;
+      expect(await allTodosChecked(this.browser)).to.be.false;
     });
 
     it('should be marked as completed when checking them', async function() {
-      (await browser.elements('.todo .toggle')).value.forEach(
-        async toggle => browser.elementIdClick(toggle.ELEMENT)
+      (await this.browser.elements('.todo .toggle')).value.forEach(
+        async toggle => this.browser.elementIdClick(toggle.ELEMENT)
       );
 
-      expect(await allTodosChecked()).to.be.true;
+      expect(await allTodosChecked(this.browser)).to.be.true;
     });
 
-    async function allTodosChecked() {
+    async function allTodosChecked(browser) {
       const states = await browser.getAttribute('.todo .toggle', 'checked');
 
       expect(states).to.have.length(3);

@@ -6,33 +6,33 @@ import { addTodo } from './common.js';
 acceptanceSuite('App', function() {
   acceptanceSuite('footer', function() {
     it('should not be shown when there are no todos', async function() {
-      expect(await browser.isExisting('.footer')).to.be.false;
+      expect(await this.browser.isExisting('.footer')).to.be.false;
     });
 
     acceptanceSuite('with todos', function() {
       beforeEach(async function() {
-        await addTodo('buy cheddar');
-        await addTodo('buy chorizo');
-        await addTodo('buy bacon');
+        await addTodo('buy cheddar', this.browser);
+        await addTodo('buy chorizo', this.browser);
+        await addTodo('buy bacon', this.browser);
 
         // webdriverio will only click on the first match.
-        await browser.click('.todo .toggle');
+        await this.browser.click('.todo .toggle');
       });
 
       it('should show the number of active todos', async function() {
-        expect(await browser.getText('.todo-count')).to.contain('2');
+        expect(await this.browser.getText('.todo-count')).to.contain('2');
       });
 
       it('should filter the completed todos', async function() {
-        await browser.click('=Completed');
+        await this.browser.click('=Completed');
 
-        expect((await browser.elements('.todo')).value).to.have.length(1);
+        expect((await this.browser.elements('.todo')).value).to.have.length(1);
       });
 
       it('should filter the active todos', async function() {
-        await browser.click('=Active');
+        await this.browser.click('=Active');
 
-        expect((await browser.getText('.todo'))).to.deep.equal([
+        expect((await this.browser.getText('.todo'))).to.deep.equal([
           'buy chorizo',
           'buy bacon'
         ]);
