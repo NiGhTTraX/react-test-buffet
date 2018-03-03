@@ -4,23 +4,23 @@ import { addTodo } from './common.js';
 
 
 describe('App', function() {
-  beforeEach(async function() {
-    await addTodo('buy cheddar', this.browser);
-    await addTodo('buy chorizo', this.browser);
-    await addTodo('buy bacon', this.browser);
+  beforeEach(async function(browser) {
+    await addTodo('buy cheddar', browser);
+    await addTodo('buy chorizo', browser);
+    await addTodo('buy bacon', browser);
   });
 
   describe('todos', function() {
-    it('should not be marked as completed after being added', async function() {
-      expect(await allTodosChecked(this.browser)).to.be.false;
+    it('should not be marked as completed after being added', async function(browser) {
+      expect(await allTodosChecked(browser)).to.be.false;
     });
 
-    it('should be marked as completed when checking them', async function() {
-      (await this.browser.elements('.todo .toggle')).value.forEach(
-        async toggle => this.browser.elementIdClick(toggle.ELEMENT)
+    it('should be marked as completed when checking them', async function(browser) {
+      (await browser.elements('.todo .toggle')).value.forEach(
+        async toggle => browser.elementIdClick(toggle.ELEMENT)
       );
 
-      expect(await allTodosChecked(this.browser)).to.be.true;
+      expect(await allTodosChecked(browser)).to.be.true;
     });
 
     async function allTodosChecked(browser) {

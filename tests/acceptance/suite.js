@@ -4,12 +4,19 @@ import Mugshot from 'mugshot';
 import WebdriverIOAdapter from 'mugshot-webdriverio';
 import path from 'path';
 import fs from 'fs';
-import { after, before, beforeEach, afterEach, it, suite } from './test-runner.js';
+import {
+  runnerAfter,
+  runnerBefore,
+  runnerBeforeEach,
+  runnerAfterEach,
+  runnerIt,
+  runnerDescribe
+} from './test-runner.js';
 
 const { BROWSER = 'chrome', SELENIUM_HOST = 'selenium' } = process.env;
 
 let suiteNesting = 0;
-let mugshot;
+let browser, mugshot;
 
 /**
  * Run your acceptance tests in a fresh Selenium session.
@@ -27,7 +34,7 @@ let mugshot;
 export function describe(name, definition) {
   suiteNesting++;
 
-  suite(name, function() {
+  runnerDescribe(name, function() {
     // We only want to set up hooks once - for the root suite.
     suiteNesting === 1 && setupHooks.call(this);
 
@@ -37,7 +44,31 @@ export function describe(name, definition) {
   suiteNesting--;
 }
 
-export { beforeEach, it };
+/**
+ * @param {String} [name]
+ * @param {Function} definition
+ */
+export function beforeEach(name, definition) {
+  /* eslint-disable no-param-reassign */
+  if (!definition) {
+    definition = name;
+    name = undefined;
+  }
+
+  runnerBeforeEach(name, function() {
+    return definition.call(this, browser);
+  });
+}
+
+/**
+ * @param {String} name
+ * @param {Function} definition
+ */
+export function it(name, definition) {
+  runnerIt(name, function() {
+    return definition.call(this, browser);
+  });
+}
 
 async function checkForVisualChanges(test, name, selector = '.todoapp') {
   return new Promise(resolve => {
@@ -65,7 +96,7 @@ async function checkForVisualChanges(test, name, selector = '.todoapp') {
 }
 
 function setupHooks() {
-  before('Connect to Selenium', function () {
+  runnerBefore('Connect to Selenium', function () {
     this.timeout(10 * 1000);
 
     const options = {
@@ -73,30 +104,29 @@ function setupHooks() {
       desiredCapabilities: { browserName: BROWSER }
     };
 
-    const client = remote(options).init();
-    const adapter = new WebdriverIOAdapter(client);
+    browser = remote(options).init();
+
+    const adapter = new WebdriverIOAdapter(browser);
 
     mugshot = new Mugshot(adapter, {
       rootDirectory: path.join(__dirname, 'screenshots', BROWSER),
       acceptFirstBaseline: false
     });
 
-    this.browser = client;
-
-    return client;
+    return browser;
   });
 
-  after('End session', function () {
-    return this.browser.end();
+  runnerAfter('End session', function () {
+    return browser.end();
   });
 
-  beforeEach('Wait for app to render', function () {
-    return this.browser.url('http://app:3000/')
+  runnerBeforeEach('Wait for app to render', function() {
+    return browser.url('http://app:3000/')
     // Wait for webpack to build the app.
-      .then(() => this.browser.waitForVisible('.todoapp', 5 * 1000));
+      .then(() => browser.waitForVisible('.todoapp', 5 * 1000));
   });
 
-  afterEach('Take screenshot', function () {
+  runnerAfterEach('Take screenshot', function () {
     // Screenshots failing will make debugging noisier than it needs to be.
     if (process.env.DEBUG) {
       return;
@@ -110,8 +140,8 @@ function setupHooks() {
     return checkForVisualChanges(this.test, this.currentTest.fullTitle());
   });
 
-  process.env.NODE_ENV === 'tests' && afterEach('Collect coverage', async function () {
-    const { value: coverage } = await this.browser.execute(function getCoverage() {
+  process.env.NODE_ENV === 'tests' && runnerAfterEach('Collect coverage', async function () {
+    const { value: coverage } = await browser.execute(function getCoverage() {
       return JSON.stringify(window.__coverage__);
     });
 
