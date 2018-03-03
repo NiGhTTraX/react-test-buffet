@@ -34,6 +34,7 @@
     "test:acceptance:debug": "./tests/acceptance/debug.sh",
     "_test:acceptance": "mocha --opts tests/acceptance/mocha.opts tests/acceptance/specs",
     "_test:acceptance:debug": "mocha --opts tests/acceptance/mocha.debug.opts tests/acceptance/specs",
+    "_test:acceptance:selenium": "./tests/acceptance/selenium.sh",
     "lint": "eslint --ext js --ext jsx .",
     "precommit": "lint-staged",
     "start": "./start.sh",

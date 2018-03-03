@@ -11,15 +11,10 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 export NODE_ENV=tests
 
-docker-compose build
+./selenium.sh
 
-# If we don't create these here, docker-compose will and they will be owned by
-# root.
-mkdir -p screenshots/chrome screenshots/firefox
-
-docker-compose up -d selenium
-
-./wait-for-nodes.sh 2
+rm -rf ./acceptance/results/coverage
+mkdir -p ./acceptance/results/coverage
 
 # compose up exits with 0 no matter what.
 docker-compose up acceptance_chrome acceptance_firefox

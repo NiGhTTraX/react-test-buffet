@@ -4,9 +4,6 @@ set -e
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
-rm -rf ./acceptance/results/coverage
-mkdir -p ./acceptance/results/coverage
-
 npm run test:unit --silent
 npm run test:acceptance --silent
 
