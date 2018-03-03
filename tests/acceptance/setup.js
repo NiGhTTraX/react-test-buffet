@@ -4,15 +4,14 @@ import WebdriverIOAdapter from 'mugshot-webdriverio';
 import path from 'path';
 import fs from 'fs';
 
-
-const { BROWSER } = process.env;
+const { BROWSER = 'chrome', SELENIUM_HOST = 'selenium' } = process.env;
 let mugshot;
 
 before('Connecting to Selenium', function() {
   this.timeout(10 * 1000);
 
   const options = {
-    host: 'selenium',
+    host: SELENIUM_HOST,
     desiredCapabilities: { browserName: BROWSER }
   };
 
