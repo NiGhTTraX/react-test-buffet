@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { acceptanceSuite } from '../suite.js';
+import { acceptanceSuite, it } from '../suite.js';
 import { addTodo } from './common.js';
 
 

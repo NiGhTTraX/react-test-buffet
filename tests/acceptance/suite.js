@@ -6,7 +6,21 @@ import path from 'path';
 import fs from 'fs';
 
 const { BROWSER = 'chrome', SELENIUM_HOST = 'selenium' } = process.env;
+
+/* global describe, beforeEach, afterEach, before, after, it */
 const mochaDescribe = describe;
+const mochaBeforeEach = beforeEach;
+const mochaAfterEach = afterEach;
+const mochaBefore = before;
+const mochaAfter = after;
+const mochaIt = it;
+delete global.describe;
+delete global.beforeEach;
+delete global.afterEach;
+delete global.before;
+delete global.afer;
+delete global.it;
+
 let suiteNesting = 0;
 let mugshot;
 
@@ -36,6 +50,8 @@ export function acceptanceSuite(name, definition) {
   suiteNesting--;
 }
 
+export { mochaBeforeEach as beforeEach, mochaIt as it };
+
 async function checkForVisualChanges(test, name, selector = '.todoapp') {
   return new Promise(resolve => {
     try {
@@ -62,7 +78,7 @@ async function checkForVisualChanges(test, name, selector = '.todoapp') {
 }
 
 function setupHooks() {
-  before('Connect to Selenium', function () {
+  mochaBefore('Connect to Selenium', function () {
     this.timeout(10 * 1000);
 
     const options = {
@@ -83,17 +99,17 @@ function setupHooks() {
     return client;
   });
 
-  after('End session', function () {
+  mochaAfter('End session', function () {
     return this.browser.end();
   });
 
-  beforeEach('Wait for app to render', function () {
+  mochaBeforeEach('Wait for app to render', function () {
     return this.browser.url('http://app:3000/')
     // Wait for webpack to build the app.
       .then(() => this.browser.waitForVisible('.todoapp', 5 * 1000));
   });
 
-  afterEach('Take screenshot', function () {
+  mochaAfterEach('Take screenshot', function () {
     // Screenshots failing will make debugging noisier than it needs to be.
     if (process.env.DEBUG) {
       return;
