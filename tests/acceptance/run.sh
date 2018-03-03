@@ -13,9 +13,6 @@ export NODE_ENV=tests
 
 ./selenium.sh
 
-rm -rf ./acceptance/results/coverage
-mkdir -p ./acceptance/results/coverage
-
 # compose up exits with 0 no matter what.
 docker-compose up acceptance_chrome acceptance_firefox
 

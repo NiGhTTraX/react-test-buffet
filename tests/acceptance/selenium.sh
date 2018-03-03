@@ -10,6 +10,9 @@ export NODE_ENV=tests
 # root.
 mkdir -p screenshots/chrome screenshots/firefox
 
+rm -rf ./acceptance/results
+mkdir -p ./acceptance/results/coverage
+
 docker-compose build
 docker-compose up -d selenium
 

@@ -73,19 +73,20 @@ afterEach(function() {
   return checkForVisualChanges(this.test, this.currentTest.fullTitle());
 });
 
-afterEach('coverage', async function() {
-  const { value: coverage } = await browser.execute(function getCoverage() {
-    return JSON.stringify(window.__coverage__);
+if (process.env.NODE_ENV === 'tests') {
+  afterEach('coverage', async function() {
+    const { value: coverage } = await browser.execute(function getCoverage() {
+      return JSON.stringify(window.__coverage__);
+    });
+
+    const name = this.currentTest.fullTitle();
+
+    fs.writeFileSync(
+      path.join(__dirname, 'results', 'coverage', `${BROWSER}_${name}.json`),
+      coverage
+    );
   });
-
-  const name = this.currentTest.fullTitle();
-
-  fs.writeFileSync(
-    path.join(__dirname, 'results', 'coverage', `${BROWSER}_${name}.json`),
-    coverage
-  );
-});
-
+}
 
 after(function() {
   return global.browser.end();
