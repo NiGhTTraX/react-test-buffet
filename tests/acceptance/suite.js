@@ -4,22 +4,9 @@ import Mugshot from 'mugshot';
 import WebdriverIOAdapter from 'mugshot-webdriverio';
 import path from 'path';
 import fs from 'fs';
+import { after, before, beforeEach, afterEach, it, suite } from './test-runner.js';
 
 const { BROWSER = 'chrome', SELENIUM_HOST = 'selenium' } = process.env;
-
-/* global describe, beforeEach, afterEach, before, after, it */
-const mochaDescribe = describe;
-const mochaBeforeEach = beforeEach;
-const mochaAfterEach = afterEach;
-const mochaBefore = before;
-const mochaAfter = after;
-const mochaIt = it;
-delete global.describe;
-delete global.beforeEach;
-delete global.afterEach;
-delete global.before;
-delete global.afer;
-delete global.it;
 
 let suiteNesting = 0;
 let mugshot;
@@ -37,10 +24,10 @@ let mugshot;
  * @typedef SuiteContext
  * @property {WebdriverIO} browser
  */
-export function acceptanceSuite(name, definition) {
+export function describe(name, definition) {
   suiteNesting++;
 
-  mochaDescribe(name, function() {
+  suite(name, function() {
     // We only want to set up hooks once - for the root suite.
     suiteNesting === 1 && setupHooks.call(this);
 
@@ -50,7 +37,7 @@ export function acceptanceSuite(name, definition) {
   suiteNesting--;
 }
 
-export { mochaBeforeEach as beforeEach, mochaIt as it };
+export { beforeEach, it };
 
 async function checkForVisualChanges(test, name, selector = '.todoapp') {
   return new Promise(resolve => {
@@ -78,7 +65,7 @@ async function checkForVisualChanges(test, name, selector = '.todoapp') {
 }
 
 function setupHooks() {
-  mochaBefore('Connect to Selenium', function () {
+  before('Connect to Selenium', function () {
     this.timeout(10 * 1000);
 
     const options = {
@@ -99,17 +86,17 @@ function setupHooks() {
     return client;
   });
 
-  mochaAfter('End session', function () {
+  after('End session', function () {
     return this.browser.end();
   });
 
-  mochaBeforeEach('Wait for app to render', function () {
+  beforeEach('Wait for app to render', function () {
     return this.browser.url('http://app:3000/')
     // Wait for webpack to build the app.
       .then(() => this.browser.waitForVisible('.todoapp', 5 * 1000));
   });
 
-  mochaAfterEach('Take screenshot', function () {
+  afterEach('Take screenshot', function () {
     // Screenshots failing will make debugging noisier than it needs to be.
     if (process.env.DEBUG) {
       return;

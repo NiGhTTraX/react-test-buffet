@@ -1,16 +1,16 @@
 import { expect } from 'chai';
-import { acceptanceSuite, beforeEach, it } from '../suite.js';
+import { describe, beforeEach, it } from '../suite.js';
 import { addTodo } from './common.js';
 
 
-acceptanceSuite('App', function() {
+describe('App', function() {
   beforeEach(async function() {
     await addTodo('buy cheddar', this.browser);
     await addTodo('buy chorizo', this.browser);
     await addTodo('buy bacon', this.browser);
   });
 
-  acceptanceSuite('todos', function() {
+  describe('todos', function() {
     it('should not be marked as completed after being added', async function() {
       expect(await allTodosChecked(this.browser)).to.be.false;
     });
