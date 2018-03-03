@@ -1,14 +1,15 @@
 import { expect } from 'chai';
+import { acceptanceSuite } from '../suite.js';
 import { addTodo } from './common.js';
 
 
-describe('App', function() {
-  describe('footer', function() {
+acceptanceSuite('App', function() {
+  acceptanceSuite('footer', function() {
     it('should not be shown when there are no todos', async function() {
       expect(await browser.isExisting('.footer')).to.be.false;
     });
 
-    describe('with todos', function() {
+    acceptanceSuite('with todos', function() {
       beforeEach(async function() {
         await addTodo('buy cheddar');
         await addTodo('buy chorizo');

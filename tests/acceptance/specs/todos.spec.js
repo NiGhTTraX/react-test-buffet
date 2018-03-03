@@ -1,15 +1,16 @@
 import { expect } from 'chai';
+import { acceptanceSuite } from '../suite.js';
 import { addTodo } from './common.js';
 
 
-describe('App', function() {
+acceptanceSuite('App', function() {
   beforeEach(async function() {
     await addTodo('buy cheddar');
     await addTodo('buy chorizo');
     await addTodo('buy bacon');
   });
 
-  describe('todos', function() {
+  acceptanceSuite('todos', function() {
     it('should not be marked as completed after being added', async function() {
       expect(await allTodosChecked()).to.be.false;
     });
