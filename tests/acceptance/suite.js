@@ -4,6 +4,7 @@ import Mugshot from 'mugshot';
 import WebdriverIOAdapter from 'mugshot-webdriverio';
 import path from 'path';
 import fs from 'fs';
+import { expect } from 'chai';
 import {
   runnerAfter,
   runnerBefore,
@@ -70,32 +71,30 @@ export function beforeEach(name, definition) {
  */
 export function it(name, definition) {
   runnerIt(name, function() {
-    return definition(rootSuiteBrowser);
-  });
-}
-
-async function checkForVisualChanges(test, name, selector = '.todoapp') {
-  return new Promise(resolve => {
-    try {
-      rootSuiteMugshot.test({ name, selector }, (err, result) => {
-        if (err) {
-          test.error(err);
-          resolve();
+    return Promise.resolve(definition(rootSuiteBrowser))
+      .then(() => {
+        // Don't want to make debugging tests more noisy than it needs to be.
+        if (process.env.DEBUG) {
           return;
         }
 
-        if (!result.isEqual) {
-          // If we reject the promise Mocha will halt the suite. Workaround from
-          // https://github.com/mochajs/mocha/issues/1635#issuecomment-191019928
-          test.error(new Error('Visual changes detected. Check screenshots'));
-        }
-
-        resolve();
+        // eslint-disable-next-line consistent-return
+        return checkForVisualChanges(this.test.fullTitle());
       });
-    } catch (e) {
-      test.error(e);
-      resolve();
-    }
+  });
+}
+
+async function checkForVisualChanges(name, selector = '.todoapp') {
+  return new Promise((resolve, reject) => {
+    rootSuiteMugshot.test({ name, selector }, (err, result) => {
+      if (err) {
+        return reject(err);
+      }
+
+      expect(result.isEqual, 'Visual changes detected. Check screenshots').to.be.true;
+
+      return resolve();
+    });
   });
 }
 
@@ -128,20 +127,6 @@ function setupHooks() {
     return rootSuiteBrowser.url('http://app:3000/')
     // Wait for webpack to build the app.
       .then(() => rootSuiteBrowser.waitForVisible('.todoapp', 5 * 1000));
-  });
-
-  runnerAfterEach('Take screenshot', function () {
-    // Screenshots failing will make debugging noisier than it needs to be.
-    if (process.env.DEBUG) {
-      return;
-    }
-
-    if (this.currentTest.state !== 'passed') {
-      return;
-    }
-
-    // eslint-disable-next-line consistent-return
-    return checkForVisualChanges(this.test, this.currentTest.fullTitle());
   });
 
   process.env.NODE_ENV === 'tests' && runnerAfterEach('Collect coverage', async function () {
