@@ -12,7 +12,7 @@ export {
 
 delete global.describe;
 delete global.beforeEach;
-delete global.runnerAfterEach;
-delete global.runnerBefore;
-delete global.afer;
+delete global.afterEach;
+delete global.before;
+delete global.after;
 delete global.it;
