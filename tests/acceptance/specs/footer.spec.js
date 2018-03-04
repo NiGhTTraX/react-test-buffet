@@ -1,11 +1,11 @@
 import { expect } from 'chai';
-import { describe, beforeEach, it } from '../suite.js';
+import { describe, beforeEach, it, vit } from '../suite.js';
 import { addTodo } from './common.js';
 
 
 describe('App', function() {
   describe('footer', function() {
-    it('should not be shown when there are no todos', async function(browser) {
+    vit('should not be shown when there are no todos', async function(browser) {
       expect(await browser.isExisting('.footer')).to.be.false;
     });
 
@@ -23,13 +23,13 @@ describe('App', function() {
         expect(await browser.getText('.todo-count')).to.contain('2');
       });
 
-      it('should filter the completed todos', async function(browser) {
+      vit('should filter the completed todos', async function(browser) {
         await browser.click('=Completed');
 
         expect((await browser.elements('.todo')).value).to.have.length(1);
       });
 
-      it('should filter the active todos', async function(browser) {
+      vit('should filter the active todos', async function(browser) {
         await browser.click('=Active');
 
         expect((await browser.getText('.todo'))).to.deep.equal([

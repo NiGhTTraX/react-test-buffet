@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { describe, beforeEach, it } from '../suite.js';
+import { describe, beforeEach, it, vit } from '../suite.js';
 import { addTodo } from './common.js';
 
 
@@ -15,7 +15,7 @@ describe('App', function() {
       expect(await allTodosChecked(browser)).to.be.false;
     });
 
-    it('should be marked as completed when checking them', async function(browser) {
+    vit('should be marked as completed when checking them', async function(browser) {
       (await browser.elements('.todo .toggle')).value.forEach(
         async toggle => browser.elementIdClick(toggle.ELEMENT)
       );

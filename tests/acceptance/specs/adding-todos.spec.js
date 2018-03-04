@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { describe, it } from '../suite.js';
+import { describe, it, vit } from '../suite.js';
 import { addTodo } from './common.js';
 
 
@@ -11,7 +11,7 @@ describe('App', function() {
       expect(className).to.contain('new-todo');
     });
 
-    it('should add a new todo when pressing enter', async function(browser) {
+    vit('should add a new todo when pressing enter', async function(browser) {
       await addTodo('buy milk', browser);
 
       expect(await browser.element('.todo').getText()).to.equal('buy milk');
