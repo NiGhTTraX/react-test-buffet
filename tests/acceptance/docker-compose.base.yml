@@ -3,7 +3,7 @@ version: '2.1'
 services:
   app:
     extends:
-      file: ../../docker-compose.yml
+      file: ../../docker-compose.dev.yml
       service: app
     environment:
       # Path is relative to the location of the dev server.
@@ -22,7 +22,7 @@ services:
       - '4444:4444' # so we can ping for the status of the nodes
     devices:
       # Try to prevent Selenium from blocking when creating sessions due to
-      # limitd entropy.
+      # limited entropy.
       - /dev/urandom:/dev/random
 
   chrome:
