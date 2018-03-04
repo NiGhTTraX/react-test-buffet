@@ -70,6 +70,19 @@ export function beforeEach(name, definition) {
  * @param {Function} definition
  */
 export function it(name, definition) {
+  runnerIt(name, () => definition(rootSuiteBrowser));
+}
+
+/**
+ * Perform a visual test alongside a normal test.
+ *
+ * The visual test will not be performed if the test in `definition` fails.
+ *
+ * @param {String} name The name of the test. The screenshot will be taken under
+ *   the full test name (including any parent suite's name(s)).
+ * @param {Function} definition
+ */
+export function vit(name, definition) {
   runnerIt(name, function() {
     return Promise.resolve(definition(rootSuiteBrowser))
       .then(() => {
