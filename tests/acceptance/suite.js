@@ -28,13 +28,10 @@ let rootSuiteBrowser, rootSuiteMugshot;
  *
  * Nested calls will preserve the root session.
  *
+ * Tests and hooks will receive the browser instance.
+ *
  * @param {String} name
- * @param {Function} definition
- *
- * @this {SuiteContext}
- *
- * @typedef SuiteContext
- * @property {WebdriverIO} browser
+ * @param {() => void} definition
  */
 export function describe(name, definition) {
   suiteNesting++;
@@ -51,7 +48,7 @@ export function describe(name, definition) {
 
 /**
  * @param {String} [name]
- * @param {Function} definition
+ * @param {(Webdriver) => Promise|undefined} definition
  */
 export function beforeEach(name, definition) {
   /* eslint-disable no-param-reassign */
@@ -67,7 +64,7 @@ export function beforeEach(name, definition) {
 
 /**
  * @param {String} name
- * @param {Function} definition
+ * @param {(Webdriver) => Promise|undefined} definition
  */
 export function it(name, definition) {
   runnerIt(name, () => definition(rootSuiteBrowser));
@@ -80,7 +77,7 @@ export function it(name, definition) {
  *
  * @param {String} name The name of the test. The screenshot will be taken under
  *   the full test name (including any parent suite's name(s)).
- * @param {Function} definition
+ * @param {(Webdriver) => Promise|undefined} definition
  */
 export function vit(name, definition) {
   runnerIt(name, function() {
