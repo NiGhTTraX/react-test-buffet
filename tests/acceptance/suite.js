@@ -89,12 +89,18 @@ export function vit(name, definition) {
         }
 
         // eslint-disable-next-line consistent-return
-        return checkForVisualChanges(this.test.fullTitle());
+        return checkForVisualChanges(this.test.fullTitle(), '.todoapp');
       });
   });
 }
 
-async function checkForVisualChanges(name, selector = '.todoapp') {
+/**
+ * @param {String} name
+ * @param {CSSSelector} selector
+ *
+ * @returns {Promise<undefined>}
+ */
+async function checkForVisualChanges(name, selector = 'body > *') {
   return new Promise((resolve, reject) => {
     rootSuiteMugshot.test({ name, selector }, (err, result) => {
       if (err) {
