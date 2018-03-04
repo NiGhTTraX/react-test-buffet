@@ -3,7 +3,7 @@ version: '2.1'
 services:
   app:
     extends:
-      file: ../../docker-compose.dev.yml
+      file: ../../docker-compose.yml
       service: app
     environment:
       # Path is relative to the location of the dev server.
@@ -11,6 +11,7 @@ services:
     expose:
       - '3000'
     volumes:
+      - ../../src:/usr/src/app/src
       - ./screenshots:/usr/src/app/tests/acceptance/screenshots
       - ./results/coverage:/usr/src/app/tests/acceptance/results/coverage
 
