@@ -124,8 +124,26 @@ password `secret`.
 
 ![visual-tests](./docs/visual-tests.png)
 
-After each acceptance test a screenshot is taken and compared to the previous
-version. If there are any visual changes a diff will be created highlighting
-them and the test will fail. If the changes are deliberate you should commit the
-new screenshot and rerun the tests. You can find the new screenshots and diffs
-in the [tests/acceptance/screenshots](./tests/acceptance/screenshots) folder.
+If you want to also take a screenshot after an acceptance test and
+compare it on the next runs, simply use `vit` (_visual_ it) instead of
+`it`.
+
+```js
+import { describe, vit } from './suite.js';
+
+describe('My app', () => {
+    vit('should look the same', async browser => {
+      await browser.click('.foobar');
+    });
+});
+```
+
+The screenshot will be taken at the end of the test definition
+only if there were no exceptions thrown. Think of it as an extra
+assertion at the end of the test.
+
+If there are any visual changes a diff will be created highlighting
+them and the test will fail. If the changes are deliberate you should
+commit the new screenshot and rerun the tests. You can find the new
+screenshots and diffs in the
+[tests/acceptance/screenshots](./tests/acceptance/screenshots) folder.
