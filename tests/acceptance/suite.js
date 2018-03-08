@@ -89,8 +89,10 @@ export function vit(name, definition, selector = '.todoapp') {
           return;
         }
 
+        const screenshotName = getSafeFilename(this.test.fullTitle());
+
         // eslint-disable-next-line consistent-return
-        return checkForVisualChanges(this.test.fullTitle(), selector);
+        return checkForVisualChanges(screenshotName, selector);
       });
   });
 }
@@ -113,6 +115,20 @@ async function checkForVisualChanges(name, selector = 'body > *') {
       return resolve();
     });
   });
+}
+
+/**
+ * Turn the given file name into something that's safe to save on the FS.
+ *
+ * @param {String} fileName
+ *
+ * @returns {String}
+ */
+function getSafeFilename(fileName) {
+  return fileName
+    .replace(/\//g, '_')
+    .replace(/ /g, '_')
+    .toLowerCase();
 }
 
 function setupHooks() {
@@ -151,7 +167,7 @@ function setupHooks() {
       return JSON.stringify(window.__coverage__);
     });
 
-    const name = this.currentTest.fullTitle();
+    const name = getSafeFilename(this.currentTest.fullTitle());
 
     fs.writeFileSync(
       path.join(__dirname, 'results', 'coverage', `${BROWSER}_${name}.json`),
