@@ -78,8 +78,9 @@ export function it(name, definition) {
  * @param {String} name The name of the test. The screenshot will be taken under
  *   the full test name (including any parent suite's name(s)).
  * @param {(Webdriver) => Promise|undefined} definition
+ * @param {CSSSelector} selector
  */
-export function vit(name, definition) {
+export function vit(name, definition, selector = '.todoapp') {
   runnerIt(name, function() {
     return Promise.resolve(definition(rootSuiteBrowser))
       .then(() => {
@@ -89,7 +90,7 @@ export function vit(name, definition) {
         }
 
         // eslint-disable-next-line consistent-return
-        return checkForVisualChanges(this.test.fullTitle(), '.todoapp');
+        return checkForVisualChanges(this.test.fullTitle(), selector);
       });
   });
 }
