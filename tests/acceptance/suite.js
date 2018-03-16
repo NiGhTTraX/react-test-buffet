@@ -88,8 +88,8 @@ export function vit(name, definition, selector = '.todoapp') {
     const testName = getSafeFilename(this.test.fullTitle());
 
     // Don't want to make debugging tests more noisy than it needs to be.
-    if (process.env.DEBUG) {
-      promise.then(() => checkForVisualChanges(testName, selector));
+    if (!process.env.DEBUG) {
+      promise = promise.then(() => checkForVisualChanges(testName, selector));
     }
 
     if (process.env.NODE_ENV === 'tests') {
