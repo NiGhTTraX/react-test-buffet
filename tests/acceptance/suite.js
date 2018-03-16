@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { remote } from 'webdriverio';
 import Mugshot from 'mugshot';
 import WebdriverIOAdapter from 'mugshot-webdriverio';
