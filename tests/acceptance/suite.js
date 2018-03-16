@@ -45,17 +45,10 @@ export function describe(name, definition) {
 }
 
 /**
- * @param {String} [name]
- * @param {(Webdriver) => Promise|undefined} definition
+ * @param {(Webdriver) => Promise} definition
  */
-export function beforeEach(name, definition) {
-  /* eslint-disable no-param-reassign */
-  if (!definition) {
-    definition = name;
-    name = undefined;
-  }
-
-  runnerBeforeEach(name, function() {
+export function beforeEach(definition) {
+  runnerBeforeEach(function() {
     return definition(rootSuiteBrowser);
   });
 }
@@ -160,7 +153,7 @@ function getSafeFilename(fileName) {
 }
 
 function setupHooks() {
-  runnerBefore('Connect to Selenium', function () {
+  runnerBefore(function connectToSelenium() {
     this.timeout(10 * 1000);
 
     const options = {
@@ -180,11 +173,11 @@ function setupHooks() {
     return rootSuiteBrowser;
   });
 
-  runnerAfter('End session', function () {
+  runnerAfter(function endSession() {
     return rootSuiteBrowser.end();
   });
 
-  runnerBeforeEach('Wait for app to render', function() {
+  runnerBeforeEach(function waitForRender() {
     return rootSuiteBrowser.url('http://app:3000/')
     // Wait for webpack to build the app.
       .then(() => rootSuiteBrowser.waitForVisible('.todoapp', 5 * 1000));
