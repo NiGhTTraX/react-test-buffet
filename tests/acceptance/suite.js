@@ -85,12 +85,13 @@ async function collectCoverage(testName) {
 export function it(name, definition) {
   runnerIt(name, function() {
     const promise = Promise.resolve(definition(rootSuiteBrowser));
+    const testName = this.test.fullTitle();
 
     if (process.env.NODE_ENV !== 'tests') {
       return promise;
     }
 
-    return promise.then(() => collectCoverage(this.test.fullTitle()));
+    return promise.then(() => collectCoverage(testName));
   });
 }
 
