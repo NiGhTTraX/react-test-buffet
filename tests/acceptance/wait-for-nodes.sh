@@ -33,12 +33,15 @@ PINGS=0
 while true; do
   if [[ $(nodes_connected ${HOST} ${PORT}) == ${EXPECTED_BROWSERS} ]]; then
     printf "\n"
+    echo Hub is now ready.
     exit 0
   fi
 
   PINGS=$((PINGS+1))
 
-  if [ ${PINGS} -ge ${WAIT} ] ; then
+  if [ ${PINGS} -gt ${WAIT} ] ; then
+    printf "\n"
+    echo Waited ${WAIT} seconds and the hub was still not ready. Exiting.
     exit 1
   fi
 
