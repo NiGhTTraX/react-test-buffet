@@ -61,6 +61,22 @@ export function beforeEach(name, definition) {
 }
 
 /**
+ * @param {string} testName
+ */
+async function collectCoverage(testName) {
+  const { value: coverage } = await rootSuiteBrowser.execute(function getCoverage() {
+    return JSON.stringify(window.__coverage__);
+  });
+
+  const safeTestName = getSafeFilename(testName);
+
+  fs.writeFileSync(
+    path.join(__dirname, 'results', 'coverage', `${BROWSER}_${safeTestName}.json`),
+    coverage
+  );
+}
+
+/**
  * Run a test with optional coverage report.
  *
  * @param {String} name
@@ -74,18 +90,7 @@ export function it(name, definition) {
       return promise;
     }
 
-    return promise.then(async () => {
-      const { value: coverage } = await rootSuiteBrowser.execute(function getCoverage() {
-        return JSON.stringify(window.__coverage__);
-      });
-
-      const testName = getSafeFilename(this.test.fullTitle());
-
-      fs.writeFileSync(
-        path.join(__dirname, 'results', 'coverage', `${BROWSER}_${testName}.json`),
-        coverage
-      );
-    });
+    return promise.then(() => collectCoverage(this.test.fullTitle()));
   });
 }
 
@@ -110,16 +115,7 @@ export function vit(name, definition, selector = '.todoapp') {
     }
 
     if (process.env.NODE_ENV === 'tests') {
-      promise.then(async () => {
-        const { value: coverage } = await rootSuiteBrowser.execute(function getCoverage() {
-          return JSON.stringify(window.__coverage__);
-        });
-
-        fs.writeFileSync(
-          path.join(__dirname, 'results', 'coverage', `${BROWSER}_${testName}.json`),
-          coverage
-        );
-      });
+      promise.then(() => collectCoverage(testName));
     }
 
     return promise;
