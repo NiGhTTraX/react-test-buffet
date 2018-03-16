@@ -84,7 +84,7 @@ export function it(name, definition) {
  */
 export function vit(name, definition, selector = '.todoapp') {
   runnerIt(name, function() {
-    const promise = Promise.resolve(definition(rootSuiteBrowser));
+    let promise = Promise.resolve(definition(rootSuiteBrowser));
     const testName = getSafeFilename(this.test.fullTitle());
 
     // Don't want to make debugging tests more noisy than it needs to be.
@@ -93,7 +93,7 @@ export function vit(name, definition, selector = '.todoapp') {
     }
 
     if (process.env.NODE_ENV === 'tests') {
-      promise.then(() => collectCoverage(testName));
+      promise = promise.then(() => collectCoverage(testName));
     }
 
     return promise;
