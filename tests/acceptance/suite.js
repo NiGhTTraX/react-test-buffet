@@ -9,7 +9,6 @@ import {
   runnerAfter,
   runnerBefore,
   runnerBeforeEach,
-  runnerAfterEach,
   runnerIt,
   runnerDescribe
 } from './test-runner.js';
@@ -63,11 +62,32 @@ export function beforeEach(name, definition) {
 }
 
 /**
+ * Run a test with optional coverage report.
+ *
  * @param {String} name
  * @param {(Webdriver) => Promise|undefined} definition
  */
 export function it(name, definition) {
-  runnerIt(name, () => definition(rootSuiteBrowser));
+  runnerIt(name, function() {
+    const promise = Promise.resolve(definition(rootSuiteBrowser));
+
+    if (process.env.NODE_ENV !== 'tests') {
+      return promise;
+    }
+
+    return promise.then(async () => {
+      const { value: coverage } = await rootSuiteBrowser.execute(function getCoverage() {
+        return JSON.stringify(window.__coverage__);
+      });
+
+      const testName = getSafeFilename(this.test.fullTitle());
+
+      fs.writeFileSync(
+        path.join(__dirname, 'results', 'coverage', `${BROWSER}_${testName}.json`),
+        coverage
+      );
+    });
+  });
 }
 
 /**
@@ -82,18 +102,28 @@ export function it(name, definition) {
  */
 export function vit(name, definition, selector = '.todoapp') {
   runnerIt(name, function() {
-    return Promise.resolve(definition(rootSuiteBrowser))
-      .then(() => {
-        // Don't want to make debugging tests more noisy than it needs to be.
-        if (process.env.DEBUG) {
-          return;
-        }
+    const promise = Promise.resolve(definition(rootSuiteBrowser));
+    const testName = getSafeFilename(this.test.fullTitle());
 
-        const screenshotName = getSafeFilename(this.test.fullTitle());
+    // Don't want to make debugging tests more noisy than it needs to be.
+    if (process.env.DEBUG) {
+      promise.then(() => checkForVisualChanges(testName, selector));
+    }
 
-        // eslint-disable-next-line consistent-return
-        return checkForVisualChanges(screenshotName, selector);
+    if (process.env.NODE_ENV === 'tests') {
+      promise.then(async () => {
+        const { value: coverage } = await rootSuiteBrowser.execute(function getCoverage() {
+          return JSON.stringify(window.__coverage__);
+        });
+
+        fs.writeFileSync(
+          path.join(__dirname, 'results', 'coverage', `${BROWSER}_${testName}.json`),
+          coverage
+        );
       });
+    }
+
+    return promise;
   });
 }
 
@@ -160,18 +190,5 @@ function setupHooks() {
     return rootSuiteBrowser.url('http://app:3000/')
     // Wait for webpack to build the app.
       .then(() => rootSuiteBrowser.waitForVisible('.todoapp', 5 * 1000));
-  });
-
-  process.env.NODE_ENV === 'tests' && runnerAfterEach('Collect coverage', async function () {
-    const { value: coverage } = await rootSuiteBrowser.execute(function getCoverage() {
-      return JSON.stringify(window.__coverage__);
-    });
-
-    const name = getSafeFilename(this.currentTest.fullTitle());
-
-    fs.writeFileSync(
-      path.join(__dirname, 'results', 'coverage', `${BROWSER}_${name}.json`),
-      coverage
-    );
   });
 }
