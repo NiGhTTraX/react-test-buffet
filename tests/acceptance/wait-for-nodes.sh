@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # How many browsers are we expecting to connect to the hub.
 EXPECTED_BROWSERS=$1
 
@@ -12,8 +14,8 @@ HOST=${3:-localhost}
 # Selenium hub port number.
 PORT=${4:-4444}
 
-
 nodes_connected() {
+  set +e
   status=$(curl -X GET -s http://${1}:${2}/grid/api/hub/ \
     -d '{"configuration":["slotCounts"]}')
 
@@ -21,6 +23,7 @@ nodes_connected() {
     echo -1
     return
   fi
+  set -e
 
   echo ${status} | python -c \
     'import json,sys;obj=json.load(sys.stdin);print obj["slotCounts"]["free"]'
@@ -31,7 +34,7 @@ echo Waiting for ${EXPECTED_BROWSERS} browsers to connect to the Selenium hub...
 PINGS=0
 
 while true; do
-  if [[ $(nodes_connected ${HOST} ${PORT}) == ${EXPECTED_BROWSERS} ]]; then
+  if [ $(nodes_connected ${HOST} ${PORT}) -ge ${EXPECTED_BROWSERS} ]; then
     printf "\n"
     echo Hub is now ready.
     exit 0
