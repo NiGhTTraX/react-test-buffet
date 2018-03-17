@@ -152,8 +152,6 @@ function getSafeFilename(fileName) {
 
 function setupHooks() {
   runnerBefore(function connectToSelenium() {
-    this.timeout(10 * 1000);
-
     const options = {
       host: SELENIUM_HOST,
       desiredCapabilities: { browserName: BROWSER }
