@@ -60,9 +60,8 @@ export function beforeEach(definition) {
  * @param {(Webdriver) => Promise|undefined} definition
  */
 export function it(name, definition) {
-  runnerIt(name, function() {
+  runnerIt(name, testName => {
     const promise = Promise.resolve(definition(rootSuiteBrowser));
-    const testName = this.test.fullTitle();
 
     if (process.env.NODE_ENV !== 'tests') {
       return promise;
@@ -83,9 +82,8 @@ export function it(name, definition) {
  * @param {CSSSelector} selector
  */
 export function vit(name, definition, selector = '.todoapp') {
-  runnerIt(name, function() {
+  runnerIt(name, testName => {
     let promise = Promise.resolve(definition(rootSuiteBrowser));
-    const testName = getSafeFilename(this.test.fullTitle());
 
     // Don't want to make debugging tests more noisy than it needs to be.
     if (!process.env.DEBUG) {
@@ -108,7 +106,7 @@ export function vit(name, definition, selector = '.todoapp') {
  */
 function checkForVisualChanges(name, selector = 'body > *') {
   return new Promise((resolve, reject) => {
-    rootSuiteMugshot.test({ name, selector }, (err, result) => {
+    rootSuiteMugshot.test({ name: getSafeFilename(name), selector }, (err, result) => {
       if (err) {
         return reject(err);
       }
