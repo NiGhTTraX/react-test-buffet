@@ -147,3 +147,8 @@ them and the test will fail. If the changes are deliberate you should
 commit the new screenshot and rerun the tests. You can find the new
 screenshots and diffs in the
 [tests/acceptance/screenshots](./tests/acceptance/screenshots) folder.
+
+> TODO: these tests don't benefit from Jest's parallel runner
+because image comparison is
+[super slow](https://github.com/facebook/jest/issues/5163#issuecomment-355509597)
+in a Jest sandbox.
