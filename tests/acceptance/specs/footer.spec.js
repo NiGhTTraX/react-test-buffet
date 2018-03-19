@@ -1,5 +1,4 @@
-import { expect } from 'chai';
-import { describe, beforeEach, it, vit } from '../suite.js';
+import { describe, beforeEach, it, vit, expect } from '../suite.js';
 import { addTodo } from './common.js';
 
 

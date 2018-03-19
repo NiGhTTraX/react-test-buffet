@@ -98,6 +98,8 @@ export function vit(name, definition, selector = '.todoapp') {
   });
 }
 
+export { expect };
+
 /**
  * @param {String} name
  * @param {CSSSelector} selector
