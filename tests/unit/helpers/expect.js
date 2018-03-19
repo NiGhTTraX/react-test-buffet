@@ -5,4 +5,4 @@ import chaiReact from './chai-react.js';
 chai.use(chaiReact);
 chai.use(sinonChai);
 
-global.expect = chai.expect;
+export default chai.expect;

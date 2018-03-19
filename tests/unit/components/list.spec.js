@@ -3,6 +3,7 @@ import { spy } from 'sinon';
 import List from '../../../src/components/list.jsx';
 import { createSpy } from '../helpers/chai-react.js';
 import { $render } from '../helpers/rendering.js';
+import { describe, it, beforeEach, expect } from '../suite';
 
 
 describe('List', function() {

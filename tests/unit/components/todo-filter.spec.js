@@ -3,6 +3,7 @@ import { spy } from 'sinon';
 import { Simulate } from 'react-dom/test-utils';
 import TodoFilter from '../../../src/components/todo-filter.jsx';
 import { $render } from '../helpers/rendering.js';
+import { describe, it, beforeEach, expect } from '../suite';
 
 
 describe('TodoFilter', function() {

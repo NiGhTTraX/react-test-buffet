@@ -2,6 +2,7 @@ import React from 'react';
 import { match } from 'sinon';
 import { $render } from '../../helpers/rendering.js';
 import App, { AddTodo, TodoList, TodoFilters, filters } from './setup.js';
+import { describe, it, beforeEach, expect } from '../../suite';
 
 
 describe('App', function() {

@@ -1,6 +1,7 @@
 import bind from '../../../../src/lib/bind.js';
 import App from '../../../../src/components/app.jsx';
 import { createSpy } from '../../helpers/chai-react.js';
+import { beforeEach } from '../../suite';
 
 export const AddTodo = createSpy({ name: 'AddTodo' });
 export const TodoList = createSpy({ name: 'TodoList' });
