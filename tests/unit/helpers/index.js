@@ -5,8 +5,7 @@
  * important.
  */
 import './react-warnings.js';
-import { unmount } from './rendering.js';
-import { afterEach } from '../suite';
+import { afterEach, unmount } from '../suite';
 
 // Unmount the currently mounted component after each test.
 afterEach(function() {
