@@ -8,18 +8,21 @@ import {
 } from '../mocha-runner';
 import expect from './helpers/expect';
 
+let componentContainer;
+
 /**
  * @param {String} name
  * @param {() => void} definition
  */
 export function describe(name, definition) {
   runnerDescribe(name, () => {
+    beforeEach(() => {
+      componentContainer = document.createElement('div');
+    });
+
     definition();
 
-    // Unmount the currently mounted component after each test.
-    afterEach(function() {
-      unmount();
-    });
+    afterEach(unmount);
   });
 }
 
@@ -47,20 +50,18 @@ export function afterEach(definition) {
 
 export { expect };
 
-const _container = document.createElement('div');
-
 /**
- * Render the given component.
+ * Render the given component in a freshly created detached DOM container.
  *
  * @param {ReactElement} element
  *
  * @returns {jQuery} The component's root DOM node wrapped in jQuery.
  */
 export function $render(element) {
-  ReactDOM.render(element, _container);
+  ReactDOM.render(element, componentContainer);
 
   // Return the first (and only) child in the container wrapped in jQuery.
-  return $(_container).children().eq(0);
+  return $(componentContainer).children().eq(0);
 }
 
 /**
@@ -70,5 +71,5 @@ export function unmount() {
   // unmountComponentAtNode will return `false` if there was no component
   // mounted at the given node. That can happen when the component was
   // unmounted inside a test i.e. to test cleanup logic.
-  ReactDOM.unmountComponentAtNode(_container);
+  ReactDOM.unmountComponentAtNode(componentContainer);
 }
