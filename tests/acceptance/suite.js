@@ -45,7 +45,7 @@ export function describe(name, definition) {
 }
 
 /**
- * @param {(Webdriver) => Promise} definition
+ * @param {(Webdriver) => Promise|void} definition
  */
 export function beforeEach(definition) {
   runnerBeforeEach(function() {
@@ -57,7 +57,7 @@ export function beforeEach(definition) {
  * Run a test with optional coverage report.
  *
  * @param {String} name
- * @param {(Webdriver) => Promise|undefined} definition
+ * @param {(Webdriver) => Promise|void} definition
  */
 export function it(name, definition) {
   runnerIt(name, testName => {
@@ -78,7 +78,7 @@ export function it(name, definition) {
  *
  * @param {String} name The name of the test. The screenshot will be taken under
  *   the full test name (including any parent suite's name(s)).
- * @param {(Webdriver) => Promise|undefined} definition
+ * @param {(Webdriver) => Promise|void} definition
  * @param {CSSSelector} selector
  */
 export function vit(name, definition, selector = '.todoapp') {

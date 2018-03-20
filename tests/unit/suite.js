@@ -8,6 +8,10 @@ import {
 } from '../mocha-runner';
 import expect from './helpers/expect';
 
+/**
+ * @param {String} name
+ * @param {() => void} definition
+ */
 export function describe(name, definition) {
   runnerDescribe(name, () => {
     definition();
@@ -19,14 +23,24 @@ export function describe(name, definition) {
   });
 }
 
+/**
+ * @param {String} name
+ * @param {() => Promise|void} definition
+ */
 export function it(name, definition) {
   runnerIt(name, definition);
 }
 
+/**
+ * @param {() => Promise|void} definition
+ */
 export function beforeEach(definition) {
   runnerBeforeEach(definition);
 }
 
+/**
+ * @param {() => Promise|void} definition
+ */
 export function afterEach(definition) {
   runnerAfterEach(definition);
 }
