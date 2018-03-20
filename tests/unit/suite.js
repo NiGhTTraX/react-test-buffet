@@ -5,7 +5,7 @@ import {
   runnerBeforeEach,
   runnerDescribe,
   runnerIt
-} from '../acceptance/test-runner';
+} from '../mocha-runner';
 import expect from './helpers/expect';
 
 export function describe(name, definition) {

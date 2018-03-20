@@ -10,7 +10,7 @@ import {
   runnerBeforeEach,
   runnerIt,
   runnerDescribe
-} from './test-runner.js';
+} from '../mocha-runner.js';
 
 const { BROWSER = 'chrome', SELENIUM_HOST = 'selenium' } = process.env;
 
