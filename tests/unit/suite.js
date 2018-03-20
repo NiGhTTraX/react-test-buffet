@@ -9,7 +9,14 @@ import {
 import expect from './helpers/expect';
 
 export function describe(name, definition) {
-  runnerDescribe(name, definition);
+  runnerDescribe(name, () => {
+    definition();
+
+    // Unmount the currently mounted component after each test.
+    afterEach(function() {
+      unmount();
+    });
+  });
 }
 
 export function it(name, definition) {
