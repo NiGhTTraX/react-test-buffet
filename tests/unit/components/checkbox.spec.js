@@ -1,7 +1,7 @@
 import React from 'react';
 import { Simulate } from 'react-dom/test-utils';
 import Checkbox from '../../../src/components/checkbox.jsx';
-import toggleableTests from './toggleable.spec.js';
+import toggleableTests from './toggleable-contract.js';
 import { describe, it, expect, $render } from '../suite';
 
 
