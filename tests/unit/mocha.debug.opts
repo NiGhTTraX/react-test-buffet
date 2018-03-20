@@ -1,0 +1,4 @@
+--require babel-register
+--file tests/unit/helpers/index.node.js
+--timeout 0
+--inspect-brk=0.0.0.0:9229

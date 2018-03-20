@@ -29,7 +29,7 @@
     "test:unit": "NODE_ENV=tests nyc npm run _test:unit",
     "test:unit:watch": "mocha --opts tests/unit/mocha.watch.opts 'tests/unit/**/*.spec.js'",
     "_test:unit": "mocha --opts tests/unit/mocha.opts 'tests/unit/**/*.spec.js'",
-    "test:unit:debug": "webpack --bail -w --config ./tests/unit/webpack.config.unit.js",
+    "test:unit:debug": "mocha --opts tests/unit/mocha.debug.opts 'tests/unit/**/*.spec.js'",
     "test:acceptance": "./tests/acceptance/run.sh",
     "test:acceptance:debug": "./tests/acceptance/debug.sh",
     "_test:acceptance": "mocha --opts tests/acceptance/mocha.opts tests/acceptance/specs",
