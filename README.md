@@ -60,22 +60,16 @@ bug then your tests will tell you that `Todo` also has a bug, which is not true.
 
 `npm run test:unit` will run the tests in Node using `Mocha`. This is useful for a rapid
 feedback loop. You can also watch them for changes with `npm run
-test:unit:watch`.
-
-`jsdom` is used for providing a DOM implementation in Node. `jsdom` is pretty
-cool, but it falls short when you need additional browser behavior like local
-storage or style cascading.
+test:unit:watch`. `jsdom` is used for providing a browser like environment.
 
 
 ## Debugging the tests
 
 ![debugging-unit-tests](./docs/debugging-unit-tests.png)
 
-`npm run test:unit:debug` will build a bundle using `webpack` that you can open
-in your favorite browser by going to
-[tests/unit/debug.html](./tests/unit/debug.html). You can then use the dev tools
-and set breakpoints and step through your code. I find this easier than
-debugging in Node with the node inspector.
+`npm run test:unit:debug` will run the same Mocha tests and attach the Node
+inspector. Use Chrome to go to `chrome://inspect` and debug the tests with the
+Chrome dev tools.
 
 
 ## Coverage
