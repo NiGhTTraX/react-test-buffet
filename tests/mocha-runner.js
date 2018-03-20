@@ -22,6 +22,7 @@ export {
   after as runnerAfter
 };
 
+// Clean up the global space to prevent accidental usage of these.
 delete global.describe;
 delete global.beforeEach;
 delete global.afterEach;
