@@ -1,4 +1,5 @@
 --require babel-register
+--file tests/unit/helpers/index.node.js
 --watch
 --watch-extensions js,jsx
 --reporter min
