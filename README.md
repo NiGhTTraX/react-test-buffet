@@ -68,8 +68,8 @@ test:unit:watch`. `jsdom` is used for providing a browser like environment.
 ![debugging-unit-tests](./docs/debugging-unit-tests.png)
 
 `npm run test:unit:debug` will run the same Mocha tests and attach the Node
-inspector. Use Chrome to go to `chrome://inspect` and debug the tests with the
-Chrome dev tools.
+inspector. Use Chrome to go to [chrome://inspect](chrome://inspect) and debug
+the tests with the Chrome dev tools.
 
 
 ## Coverage
