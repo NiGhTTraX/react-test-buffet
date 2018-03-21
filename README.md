@@ -41,33 +41,20 @@ If for some reason you prefer to install everything locally, you can use `npm
 run _start` instead.
 
 
-# Unit tests
-
-Unit tests should check a single unit at a time - in the case of UI, a single
-component. And what I mean by single component is exactly that, rendering only
-one component, without any child components.
-
-Why? Because unit tests should clearly separate your concerns.
-
-If you render `Checkbox` alongside `Todo` you couple them together. And testing
-`Todo` in this way will also test `Checkbox` and if `Checkbox` suddenly has a
-bug then your tests will tell you that `Todo` also has a bug, which is not true.
-
-
-## Running the tests in Node
+# Node tests
 
 ![unit-tests-in-node](./docs/unit-tests-in-node.png)
 
-`npm run test:unit` will run the tests in Node using `Mocha`. This is useful for a rapid
-feedback loop. You can also watch them for changes with `npm run
-test:unit:watch`. `jsdom` is used for providing a browser like environment.
+`npm run test:node` will run the tests in Node using `Mocha`. This is useful for
+a rapid feedback loop. You can also watch them for changes with `npm run
+test:node:watch`. `jsdom` is used for providing a browser like environment.
 
 
-## Debugging the tests
+## Debugging the node tests
 
 ![debugging-unit-tests](./docs/debugging-unit-tests.png)
 
-`npm run test:unit:debug` will run the same Mocha tests and attach the Node
+`npm run test:node:debug` will run the same Mocha tests and attach the Node
 inspector. Use Chrome to go to [chrome://inspect](chrome://inspect) and debug
 the tests with the Chrome dev tools.
 
@@ -78,47 +65,25 @@ the tests with the Chrome dev tools.
 
 The tests automatically generate coverage reports using `Istanbul`. You can find
 them in the [tests/results/coverage](./tests/results/coverage/index.html)
-folder. **Both unit tests and acceptance tests report coverage** which allows
-reaching 100% coverage for those cases where unit tests are not enough (scroll
+folder. **Both Node tests and GUI tests report coverage** which allows
+reaching 100% coverage for those cases where Node tests are not enough (scroll
 event handlers, browser quirks, etc.).
 
 
-# Acceptance tests
+# GUI tests
 
 ![acceptance-tests](./docs/acceptance-tests.png)
-
-Use these to validate the client needs of your product. Always start with a
-failing acceptance test for every new feature. Then write failing unit tests to
-drive your design.
 
 The tests open actual browsers (Chrome and Firefox) and control them through
 `Selenium`. Everything happens in `Docker` containers for stable and
 reproducible builds.
 
 
-## Debugging the acceptance tests
-
-![debugging-acceptance-tests](./docs/debugging-acceptance-tests.gif)
-
-Add `debugger` statements in your tests and run `npm run test:acceptance:debug`.
-The tests won't start until you connect to the debugger by going to
-[chrome://inspect](chrome://inspect) and selecting the local debugger target.
-You're going to need [Chrome
-55+](https://nodejs.org/en/docs/inspector/#chrome-devtools-55) for this to work.
-
-Once in the inspector, press the continue execution button and the tests will
-start running.
-
-Alongside debugging the test code, you can also follow the state of the browser
-by connecting with VNC to [localhost:5900](vnc://localhost:5900) with the
-password `secret`.
-
-
-# Visual regression tests
+## Visual regression tests
 
 ![visual-tests](./docs/visual-tests.png)
 
-If you want to also take a screenshot after an acceptance test and
+If you want to also take a screenshot after a GUI test and
 compare it on the next runs, simply use `vit` (_visual_ it) instead of
 `it`.
 
@@ -140,9 +105,27 @@ If there are any visual changes a diff will be created highlighting
 them and the test will fail. If the changes are deliberate you should
 commit the new screenshot and rerun the tests. You can find the new
 screenshots and diffs in the
-[tests/acceptance/screenshots](./tests/acceptance/screenshots) folder.
+[tests/gui/screenshots](./tests/gui/screenshots) folder.
 
 > TODO: these tests don't benefit from Jest's parallel runner
 because image comparison is
 [super slow](https://github.com/facebook/jest/issues/5163#issuecomment-355509597)
 in a Jest sandbox.
+
+
+## Debugging the GUI tests
+
+![debugging-acceptance-tests](./docs/debugging-acceptance-tests.gif)
+
+Add `debugger` statements in your tests and run `npm run test:gui:debug`.
+The tests won't start until you connect to the debugger by going to
+[chrome://inspect](chrome://inspect) and selecting the local debugger target.
+You're going to need [Chrome
+55+](https://nodejs.org/en/docs/inspector/#chrome-devtools-55) for this to work.
+
+Once in the inspector, press the continue execution button and the tests will
+start running.
+
+Alongside debugging the test code, you can also follow the state of the browser
+by connecting with VNC to [localhost:5900](vnc://localhost:5900) with the
+password `secret`.

@@ -9,12 +9,12 @@ set -e
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
-export NODE_ENV=tests
+export NODE_ENV=coverage
 
 ./selenium.sh
 
 # compose up exits with 0 no matter what.
-docker-compose up acceptance_chrome acceptance_firefox
+docker-compose up chrome_tests firefox_tests
 
 # Aggregate results from all the containers.
 RESULT=$(docker-compose ps -q \

@@ -22,7 +22,7 @@ let suiteNesting = 0;
 let rootSuiteBrowser, rootSuiteMugshot;
 
 /**
- * Run your acceptance tests in a fresh Selenium session.
+ * Run your gui tests in a fresh Selenium session.
  *
  * Nested calls will preserve the root session.
  *
@@ -63,7 +63,7 @@ export function it(name, definition) {
   runnerIt(name, testName => {
     const promise = Promise.resolve(definition(rootSuiteBrowser));
 
-    if (process.env.NODE_ENV !== 'tests') {
+    if (process.env.NODE_ENV !== 'coverage') {
       return promise;
     }
 
@@ -90,7 +90,7 @@ export function vit(name, definition, selector = '.todoapp') {
       promise = promise.then(() => checkForVisualChanges(testName, selector));
     }
 
-    if (process.env.NODE_ENV === 'tests') {
+    if (process.env.NODE_ENV === 'coverage') {
       promise = promise.then(() => collectCoverage(testName));
     }
 

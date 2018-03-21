@@ -4,17 +4,15 @@ set -e
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
-export NODE_ENV=tests
-
 # If we don't create these here, docker-compose will and they will be owned by
 # root.
 mkdir -p screenshots/chrome screenshots/firefox
 
-rm -rf ./acceptance/results
-mkdir -p ./acceptance/results/coverage
+rm -rf ./gui/results
+mkdir -p ./gui/results/coverage
 
 # Check if the hub is already ready form a previous run.
-# When running the acceptance tests the hub container will
+# When running the gui tests the hub container will
 # always get removed so there's no risk of staleness. This
 # is an optimization for TDD-ing.
 set +e

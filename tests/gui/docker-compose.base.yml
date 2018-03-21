@@ -7,13 +7,13 @@ services:
       service: app
     environment:
       # Path is relative to the location of the dev server.
-      - WEBPACK_CONFIG=./acceptance/webpack.config.acceptance.js
+      - WEBPACK_CONFIG=./gui/webpack.config.js
     expose:
       - '3000'
     volumes:
       - ../../src:/usr/src/app/src
-      - ./screenshots:/usr/src/app/tests/acceptance/screenshots
-      - ./results/coverage:/usr/src/app/tests/acceptance/results/coverage
+      - ./screenshots:/usr/src/app/tests/gui/screenshots
+      - ./results/coverage:/usr/src/app/tests/gui/results/coverage
 
   selenium:
     image: selenium/hub:3.4.0-chromium

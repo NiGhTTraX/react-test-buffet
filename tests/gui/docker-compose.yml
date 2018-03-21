@@ -36,20 +36,20 @@ services:
     depends_on:
       - app
 
-  acceptance_chrome:
+  chrome_tests:
     extends:
       service: app
     links:
       - selenium
     environment:
       - BROWSER=chrome
-    command: npm run _test:acceptance --silent
+    command: npm run _test:gui --silent
 
-  acceptance_firefox:
+  firefox_tests:
     extends:
       service: app
     links:
       - selenium
     environment:
       - BROWSER=firefox
-    command: npm run _test:acceptance --silent
+    command: npm run _test:gui --silent

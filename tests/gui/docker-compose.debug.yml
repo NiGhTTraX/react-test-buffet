@@ -31,7 +31,7 @@ services:
     depends_on:
       - app
 
-  acceptance_debug:
+  debug_tests:
     extends:
       service: app
     links:
@@ -39,6 +39,6 @@ services:
     environment:
       - BROWSER=${BROWSER:-chrome}
       - DEBUG=true
-    command: npm run _test:acceptance:debug
+    command: npm run _test:gui:debug
     ports:
       - '9229:9229' # node --inspect

@@ -1,0 +1,2 @@
+--require babel-register
+--file tests/node/helpers/index.js
