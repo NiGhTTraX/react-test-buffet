@@ -9,6 +9,13 @@ set -e
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
+# If we don't create these here, docker-compose will and they will be owned by
+# root.
+mkdir -p screenshots/chrome screenshots/firefox
+
+rm -rf ./results
+mkdir -p ./results/coverage
+
 export NODE_ENV=coverage
 
 ./selenium.sh

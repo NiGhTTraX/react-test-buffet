@@ -4,13 +4,6 @@ set -e
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
-# If we don't create these here, docker-compose will and they will be owned by
-# root.
-mkdir -p screenshots/chrome screenshots/firefox
-
-rm -rf ./gui/results
-mkdir -p ./gui/results/coverage
-
 # Check if the hub is already ready form a previous run.
 # When running the gui tests the hub container will
 # always get removed so there's no risk of staleness. This
