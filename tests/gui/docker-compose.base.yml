@@ -1,0 +1,36 @@
+version: '2.1'
+
+services:
+  app:
+    extends:
+      file: ../../docker-compose.yml
+      service: app
+    environment:
+      # Path is relative to the location of the dev server.
+      - WEBPACK_CONFIG=./gui/webpack.config.js
+    expose:
+      - '3000'
+    volumes:
+      - ../../src:/usr/src/app/src
+      - ./screenshots:/usr/src/app/tests/gui/screenshots
+      - ./results/coverage:/usr/src/app/tests/gui/results/coverage
+
+  selenium:
+    image: selenium/hub:3.4.0-chromium
+    expose:
+      - '4444'
+    ports:
+      - '4444:4444' # so we can ping for the status of the nodes
+    devices:
+      # Try to prevent Selenium from blocking when creating sessions due to
+      # limited entropy.
+      - /dev/urandom:/dev/random
+
+  chrome:
+    image: selenium/node-chrome:3.4.0-chromium
+
+  firefox:
+    image: selenium/node-firefox:3.4.0-chromium
+
+  debug_node:
+    image: "selenium/node-${BROWSER:-chrome}-debug:3.4.0-chromium"

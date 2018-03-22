@@ -1,0 +1,44 @@
+version: '2.1'
+
+services:
+  app:
+    extends:
+      file: ./docker-compose.yml
+      service: app
+
+  selenium:
+    extends:
+      file: ./docker-compose.base.yml
+      service: selenium
+    environment:
+      - SE_OPTS=-debug true
+      - GRID_TIMEOUT=0
+      - BROWSER_TIMEOUT=0
+    depends_on:
+      - browser
+
+  browser:
+    extends:
+      file: ./docker-compose.base.yml
+      service: debug_node
+    environment:
+      # These are legacy compose links env vars that the image is relying on.
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_PORT_4444_TCP_ADDR=selenium
+      - SE_OPTS=-debug true
+    ports:
+      - '5900:5900' # VNC
+    depends_on:
+      - app
+
+  debug_tests:
+    extends:
+      service: app
+    links:
+      - selenium
+    environment:
+      - BROWSER=${BROWSER:-chrome}
+      - DEBUG=true
+    command: npm run _test:gui:debug
+    ports:
+      - '9229:9229' # node --inspect

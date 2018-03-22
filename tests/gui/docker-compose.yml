@@ -1,0 +1,55 @@
+version: '2.1'
+
+services:
+  app:
+    extends:
+      file: ./docker-compose.base.yml
+      service: app
+
+  selenium:
+    extends:
+      file: ./docker-compose.base.yml
+      service: selenium
+    depends_on:
+      - chrome
+      - firefox
+
+  chrome:
+    extends:
+      file: ./docker-compose.base.yml
+      service: chrome
+    environment:
+      # These are legacy compose links env vars that the image is relying on.
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_PORT_4444_TCP_ADDR=selenium
+    depends_on:
+      - app
+
+  firefox:
+    extends:
+      file: ./docker-compose.base.yml
+      service: firefox
+    environment:
+      # These are legacy compose links env vars that the image is relying on.
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_PORT_4444_TCP_ADDR=selenium
+    depends_on:
+      - app
+
+  chrome_tests:
+    extends:
+      service: app
+    links:
+      - selenium
+    environment:
+      - BROWSER=chrome
+    command: npm run _test:gui --silent
+
+  firefox_tests:
+    extends:
+      service: app
+    links:
+      - selenium
+    environment:
+      - BROWSER=firefox
+    command: npm run _test:gui --silent

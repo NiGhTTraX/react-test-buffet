@@ -7,7 +7,7 @@
     "**/webpack.config.*",
     "src/index*",
     "src/app-factory.js",
-    "tests/unit/**/*.js"
+    "tests/node/**/*.js"
   ],
   "extension": [".js", ".jsx"],
   "all": true,

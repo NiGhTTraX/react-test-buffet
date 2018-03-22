@@ -2,7 +2,7 @@
   "extends": "../.babelrc",
 
   "env": {
-    "tests": {
+    "coverage": {
       "plugins": [
         "istanbul"
       ]
