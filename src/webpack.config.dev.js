@@ -3,6 +3,9 @@ const baseConfig = require('./webpack.config.js');
 
 
 module.exports = Object.assign({}, baseConfig, {
+  mode: 'development',
+  devtool: 'sourcemap',
+
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',

@@ -17,8 +17,6 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
 
-  devtool: 'sourcemap',
-
   module: {
     rules: [{
       test: /\.jsx?$/,
