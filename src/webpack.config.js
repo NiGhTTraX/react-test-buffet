@@ -1,5 +1,5 @@
 const path = require('path');
-const { HotModuleReplacementPlugin, NoEmitOnErrorsPlugin } = require('webpack');
+const { NoEmitOnErrorsPlugin } = require('webpack');
 
 
 module.exports = {
@@ -30,7 +30,6 @@ module.exports = {
   },
 
   plugins: [
-    new HotModuleReplacementPlugin(),
     new NoEmitOnErrorsPlugin()
   ]
 };
