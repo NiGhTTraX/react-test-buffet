@@ -5,9 +5,8 @@
   ],
   "exclude": [
     "**/webpack.config.*",
-    "src/index*",
-    "src/app-factory.js",
-    "tests/node/**/*.js"
+    "tests/**/*.js",
+    "**/build"
   ],
   "extension": [".js", ".jsx"],
   "all": true,
