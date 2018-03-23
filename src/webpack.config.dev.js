@@ -7,7 +7,7 @@ const entry = [
   ...baseConfig.entry
 ];
 
-if (process.env.NODE_ENV === 'coverage') {
+if (process.env.GUI_TESTS) {
   entry.push(path.join(__dirname, '..', 'tests', 'gui', 'styles.css'));
 }
 

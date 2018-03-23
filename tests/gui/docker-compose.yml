@@ -5,6 +5,8 @@ services:
     extends:
       file: ./docker-compose.base.yml
       service: app
+    environment:
+      - GUI_TESTS=true
 
   selenium:
     extends:
