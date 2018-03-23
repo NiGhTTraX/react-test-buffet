@@ -7,10 +7,9 @@ module.exports = Object.assign({}, baseConfig, {
   devtool: 'sourcemap',
 
   entry: [
-    'react-hot-loader/patch',
     'webpack-hot-middleware/client',
     // TODO: remove this?
     path.join(__dirname, '..', 'tests', 'node', 'helpers', 'react-warnings.js'),
-    path.join(__dirname, 'index.dev.jsx')
+    ...baseConfig.entry
   ]
 });
