@@ -34,7 +34,7 @@
     "test:gui:debug": "./tests/gui/debug.sh",
     "_test:gui": "mocha --opts tests/gui/mocha.opts tests/gui/specs",
     "_test:gui:debug": "mocha --opts tests/gui/mocha.debug.opts tests/gui/specs",
-    "_test:gui:selenium": "./tests/gui/selenium.sh",
+    "_test:gui:debug:selenium": "./tests/gui/debug-selenium.sh",
     "lint": "eslint --ext js --ext jsx .",
     "precommit": "lint-staged",
     "start": "./start.sh",
