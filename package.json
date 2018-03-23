@@ -83,7 +83,7 @@
     "mugshot-webdriverio": "~1.0.0",
     "nyc": "~11.6.0",
     "react-hot-loader": "~4.0.0",
-    "sinon": "~4.4.1",
+    "sinon": "~4.4.8",
     "sinon-chai": "~3.0.0",
     "style-loader": "~0.20.1",
     "webdriverio": "~4.12.0",
