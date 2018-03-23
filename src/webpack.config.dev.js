@@ -20,6 +20,7 @@ module.exports = Object.assign({}, baseConfig, {
   devServer: {
     host: '0.0.0.0',
     port: 3000,
-    disableHostCheck: true
+    disableHostCheck: true,
+    stats: 'errors-only'
   }
 });
