@@ -177,7 +177,6 @@ function setupHooks() {
 
   runnerBeforeEach(function waitForRender() {
     return rootSuiteBrowser.url('http://app:3000/')
-    // Wait for webpack to build the app.
       .then(() => rootSuiteBrowser.waitForVisible('.todoapp', 5 * 1000));
   });
 }

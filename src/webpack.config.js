@@ -1,10 +1,10 @@
 const path = require('path');
-const { HotModuleReplacementPlugin, NoEmitOnErrorsPlugin } = require('webpack');
+const { NoEmitOnErrorsPlugin } = require('webpack');
 
 
 module.exports = {
   entry: [
-    path.join(__dirname, 'index.dev.jsx')
+    path.join(__dirname, 'index.jsx')
   ],
 
   output: {
@@ -16,8 +16,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
-
-  devtool: 'sourcemap',
 
   module: {
     rules: [{
@@ -32,7 +30,6 @@ module.exports = {
   },
 
   plugins: [
-    new HotModuleReplacementPlugin(),
     new NoEmitOnErrorsPlugin()
   ]
 };

@@ -14,6 +14,8 @@ export default function bind(deps, Component) {
   // We can't return a pure component because the user might want to get its DOM
   // node.
   return class Injector extends React.Component {
+    static displayName = `injected(${Component.displayName || Component.name})`;
+
     render() {
       return <Component {...deps} {...this.props} />;
     }

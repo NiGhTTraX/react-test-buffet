@@ -5,13 +5,10 @@ services:
     extends:
       file: ../../docker-compose.yml
       service: app
-    environment:
-      # Path is relative to the location of the dev server.
-      - WEBPACK_CONFIG=./gui/webpack.config.js
     expose:
       - '3000'
     volumes:
-      - ../../src:/usr/src/app/src
+      - ../../src:/usr/src/app/src:ro
       - ./screenshots:/usr/src/app/tests/gui/screenshots
       - ./results/coverage:/usr/src/app/tests/gui/results/coverage
 

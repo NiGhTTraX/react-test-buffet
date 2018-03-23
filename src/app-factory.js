@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { hot } from 'react-hot-loader';
 import bind from './lib/bind.js';
 import App from './components/app.jsx';
 import AddTodo from './components/add-todo.jsx';
@@ -21,4 +23,4 @@ const CheckableTodo = bind({ Toggle: Checkbox }, Todo);
 const TodoList = bind({ Item: CheckableTodo, className: 'todo-list' }, List);
 const TodoFilters = bind({ Item: TodoFilter, className: 'filters' }, List);
 
-export default bind({ AddTodo, TodoList, TodoFilters, filters }, App);
+export default hot(module)(bind({ AddTodo, TodoList, TodoFilters, filters }, App));

@@ -8,7 +8,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./:/usr/src/app
+      - ./:/usr/src/app:ro
       # When the entire source dir is mounted above, if the host contains a
       # node_modules dir, it will shadow the one in the container. This will
       # happen regardless whether we .dockerignore node_modules. Now, if we want
