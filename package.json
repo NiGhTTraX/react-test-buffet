@@ -52,8 +52,8 @@
     "todomvc-app-css": "~2.1.0"
   },
   "devDependencies": {
+    "@nighttrax/eslint-config": "~1.0.1",
     "babel-core": "~6.26.0",
-    "babel-eslint": "~8.2.1",
     "babel-loader": "~7.1.0",
     "babel-plugin-istanbul": "~4.1.1",
     "babel-plugin-transform-class-properties": "~6.24.1",
@@ -66,9 +66,8 @@
     "chai": "~4.1.0",
     "css-loader": "~0.28.0",
     "eslint": "~4.19.1",
-    "eslint-config-airbnb": "~16.1.0",
     "eslint-plugin-import": "~2.11.0",
-    "eslint-plugin-jsx-a11y": "~6.0.2",
+    "eslint-plugin-jsx-a11y": "~6.0.3",
     "eslint-plugin-react": "~7.7.0",
     "express": "~4.14.0",
     "husky": "~0.14.3",
