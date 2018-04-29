@@ -55,16 +55,12 @@ describe('App', function() {
       });
 
       it('should apply the first available filter when it is selected', () => {
-        TodoList.reset();
-
         TodoFilters.lastProps.onSelect({ id: 'none' });
 
         expect(TodoList).to.have.been.renderedWith({ items: [] });
       });
 
       it('should apply the last available filter when it is selected', () => {
-        TodoList.reset();
-
         TodoFilters.lastProps.onSelect({ id: 'last_one' });
 
         expect(TodoList).to.have.been.renderedWith({
@@ -79,7 +75,6 @@ describe('App', function() {
         );
 
         TodoFilters.lastProps.onSelect({ id: 'last_one' });
-        TodoList.reset();
         TodoFilters.lastProps.onSelect({ id: offFilter.id });
 
         expect(TodoList).to.have.been.renderedWith({

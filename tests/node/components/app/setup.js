@@ -1,11 +1,10 @@
 import bind from '../../../../src/lib/bind.js';
 import App from '../../../../src/components/app.jsx';
-import { createSpy } from '../../helpers/chai-react.js';
-import { beforeEach } from '../../suite';
+import { createReactStub } from '../../helpers/chai-react';
 
-export const AddTodo = createSpy({ name: 'AddTodo' });
-export const TodoList = createSpy({ name: 'TodoList' });
-export const TodoFilters = createSpy({ name: 'TodoFilters' });
+export const AddTodo = createReactStub();
+export const TodoList = createReactStub();
+export const TodoFilters = createReactStub();
 export const filters = [{
   id: 'none',
   name: 'None',
@@ -17,9 +16,3 @@ export const filters = [{
 }];
 
 export default bind({ AddTodo, TodoList, TodoFilters, filters }, App);
-
-beforeEach(function() {
-  AddTodo.reset();
-  TodoList.reset();
-  TodoFilters.reset();
-});
