@@ -56,15 +56,27 @@ export default chai => {
 /**
  * @typedef {Object extends Sinon.stub} ReactStub
  *
- * @property {(props: Object) => ReactStub} withProps Use to customize the
- *   expectations of the stub. The given props are partially matched using
- *   sinon.match.
- * @property {(jsx: React.JSX.Element|string|null) => void} renders Force the
- *   stub to render the given JSX. If previously chained with a `withProps` call
- *   then it will render only for that match.
+ * @property {(props: Object) => ReactStubExpectation} withProps Use to
+ *   customize the expectations of the stub. The given props are partially
+ *   matched using `sinon.match`.
+ * @property {Object} firstProps The props for the first render.
+ * @property {Object} lastProps The props for the last render.
+ * @property {Object[]} renders The props for all the renders.
+ * @property {Boolean} rendered
+ * @property {(Object) => Boolean} renderedWith
  */
 
 /**
+ * @typedef {Object extends Sinon.expectation} ReactStubExpectation
+ *
+ * @property {(jsx: React.JSX.Element|string|null) => void} renders Force the
+ *   stub to render the given JSX for the currently matched props (set by
+ *   `withProps`)
+ */
+
+/**
+ * Create a stub component to pass into components that accept render props.
+ *
  * @returns {ReactStub} By default the stub renders some bogus content. Use
  *   `withProps` and `renders` to set expectations on it.
  */
@@ -73,40 +85,32 @@ export function createReactStub() {
 
   reactStub.returns('::react stub::');
 
-  reactStub.withProps = props => {
-    const expectation = reactStub.withArgs(match(props));
-    expectation.renders = expectation.returns.bind(expectation);
-    return expectation;
-  };
-
   Object.defineProperties(reactStub, {
-    rendered: {
-      get() {
-        return reactStub.called;
+    withProps: {
+      value: props => {
+        const expectation = reactStub.withArgs(match(props));
+        expectation.renders = expectation.returns.bind(expectation);
+        return expectation;
       }
     },
     renderedWith: {
       value: props => reactStub.calledWithMatch(props)
     },
-    /**
-     * Return the first set of received props.
-     */
+    rendered: {
+      get() {
+        return reactStub.called;
+      }
+    },
     firstProps: {
       get() {
         return reactStub.firstCall.args[0];
       }
     },
-    /**
-     * Return the last set of received props.
-     */
     lastProps: {
       get() {
         return reactStub.lastCall.args[0];
       }
     },
-    /**
-     * Return a list of received props from every render.
-     */
     renders: {
       get() {
         return reactStub.args.map(args => args[0]);
