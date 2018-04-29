@@ -80,8 +80,6 @@ export function createReactStub() {
     return expectation;
   };
 
-  reactStub.renders = reactStub.returns.bind(reactStub);
-
   Object.defineProperties(reactStub, {
     rendered: {
       get() {
