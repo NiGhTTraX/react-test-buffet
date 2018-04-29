@@ -83,6 +83,14 @@ export function createReactStub() {
   reactStub.renders = reactStub.returns.bind(reactStub);
 
   Object.defineProperties(reactStub, {
+    rendered: {
+      get() {
+        return reactStub.called;
+      }
+    },
+    renderedWith: {
+      value: props => reactStub.calledWithMatch(props)
+    },
     /**
      * Return the first set of received props.
      */

@@ -1,8 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
-import { createSpy } from '../helpers/chai-react.js';
 import Todo from '../../../src/components/todo.jsx';
-import Toggleable from '../../../src/components/toggleable.jsx';
+import { createReactStub } from '../helpers/chai-react';
 import { describe, it, beforeEach, expect, $render } from '../suite';
 
 
@@ -16,7 +15,7 @@ describe('Todo', function() {
   }
 
   beforeEach(function() {
-    Toggle = createSpy({ name: 'Toggle', Mock: Toggleable });
+    Toggle = createReactStub();
     toggleTodoSpy = spy();
   });
 
