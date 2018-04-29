@@ -1,6 +1,7 @@
 import React from 'react';
-import { match, spy, stub } from 'sinon';
+import { spy } from 'sinon';
 import List from '../../../src/components/list.jsx';
+import { createReactStub } from '../helpers/chai-react';
 import { describe, it, beforeEach, expect, $render } from '../suite';
 
 
@@ -8,10 +9,12 @@ describe('List', function() {
   let $component, Item, onSelectSpy;
 
   beforeEach(function() {
-    Item = stub();
-    Item.withArgs(match({ id: 1 })).returns('item 1');
-    Item.withArgs(match({ id: 2 })).returns('item 2');
-    Item.withArgs(match({ id: 3 })).returns('item 3');
+    Item = createReactStub();
+
+    Item.withProps({ id: 1 }).renders('item 1');
+    Item.withProps({ id: 2 }).renders('item 2');
+    Item.withProps({ id: 3 }).renders('item 3');
+
     onSelectSpy = spy();
 
     $component = $render(<List
@@ -33,19 +36,19 @@ describe('List', function() {
   });
 
   it('should call the parent when the first item is selected', function() {
-    Item.firstCall.args[0].onSelect();
+    Item.firstProps.onSelect();
 
     expect(onSelectSpy).to.have.been.calledWith({ id: 3 });
   });
 
   it('should call the parent when the last item is selected', function() {
-    Item.lastCall.args[0].onSelect();
+    Item.lastProps.onSelect();
 
     expect(onSelectSpy).to.have.been.calledWith({ id: 1 });
   });
 
   it('should call the parent when any item is selected', function() {
-    Item.args[1][0].onSelect();
+    Item.renders[1].onSelect();
 
     expect(onSelectSpy).to.have.been.calledWith({ id: 2 });
   });

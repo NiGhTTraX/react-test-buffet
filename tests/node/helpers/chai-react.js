@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { spy } from 'sinon';
+import { match, spy, stub } from 'sinon';
 import { inspect } from 'util';
 
 
@@ -54,6 +54,63 @@ export default chai => {
   });
 };
 
+/**
+ * @typedef {Object extends Sinon.stub} ReactStub
+ *
+ * @property {(props: Object) => ReactStub} withProps Use to customize the
+ *   expectations of the stub. The given props are partially matched using
+ *   sinon.match.
+ * @property {(jsx: React.JSX.Element|string|null) => void} renders Force the
+ *   stub to render the given JSX. If previously chained with a `withProps` call
+ *   then it will render only for that match.
+ */
+
+/**
+ * @returns {ReactStub} By default the stub renders some bogus content. Use
+ *   `withProps` and `renders` to set expectations on it.
+ */
+export function createReactStub() {
+  const reactStub = stub();
+
+  reactStub.returns('::react stub::');
+
+  reactStub.withProps = props => {
+    const expectation = reactStub.withArgs(match(props));
+    expectation.renders = expectation.returns.bind(expectation);
+    return expectation;
+  };
+
+  reactStub.renders = reactStub.returns.bind(reactStub);
+
+  Object.defineProperties(reactStub, {
+    /**
+     * Return the first set of received props.
+     */
+    firstProps: {
+      get() {
+        return reactStub.firstCall.args[0];
+      }
+    },
+    /**
+     * Return the last set of received props.
+     */
+    lastProps: {
+      get() {
+        return reactStub.lastCall.args[0];
+      }
+    },
+    /**
+     * Return a list of received props from every render.
+     */
+    renders: {
+      get() {
+        return reactStub.args.map(args => args[0]);
+      }
+    }
+  });
+
+  return reactStub;
+}
 
 /**
  * @param {Object} options
