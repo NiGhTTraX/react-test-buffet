@@ -1,4 +1,4 @@
---require babel-register
+--require @babel/register
 --file tests/node/helpers/index.js
 --watch
 --watch-extensions js,jsx

@@ -14,7 +14,7 @@
   "sourceMap": false,
   "instrument": false,
   "require": [
-    "babel-register"
+    "@babel/register"
   ],
 
   "reporter": ["html"],
