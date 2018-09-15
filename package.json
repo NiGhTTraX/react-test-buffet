@@ -55,7 +55,7 @@
     "@nighttrax/eslint-config": "~1.0.1",
     "babel-core": "~6.26.0",
     "babel-loader": "~7.1.0",
-    "babel-plugin-istanbul": "~4.1.1",
+    "babel-plugin-istanbul": "~5.0.0",
     "babel-plugin-transform-class-properties": "~6.24.1",
     "babel-plugin-transform-object-rest-spread": "~6.26.0",
     "babel-polyfill": "~6.26.0",
