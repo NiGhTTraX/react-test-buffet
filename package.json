@@ -75,7 +75,7 @@
     "express": "~4.16.3",
     "husky": "~1.0.0",
     "jquery": "~3.3.1",
-    "jsdom": "~12.0.0",
+    "jsdom": "~12.1.0",
     "lint-staged": "~7.3.0",
     "lodash.isequal": "~4.5.0",
     "lodash.merge": "~4.6.0",
