@@ -80,26 +80,28 @@ export default class App extends Component {
       return;
     }
 
-    this.setState({
-      todos: this.state.todos.concat({
-        id: this.state.id,
+    this.setState(prevState => ({
+      todos: prevState.todos.concat({
+        id: prevState.id,
         title: title.trim(),
         completed: false
       }),
-      id: this.state.id + 1
-    });
+      id: prevState.id + 1
+    }));
   }
 
   onToggleTodo({ id }) {
-    const index = this.state.todos.findIndex(todo => todo.id === id);
-    const newTodos = this.state.todos.slice();
+    this.setState(prevState => {
+      const index = prevState.todos.findIndex(todo => todo.id === id);
+      const newTodos = prevState.todos.slice();
 
-    newTodos[index] = Object.assign({}, newTodos[index], {
-      completed: !newTodos[index].completed
-    });
+      newTodos[index] = Object.assign({}, newTodos[index], {
+        completed: !newTodos[index].completed
+      });
 
-    this.setState({
-      todos: newTodos
+      return {
+        todos: newTodos
+      };
     });
   }
 
