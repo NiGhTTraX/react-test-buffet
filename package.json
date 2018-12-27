@@ -36,10 +36,14 @@
     "_test:gui:debug": "mocha --opts tests/gui/mocha.debug.opts tests/gui/specs",
     "_test:gui:debug:selenium": "./tests/gui/debug-selenium.sh",
     "lint": "eslint --ext js --ext jsx .",
-    "precommit": "lint-staged",
     "start": "./start.sh",
     "_start": "webpack-dev-server --hot --config src/webpack.config.dev.js",
     "stop": "docker-compose down"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint"
@@ -52,11 +56,11 @@
     "todomvc-app-css": "~2.1.0"
   },
   "devDependencies": {
-    "@babel/core": "~7.1.0",
-    "@babel/plugin-proposal-class-properties": "~7.1.0",
-    "@babel/plugin-proposal-object-rest-spread": "~7.0.0",
-    "@babel/polyfill": "~7.0.0",
-    "@babel/preset-env": "~7.1.0",
+    "@babel/core": "~7.2.0",
+    "@babel/plugin-proposal-class-properties": "~7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "~7.2.0",
+    "@babel/polyfill": "~7.2.0",
+    "@babel/preset-env": "~7.2.0",
     "@babel/preset-react": "~7.0.0",
     "@babel/register": "~7.0.0",
     "@nighttrax/eslint-config": "~2.0.0",
@@ -70,9 +74,9 @@
     "eslint-plugin-jsx-a11y": "~6.1.1",
     "eslint-plugin-react": "~7.11.1",
     "express": "~4.16.3",
-    "husky": "~0.14.3",
+    "husky": "~1.1.0",
     "jquery": "~3.3.1",
-    "jsdom": "~12.0.0",
+    "jsdom": "~12.1.0",
     "lint-staged": "~7.3.0",
     "lodash.isequal": "~4.5.0",
     "lodash.merge": "~4.6.0",
