@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "classnames": "~2.2.5",
-    "prop-types": "~15.6.0",
+    "prop-types": "~15.7.0",
     "react": "~16.8.0",
     "react-dom": "~16.8.0",
     "todomvc-app-css": "~2.1.0"
