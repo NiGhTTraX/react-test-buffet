@@ -69,7 +69,7 @@
     "babel-plugin-istanbul": "~5.1.0",
     "chai": "~4.2.0",
     "css-loader": "~2.1.0",
-    "eslint": "~5.13.0",
+    "eslint": "~5.14.0",
     "eslint-plugin-import": "~2.16.0",
     "eslint-plugin-jsx-a11y": "~6.2.0",
     "eslint-plugin-react": "~7.12.0",
