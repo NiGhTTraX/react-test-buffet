@@ -63,7 +63,7 @@
     "@babel/preset-env": "~7.4.0",
     "@babel/preset-react": "~7.0.0",
     "@babel/register": "~7.4.0",
-    "@nighttrax/eslint-config-jsx": "~0.0.6",
+    "@nighttrax/eslint-config-jsx": "~1.0.0",
     "babel-loader": "~8.0.0",
     "babel-plugin-istanbul": "~5.1.0",
     "chai": "~4.2.0",
